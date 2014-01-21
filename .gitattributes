@@ -1,0 +1,7 @@
+* text=auto
+
+*.java text
+*.properties text
+*.xml text
+
+*.jar binary
