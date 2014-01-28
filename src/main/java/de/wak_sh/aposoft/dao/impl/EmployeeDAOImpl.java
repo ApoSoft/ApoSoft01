@@ -1,7 +1,8 @@
-package de.wak_sh.aposoft.dao;
+package de.wak_sh.aposoft.dao.impl;
 
 import java.util.List;
 
+import de.wak_sh.aposoft.dao.EmployeeDAO;
 import de.wak_sh.aposoft.domain.Employee;
 
 public class EmployeeDAOImpl implements EmployeeDAO {

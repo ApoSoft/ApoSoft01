@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.wak_sh.aposoft.dao.EmployeeDAO;
-import de.wak_sh.aposoft.dao.EmployeeDAOImpl;
+import de.wak_sh.aposoft.dao.impl.EmployeeDAOImpl;
 import de.wak_sh.aposoft.domain.Employee;
 
 public class TestEmployee {
