@@ -10,7 +10,8 @@ import javax.persistence.OneToMany;
 
 import lombok.Data;
 
-import org.joda.time.DateTime;
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
 
 @Entity
 @Data
@@ -32,7 +33,8 @@ public class Employee {
     private String gender;
 
     @Basic
-    private DateTime birthdate;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private LocalDate birthdate;
 
     @Basic
     private float partTimePart;

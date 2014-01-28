@@ -2,7 +2,7 @@ package de.wak_sh.aposoft;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +38,7 @@ public class TestEmployee {
     private Employee createEmployee() {
         Employee employee = new Employee();
 
-        employee.setBirthdate(new DateTime(2000, 1, 1, 11, 11));
+        employee.setBirthdate(new LocalDate(2000, 1, 1));
         employee.setFirstName("Sebastian");
         employee.setGender("männlich");
         employee.setName("Brütt");

@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 @Entity
 @Data
@@ -42,7 +42,7 @@ public class User {
     private String gender;
 
     @Basic
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
-    private DateTime birthdate;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private LocalDate birthdate;
 
 }
