@@ -46,7 +46,7 @@ public class TestUser {
         user.setTitle("Dr.");
         user.setUsername("abc");
 
-        return null;
+        return user;
     }
 
     @Test
