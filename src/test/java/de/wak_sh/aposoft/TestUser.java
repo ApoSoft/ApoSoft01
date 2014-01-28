@@ -2,7 +2,7 @@ package de.wak_sh.aposoft;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +38,7 @@ public class TestUser {
     private User createUser() {
         User user = new User();
 
-        user.setBirthdate(new DateTime(2000, 1, 1, 1, 1));
+        user.setBirthdate(new LocalDate(2000, 1, 1));
         user.setFirstName("Sebastian");
         user.setGender("maennlich");
         user.setName("Bruett");
