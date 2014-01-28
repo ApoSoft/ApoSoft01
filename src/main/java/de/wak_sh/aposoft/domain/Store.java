@@ -1,6 +1,5 @@
 package de.wak_sh.aposoft.domain;
 
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,16 +9,11 @@ import lombok.Data;
 
 @Entity
 @Data
-public class MaterialsAdministration {
+public class Store {
     @Id
     @GeneratedValue
     private int id;
 
-    @OneToOne(mappedBy = "materialsAdministration")
-    private Store store;
-
-    @Basic
-    private int amount;
-
-    private Unit unit;
+    @OneToOne(mappedBy = "store")
+    private MaterialsAdministration materialsAdministration;
 }
