@@ -4,6 +4,8 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -16,6 +18,10 @@ public class User {
     @Id
     @GeneratedValue
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     @Basic
     private String username;

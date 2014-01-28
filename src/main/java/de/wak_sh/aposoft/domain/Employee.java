@@ -1,9 +1,12 @@
 package de.wak_sh.aposoft.domain;
 
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -34,4 +37,6 @@ public class Employee {
     @Basic
     private float partTimePart;
 
+    @OneToMany(mappedBy = "employee")
+    private List<User> users;
 }
