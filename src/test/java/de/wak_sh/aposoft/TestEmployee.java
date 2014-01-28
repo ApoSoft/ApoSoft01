@@ -20,9 +20,9 @@ public class TestEmployee {
 
         dao.insertEmployee(employee);
 
-        employee.equals(dao.findByFirstNameAndName("Sebastian", "Brütt"));
+        employee.equals(dao.findByFirstNameAndName("Sebastian", "BrÃ¼tt"));
 
-        List<Employee> listemployee = dao.findByFirstNameAndName("Sebastian", "Brütt");
+        List<Employee> listemployee = dao.findByFirstNameAndName("Sebastian", "BrÃ¼tt");
         boolean exists = false;
         for (Employee employee2 : listemployee) {
             if (employee.equals(employee2)) {
@@ -40,8 +40,8 @@ public class TestEmployee {
 
         employee.setBirthdate(new DateTime(2000, 1, 1, 11, 11));
         employee.setFirstName("Sebastian");
-        employee.setGender("männlich");
-        employee.setName("Brütt");
+        employee.setGender("mÃ¤nnlich");
+        employee.setName("BrÃ¼tt");
         employee.setPartTimePart(1.0f);
         employee.setTitle("Dr.");
         return employee;
@@ -57,7 +57,7 @@ public class TestEmployee {
         employee.setTitle("Prof.");
         dao.updateEmployee(employee);
 
-        List<Employee> listemployee = dao.findByFirstNameAndName("Sebastian", "Brütt");
+        List<Employee> listemployee = dao.findByFirstNameAndName("Sebastian", "BrÃ¼tt");
         for (Employee employee2 : listemployee) {
             if (employee.equals(employee2)) {
                 Assert.assertEquals(employee2.getTitle(), "Prof.");
@@ -75,7 +75,7 @@ public class TestEmployee {
 
         dao.deleteEmployee(employee);
 
-        List<Employee> listemployee = dao.findByFirstNameAndName("Sebastian", "Brütt");
+        List<Employee> listemployee = dao.findByFirstNameAndName("Sebastian", "BrÃ¼tt");
         boolean exists = false;
         for (Employee employee2 : listemployee) {
             if (employee.equals(employee2)) {
