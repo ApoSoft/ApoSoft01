@@ -1,9 +1,14 @@
 package de.wak_sh.aposoft.domain;
 
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -33,11 +38,19 @@ public class Customer {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     private DateTime birthdate;
 
-    @Basic
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     private Address address;
 
+    @ManyToOne
+    @JoinColumn(name = "insurance_id")
     private Insurance insurance;
 
+    @ManyToOne
+    @JoinColumn(name = "payment_condition_id")
     private PaymentCondition paymentCondition;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Appointment> appointments;
 
 }
