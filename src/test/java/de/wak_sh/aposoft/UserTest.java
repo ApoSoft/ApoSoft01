@@ -5,22 +5,28 @@ import java.util.List;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.wak_sh.aposoft.dao.UserDAO;
-import de.wak_sh.aposoft.dao.impl.UserDAOImpl;
+import de.wak_sh.aposoft.dao.UserRepository;
 import de.wak_sh.aposoft.domain.User;
 
-public class TestUser {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+public class UserTest {
+
+    @Autowired
+    private UserRepository repository;
 
     @Test
     public void testInsert() {
-        UserDAO dao = new UserDAOImpl();
-
         User user = createUser();
 
-        dao.insertUser(user);
+        repository.save(user);
 
-        List<User> listuser = dao.findUserByUsername("abc");
+        List<User> listuser = repository.findUserByUsername("abc");
         boolean exists = false;
         for (User user2 : listuser) {
             if (user.getId() == user2.getId()) {
@@ -51,13 +57,11 @@ public class TestUser {
     public void testUpdate() {
         User user = createUser();
 
-        UserDAO dao = new UserDAOImpl();
-
-        dao.insertUser(user);
+        repository.save(user);
         user.setTitle("Prof.");
-        dao.updateUser(user);
+        repository.save(user);
 
-        List<User> listuser = dao.findUserByUsername("abc");
+        List<User> listuser = repository.findUserByUsername("abc");
         for (User user2 : listuser) {
             if (user.getId() == user2.getId()) {
                 Assert.assertEquals(user.getTitle(), "Prof.");
@@ -69,13 +73,12 @@ public class TestUser {
     @Test
     public void testDelete() {
         User user = createUser();
-        UserDAO dao = new UserDAOImpl();
 
-        dao.insertUser(user);
+        repository.save(user);
 
-        dao.deleteuser(user);
+        repository.delete(user);
 
-        List<User> listuser = dao.findUserByUsername("abc");
+        List<User> listuser = repository.findUserByUsername("abc");
         boolean exists = false;
         for (User user2 : listuser) {
             if (user.getId() == user2.getId()) {
@@ -89,13 +92,12 @@ public class TestUser {
     @Test
     public void testFindAll() {
         User user = createUser();
-        UserDAO dao = new UserDAOImpl();
 
-        int size = dao.findAll().size();
+        long size = repository.count();
 
-        dao.insertUser(user);
+        repository.save(user);
 
-        Assert.assertEquals(size + 1, dao.findAll().size());
+        Assert.assertEquals(size + 1, repository.count());
     }
 
 }
