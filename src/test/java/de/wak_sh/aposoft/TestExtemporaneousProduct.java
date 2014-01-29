@@ -20,7 +20,7 @@ public class TestExtemporaneousProduct {
     }
 
     @Test
-    public void testInstert() {
+    public void testInsert() {
         ExtemporaneousProductDAO dao = new ExtemporaneousProductDAOImpl();
 
         ExtemporaneousProduct extemporaneousProduct = createExtemporaneousProduct();
@@ -47,22 +47,17 @@ public class TestExtemporaneousProduct {
 
         dao.insertExtemporaneousProduct(extemporaneousProduct);
 
-        ExtemporaneousProduct extProduct = extemporaneousProduct;
-
         extemporaneousProduct.setDescription("Creme");
 
         dao.updateExtemporaneousProduct(extemporaneousProduct);
 
         List<ExtemporaneousProduct> listextemproduct = dao.findAll();
-        boolean exists = false;
         for (ExtemporaneousProduct ext : listextemproduct) {
-            if (extProduct.equals(ext)) {
-                exists = true;
+            if (extemporaneousProduct.getId() == ext.getId()) {
+                Assert.assertEquals(ext.getDescription(), "Creme");
                 break;
             }
         }
-
-        Assert.assertFalse(exists);
     }
 
     @Test
