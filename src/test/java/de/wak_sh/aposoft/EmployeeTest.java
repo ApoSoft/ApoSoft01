@@ -14,11 +14,11 @@ import de.wak_sh.aposoft.dao.EmployeeRepository;
 import de.wak_sh.aposoft.domain.Employee;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ApoSoft.class)
+@SpringApplicationConfiguration(classes = SpringConfiguration.class)
 public class EmployeeTest {
 
     @Autowired
-    EmployeeRepository repository;
+    private EmployeeRepository repository;
 
     @Test
     public void testInsert() {
