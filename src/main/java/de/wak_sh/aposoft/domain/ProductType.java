@@ -21,9 +21,6 @@ public class ProductType {
     @Basic
     private String name;
 
-    @Basic
-    private String form;
-
     @OneToMany(mappedBy = "productType")
     private List<Product> products;
 }
