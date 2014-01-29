@@ -60,11 +60,10 @@ public class TestAddress {
         boolean exists = false;
         for (Address address2 : listaddress) {
             if (address.getId() == address2.getId()) {
-                exists = true;
+                Assert.assertEquals(address.getCity(), address2.getCity());
                 break;
             }
         }
-        Assert.assertTrue(exists);
     }
 
     @Test
