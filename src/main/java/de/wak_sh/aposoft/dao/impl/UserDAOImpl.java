@@ -69,9 +69,10 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean deleteuser(User user) {
         EntityManager em = emf.createEntityManager();
+        User userRef = em.getReference(User.class, user.getId());
         em.getTransaction().begin();
         try {
-            em.remove(user);
+            em.remove(userRef);
             em.getTransaction().commit();
         } catch (IllegalArgumentException e) {
             em.getTransaction().rollback();

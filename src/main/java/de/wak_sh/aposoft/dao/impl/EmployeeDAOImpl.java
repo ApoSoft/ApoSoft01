@@ -70,9 +70,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public boolean deleteEmployee(Employee employee) {
         EntityManager em = emf.createEntityManager();
+        Employee employeeRef = em.getReference(Employee.class, employee.getId());
         em.getTransaction().begin();
         try {
-            em.remove(employee);
+            em.remove(employeeRef);
             em.getTransaction().commit();
         } catch (IllegalArgumentException e) {
             em.getTransaction().rollback();
@@ -80,5 +81,4 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
         return true;
     }
-
 }
