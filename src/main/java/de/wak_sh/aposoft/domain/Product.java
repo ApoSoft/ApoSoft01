@@ -35,6 +35,13 @@ public class Product {
     @Basic
     private int length;
 
+    @Basic
+    private float price;
+
+    @ManyToOne
+    @JoinColumn(name = "product_shape_id")
+    private ProductShape productShape;
+
     @ManyToOne
     @JoinColumn(name = "product_type_id")
     private ProductType productType;
