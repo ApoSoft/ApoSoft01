@@ -62,7 +62,6 @@ public class TestCountry {
 
         List<Country> listcountry = dao.findAll();
 
-        boolean exists = false;
         for (Country country2 : listcountry) {
             if (country.getId() == country2.getId()) {
                 Assert.assertEquals(country2.getName(), country.getName());

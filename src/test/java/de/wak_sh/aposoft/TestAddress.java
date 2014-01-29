@@ -57,7 +57,6 @@ public class TestAddress {
         dao.updateAddress(address);
 
         List<Address> listaddress = dao.findByCity(address.getCity());
-        boolean exists = false;
         for (Address address2 : listaddress) {
             if (address.getId() == address2.getId()) {
                 Assert.assertEquals(address.getCity(), address2.getCity());
