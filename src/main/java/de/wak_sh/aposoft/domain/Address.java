@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class Address {
     @GeneratedValue
     private int id;
 
+    @ManyToOne
     private Country country;
 
     @Basic
