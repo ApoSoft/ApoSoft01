@@ -45,17 +45,26 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         em.getTransaction().begin();
         try {
             em.persist(employee);
+            em.getTransaction().commit();
         } catch (EntityExistsException e) {
+            em.getTransaction().rollback();
             return false;
         }
-        em.getTransaction().commit();
         return true;
     }
 
     @Override
     public boolean updateEmployee(Employee employee) {
-        // TODO Auto-generated method stub
-        return false;
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.merge(employee);
+            em.getTransaction().commit();
+        } catch (IllegalArgumentException e) {
+            em.getTransaction().rollback();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -64,10 +73,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         em.getTransaction().begin();
         try {
             em.remove(employee);
+            em.getTransaction().commit();
         } catch (IllegalArgumentException e) {
+            em.getTransaction().rollback();
             return false;
         }
-        em.getTransaction().commit();
         return true;
     }
 

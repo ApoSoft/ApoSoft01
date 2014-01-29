@@ -44,17 +44,26 @@ public class UserDAOImpl implements UserDAO {
         em.getTransaction().begin();
         try {
             em.persist(user);
+            em.getTransaction().commit();
         } catch (EntityExistsException e) {
+            em.getTransaction().rollback();
             return false;
         }
-        em.getTransaction().commit();
         return true;
     }
 
     @Override
     public boolean updateUser(User user) {
-        // TODO Auto-generated method stub
-        return false;
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.remove(user);
+            em.getTransaction().commit();
+        } catch (IllegalArgumentException e) {
+            em.getTransaction().rollback();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -63,10 +72,11 @@ public class UserDAOImpl implements UserDAO {
         em.getTransaction().begin();
         try {
             em.remove(user);
+            em.getTransaction().commit();
         } catch (IllegalArgumentException e) {
+            em.getTransaction().rollback();
             return false;
         }
-        em.getTransaction().commit();
         return true;
     }
 
