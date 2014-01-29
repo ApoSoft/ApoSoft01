@@ -20,12 +20,10 @@ public class TestUser {
 
         dao.insertUser(user);
 
-        user.equals(dao.findUserByUsername("abc"));
-
         List<User> listuser = dao.findUserByUsername("abc");
         boolean exists = false;
         for (User user2 : listuser) {
-            if (user.equals(user2)) {
+            if (user.getId() == user2.getId()) {
                 exists = true;
                 break;
             }
@@ -61,7 +59,7 @@ public class TestUser {
 
         List<User> listuser = dao.findUserByUsername("abc");
         for (User user2 : listuser) {
-            if (user.equals(user2)) {
+            if (user.getId() == user2.getId()) {
                 Assert.assertEquals(user.getTitle(), "Prof.");
                 break;
             }
@@ -80,7 +78,7 @@ public class TestUser {
         List<User> listuser = dao.findUserByUsername("abc");
         boolean exists = false;
         for (User user2 : listuser) {
-            if (user.equals(user2)) {
+            if (user.getId() == user2.getId()) {
                 exists = true;
                 break;
             }
