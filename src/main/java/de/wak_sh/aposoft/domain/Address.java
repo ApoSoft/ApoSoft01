@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
@@ -17,6 +18,7 @@ public class Address {
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "country_id")
     private Country country;
 
     @Basic
