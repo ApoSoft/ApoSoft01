@@ -5,22 +5,28 @@ import java.util.List;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.wak_sh.aposoft.dao.EmployeeDAO;
-import de.wak_sh.aposoft.dao.impl.EmployeeDAOImpl;
+import de.wak_sh.aposoft.dao.EmployeeRepository;
 import de.wak_sh.aposoft.domain.Employee;
 
-public class TestEmployee {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = ApoSoft.class)
+public class EmployeeTest {
+
+    @Autowired
+    EmployeeRepository repository;
 
     @Test
     public void testInsert() {
-        EmployeeDAO dao = new EmployeeDAOImpl();
-
         Employee employee = createEmployee();
 
-        dao.insertEmployee(employee);
+        repository.save(employee);
 
-        List<Employee> listemployee = dao.findByFirstNameAndName(employee.getFirstName(), employee.getName());
+        List<Employee> listemployee = repository.findByFirstNameAndName(employee.getFirstName(), employee.getName());
         boolean exists = false;
         for (Employee employee2 : listemployee) {
             if (employee.getId() == employee2.getId()) {
@@ -48,13 +54,11 @@ public class TestEmployee {
     public void testUpdate() {
         Employee employee = createEmployee();
 
-        EmployeeDAOImpl dao = new EmployeeDAOImpl();
-
-        dao.insertEmployee(employee);
+        repository.save(employee);
         employee.setTitle("Prof.");
-        dao.updateEmployee(employee);
+        repository.save(employee);
 
-        List<Employee> listemployee = dao.findByFirstNameAndName(employee.getFirstName(), employee.getName());
+        List<Employee> listemployee = repository.findByFirstNameAndName(employee.getFirstName(), employee.getName());
         for (Employee employee2 : listemployee) {
             if (employee.getId() == employee2.getId()) {
                 Assert.assertEquals(employee2.getTitle(), "Prof.");
@@ -66,13 +70,12 @@ public class TestEmployee {
     @Test
     public void testDelete() {
         Employee employee = createEmployee();
-        EmployeeDAOImpl dao = new EmployeeDAOImpl();
 
-        dao.insertEmployee(employee);
+        repository.save(employee);
 
-        dao.deleteEmployee(employee);
+        repository.delete(employee);
 
-        List<Employee> listemployee = dao.findByFirstNameAndName(employee.getFirstName(), employee.getName());
+        List<Employee> listemployee = repository.findByFirstNameAndName(employee.getFirstName(), employee.getName());
         boolean exists = false;
         for (Employee employee2 : listemployee) {
             if (employee.getId() == employee2.getId()) {
@@ -86,12 +89,11 @@ public class TestEmployee {
     @Test
     public void testFindAll() {
         Employee employee = createEmployee();
-        EmployeeDAOImpl dao = new EmployeeDAOImpl();
 
-        int size = dao.findAll().size();
+        long size = repository.count();
 
-        dao.insertEmployee(employee);
+        repository.save(employee);
 
-        Assert.assertEquals(size + 1, dao.findAll().size());
+        Assert.assertEquals(size + 1, repository.count());
     }
 }
