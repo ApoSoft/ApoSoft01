@@ -21,5 +21,5 @@ public class OrderItem {
     private Product product;
 
     @Basic
-    private int count;
+    private int counter;
 }
