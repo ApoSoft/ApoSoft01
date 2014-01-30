@@ -75,7 +75,7 @@ public class PaymentConditionTest {
         List<PaymentCondition> listpaycon = repository.findByPaymentDate(paymentCondition.getPaymentDate());
         for (PaymentCondition paymentCondition2 : listpaycon) {
             if (paymentCondition.getId() == paymentCondition2.getId()) {
-                Assert.assertEquals(paymentCondition.getDiscountValue(), paymentCondition2.getDiscountValue());
+                Assert.assertEquals(paymentCondition.getDiscountValue(), paymentCondition2.getDiscountValue(), 0.01);
                 break;
             }
         }
