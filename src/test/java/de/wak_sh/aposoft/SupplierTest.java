@@ -4,33 +4,40 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.wak_sh.aposoft.dao.SupplierDAO;
-import de.wak_sh.aposoft.dao.impl.SupplierDAOImpl;
+import de.wak_sh.aposoft.dao.SupplierRepository;
 import de.wak_sh.aposoft.domain.Supplier;
 
-public class TestSupplier {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+public class SupplierTest {
+
+    @Autowired
+    private SupplierRepository repository;
 
     public Supplier createSupplier() {
-        Supplier suppllier = new Supplier();
+        Supplier supplier = new Supplier();
 
-        suppllier.setContactPerson("Karl Of");
-        suppllier.setName("Bayer");
-        suppllier.setRating("A");
-        suppllier.setShortdescription("Großer Pharmakonzern");
-        suppllier.setWebsite("www.bayer.de");
+        supplier.setContactPerson("Karl Of");
+        supplier.setName("Bayer");
+        supplier.setRating("A");
+        supplier.setShortdescription("Großer Pharmakonzern");
+        supplier.setWebsite("www.bayer.de");
 
-        return suppllier;
+        return supplier;
     }
 
     @Test
     public void testInsert() {
-        SupplierDAO dao = new SupplierDAOImpl();
         Supplier supplier = createSupplier();
 
-        dao.insertSupplier(supplier);
+        repository.save(supplier);
 
-        List<Supplier> listsupplier = dao.findByName(supplier.getName());
+        List<Supplier> listsupplier = repository.findByName(supplier.getName());
         boolean exists = false;
         for (Supplier supplier2 : listsupplier) {
             if (supplier.getId() == supplier2.getId()) {
@@ -43,14 +50,13 @@ public class TestSupplier {
 
     @Test
     public void testUpdate() {
-        SupplierDAO dao = new SupplierDAOImpl();
         Supplier supplier = createSupplier();
 
-        dao.insertSupplier(supplier);
+        repository.save(supplier);
         supplier.setContactPerson("Alfred Bayer");
-        dao.updateSupplier(supplier);
+        repository.save(supplier);
 
-        List<Supplier> listsupplier = dao.findByName(supplier.getName());
+        List<Supplier> listsupplier = repository.findByName(supplier.getName());
         for (Supplier supplier2 : listsupplier) {
             if (supplier.getId() == supplier2.getId()) {
                 Assert.assertEquals(supplier.getContactPerson(), supplier2.getContactPerson());
@@ -61,13 +67,12 @@ public class TestSupplier {
 
     @Test
     public void testDelete() {
-        SupplierDAO dao = new SupplierDAOImpl();
         Supplier supplier = createSupplier();
 
-        dao.insertSupplier(supplier);
-        dao.deleteSupplier(supplier);
+        repository.save(supplier);
+        repository.delete(supplier);
 
-        List<Supplier> listsupplier = dao.findByName(supplier.getName());
+        List<Supplier> listsupplier = repository.findByName(supplier.getName());
         boolean exists = false;
         for (Supplier supplier2 : listsupplier) {
             if (supplier.getId() == supplier2.getId()) {
@@ -80,11 +85,10 @@ public class TestSupplier {
 
     @Test
     public void testFindAll() {
-        SupplierDAO dao = new SupplierDAOImpl();
         Supplier supplier = createSupplier();
-        int size = dao.findAll().size();
-        dao.insertSupplier(supplier);
-        Assert.assertEquals(size + 1, dao.findAll().size());
+        long size = repository.count();
+        repository.save(supplier);
+        Assert.assertEquals(size + 1, repository.count());
     }
 
 }

@@ -4,12 +4,20 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.wak_sh.aposoft.dao.AddressDAO;
-import de.wak_sh.aposoft.dao.impl.AddressDAOImpl;
+import de.wak_sh.aposoft.dao.AddressRepository;
 import de.wak_sh.aposoft.domain.Address;
 
-public class TestAddress {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+public class AddressTest {
+
+    @Autowired
+    private AddressRepository repository;
 
     private Address createAddress() {
 
@@ -29,13 +37,11 @@ public class TestAddress {
 
     @Test
     public void testInsert() {
-        AddressDAO dao = new AddressDAOImpl();
-
         Address address = createAddress();
 
-        dao.insertAddress(address);
+        repository.save(address);
 
-        List<Address> listaddress = dao.findByCity(address.getCity());
+        List<Address> listaddress = repository.findByCity(address.getCity());
         boolean exists = false;
         for (Address address2 : listaddress) {
             if (address.getId() == address2.getId()) {
@@ -48,15 +54,13 @@ public class TestAddress {
 
     @Test
     public void testUpdate() {
-        AddressDAO dao = new AddressDAOImpl();
-
         Address address = createAddress();
 
-        dao.insertAddress(address);
+        repository.save(address);
         address.setCity("Hamburg");
-        dao.updateAddress(address);
+        repository.save(address);
 
-        List<Address> listaddress = dao.findByCity(address.getCity());
+        List<Address> listaddress = repository.findByCity(address.getCity());
         for (Address address2 : listaddress) {
             if (address.getId() == address2.getId()) {
                 Assert.assertEquals(address.getCity(), address2.getCity());
@@ -67,14 +71,12 @@ public class TestAddress {
 
     @Test
     public void testDelete() {
-        AddressDAO dao = new AddressDAOImpl();
-
         Address address = createAddress();
 
-        dao.insertAddress(address);
-        dao.deleteAddress(address);
+        repository.save(address);
+        repository.delete(address);
 
-        List<Address> listaddress = dao.findByCity(address.getCity());
+        List<Address> listaddress = repository.findByCity(address.getCity());
         boolean exists = false;
         for (Address address2 : listaddress) {
             if (address.getId() == address2.getId()) {
@@ -87,23 +89,20 @@ public class TestAddress {
 
     @Test
     public void testfindAll() {
-        AddressDAO dao = new AddressDAOImpl();
         Address address = createAddress();
 
-        int size = dao.findAll().size();
-        dao.insertAddress(address);
-        Assert.assertEquals(size + 1, dao.findAll().size());
+        long size = repository.count();
+        repository.save(address);
+        Assert.assertEquals(size + 1, repository.count());
     }
 
     @Test
     public void testUpdateWithPostaleCode() {
-        AddressDAO dao = new AddressDAOImpl();
-
         Address address = createAddress();
 
-        dao.insertAddress(address);
+        repository.save(address);
 
-        List<Address> listaddress = dao.findByPostalCode(0431);
+        List<Address> listaddress = repository.findByPostalCode(0431);
         boolean exists = false;
         for (Address address2 : listaddress) {
             if (address.getId() == address2.getId()) {

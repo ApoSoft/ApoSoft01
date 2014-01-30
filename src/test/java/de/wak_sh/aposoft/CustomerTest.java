@@ -4,12 +4,20 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.wak_sh.aposoft.dao.CustomerDAO;
-import de.wak_sh.aposoft.dao.impl.CustomerDAOImpl;
+import de.wak_sh.aposoft.dao.CustomerRepository;
 import de.wak_sh.aposoft.domain.Customer;
 
-public class TestCustomer {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+public class CustomerTest {
+
+    @Autowired
+    private CustomerRepository repository;
 
     public Customer createCustomer() {
 
@@ -26,12 +34,11 @@ public class TestCustomer {
 
     @Test
     public void testInsert() {
-        CustomerDAO dao = new CustomerDAOImpl();
         Customer customer = createCustomer();
 
-        dao.insertCustomer(customer);
+        repository.save(customer);
 
-        List<Customer> listCustomer = dao.findByName(customer.getName());
+        List<Customer> listCustomer = repository.findByName(customer.getName());
         boolean exists = false;
         for (Customer customer2 : listCustomer) {
             if (customer.getId() == customer2.getId()) {
@@ -44,14 +51,13 @@ public class TestCustomer {
 
     @Test
     public void testUpdate() {
-        CustomerDAO dao = new CustomerDAOImpl();
         Customer customer = createCustomer();
 
-        dao.insertCustomer(customer);
+        repository.save(customer);
         customer.setFirstName("Karl");
-        dao.updateCustomer(customer);
+        repository.save(customer);
 
-        List<Customer> listCustomer = dao.findByName(customer.getName());
+        List<Customer> listCustomer = repository.findByName(customer.getName());
         for (Customer customer2 : listCustomer) {
             if (customer.getId() == customer2.getId()) {
                 Assert.assertEquals(customer.getFirstName(), customer2.getFirstName());
@@ -62,13 +68,12 @@ public class TestCustomer {
 
     @Test
     public void testDelete() {
-        CustomerDAO dao = new CustomerDAOImpl();
         Customer customer = createCustomer();
 
-        dao.insertCustomer(customer);
-        dao.deleteCustomer(customer);
+        repository.save(customer);
+        repository.delete(customer);
 
-        List<Customer> listCustomer = dao.findByName(customer.getName());
+        List<Customer> listCustomer = repository.findByName(customer.getName());
         boolean exists = false;
         for (Customer customer2 : listCustomer) {
             if (customer.getId() == customer2.getId()) {
@@ -81,11 +86,10 @@ public class TestCustomer {
 
     @Test
     public void testFindAll() {
-        CustomerDAO dao = new CustomerDAOImpl();
         Customer customer = createCustomer();
 
-        int size = dao.findAll().size();
-        dao.insertCustomer(customer);
-        Assert.assertEquals(size + 1, dao.findAll().size());
+        long size = repository.count();
+        repository.save(customer);
+        Assert.assertEquals(size + 1, repository.count());
     }
 }

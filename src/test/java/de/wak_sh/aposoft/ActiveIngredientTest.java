@@ -4,12 +4,20 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.wak_sh.aposoft.dao.ActiveIngredientDAO;
-import de.wak_sh.aposoft.dao.impl.ActiveIngredientDAOImpl;
+import de.wak_sh.aposoft.dao.ActiveIngredientRepository;
 import de.wak_sh.aposoft.domain.ActiveIngredient;
 
-public class TestActiveIngredient {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+public class ActiveIngredientTest {
+
+    @Autowired
+    private ActiveIngredientRepository repository;
 
     public ActiveIngredient createActiveIngredient() {
         ActiveIngredient activeIngredient = new ActiveIngredient();
@@ -19,12 +27,11 @@ public class TestActiveIngredient {
 
     @Test
     public void testInsert() {
-        ActiveIngredientDAO dao = new ActiveIngredientDAOImpl();
         ActiveIngredient activeIngredient = createActiveIngredient();
 
-        dao.insertActiveIngredient(activeIngredient);
+        repository.save(activeIngredient);
 
-        List<ActiveIngredient> listactiveingredient = dao.findByName(activeIngredient.getName());
+        List<ActiveIngredient> listactiveingredient = repository.findByName(activeIngredient.getName());
         boolean exists = false;
         for (ActiveIngredient activeIngredient2 : listactiveingredient) {
             if (activeIngredient.getId() == activeIngredient2.getId()) {
@@ -37,14 +44,13 @@ public class TestActiveIngredient {
 
     @Test
     public void testUpdate() {
-        ActiveIngredientDAO dao = new ActiveIngredientDAOImpl();
         ActiveIngredient activeIngredient = createActiveIngredient();
 
-        dao.insertActiveIngredient(activeIngredient);
+        repository.save(activeIngredient);
         activeIngredient.setName("def");
-        dao.updateActiveIngredient(activeIngredient);
+        repository.save(activeIngredient);
 
-        List<ActiveIngredient> listactiveingredient = dao.findByName(activeIngredient.getName());
+        List<ActiveIngredient> listactiveingredient = repository.findByName(activeIngredient.getName());
         for (ActiveIngredient activeIngredient2 : listactiveingredient) {
             if (activeIngredient.getId() == activeIngredient2.getId()) {
                 Assert.assertEquals(activeIngredient.getName(), activeIngredient2.getName());
@@ -55,13 +61,12 @@ public class TestActiveIngredient {
 
     @Test
     public void testDelete() {
-        ActiveIngredientDAO dao = new ActiveIngredientDAOImpl();
         ActiveIngredient activeIngredient = createActiveIngredient();
 
-        dao.insertActiveIngredient(activeIngredient);
-        dao.deleteActiveIngredient(activeIngredient);
+        repository.save(activeIngredient);
+        repository.delete(activeIngredient);
 
-        List<ActiveIngredient> listactiveingredient = dao.findByName(activeIngredient.getName());
+        List<ActiveIngredient> listactiveingredient = repository.findByName(activeIngredient.getName());
         boolean exists = false;
         for (ActiveIngredient activeIngredient2 : listactiveingredient) {
             if (activeIngredient.getId() == activeIngredient2.getId()) {
@@ -74,10 +79,9 @@ public class TestActiveIngredient {
 
     @Test
     public void testFindAll() {
-        ActiveIngredientDAO dao = new ActiveIngredientDAOImpl();
         ActiveIngredient activeIngredient = createActiveIngredient();
-        int size = dao.findAll().size();
-        dao.insertActiveIngredient(activeIngredient);
-        Assert.assertEquals(size + 1, dao.findAll().size());
+        long size = repository.count();
+        repository.save(activeIngredient);
+        Assert.assertEquals(size + 1, repository.count());
     }
 }

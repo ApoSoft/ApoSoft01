@@ -1,15 +1,21 @@
 package de.wak_sh.aposoft;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.wak_sh.aposoft.dao.CountryDAO;
-import de.wak_sh.aposoft.dao.impl.CountryDAOImpl;
+import de.wak_sh.aposoft.dao.CountryRepository;
 import de.wak_sh.aposoft.domain.Country;
 
-public class TestCountry {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+public class CountryTest {
+
+    @Autowired
+    private CountryRepository repository;
 
     public Country createCountry() {
         Country country = new Country();
@@ -21,12 +27,11 @@ public class TestCountry {
 
     @Test
     public void testInsertWithCountryCode() {
-        CountryDAO dao = new CountryDAOImpl();
         Country country = createCountry();
 
-        dao.insertCountry(country);
+        repository.save(country);
 
-        Country listcountry = dao.findByCountryCode(country.getCountryCode());
+        Country listcountry = repository.findByCountryCode(country.getCountryCode());
 
         boolean exists = false;
         if (country.getId() == listcountry.getId()) {
@@ -37,12 +42,11 @@ public class TestCountry {
 
     @Test
     public void testInsertWithCountryName() {
-        CountryDAO dao = new CountryDAOImpl();
         Country country = createCountry();
 
-        dao.insertCountry(country);
+        repository.save(country);
 
-        Country listcountry = dao.findByName(country.getName());
+        Country listcountry = repository.findByName(country.getName());
 
         boolean exists = false;
         if (country.getId() == listcountry.getId()) {
@@ -53,14 +57,13 @@ public class TestCountry {
 
     @Test
     public void testUpdate() {
-        CountryDAO dao = new CountryDAOImpl();
         Country country = createCountry();
 
-        dao.insertCountry(country);
+        repository.save(country);
         country.setName("Deutschland");
-        dao.updateCountry(country);
+        repository.save(country);
 
-        List<Country> listcountry = dao.findAll();
+        Iterable<Country> listcountry = repository.findAll();
 
         for (Country country2 : listcountry) {
             if (country.getId() == country2.getId()) {
@@ -71,13 +74,12 @@ public class TestCountry {
 
     @Test
     public void testDelete() {
-        CountryDAO dao = new CountryDAOImpl();
         Country country = createCountry();
 
-        dao.insertCountry(country);
-        dao.deleteCoutnry(country);
+        repository.save(country);
+        repository.delete(country);
 
-        Country listcountry = dao.findByName(country.getName());
+        Country listcountry = repository.findByName(country.getName());
 
         boolean exists = false;
         if (country.getId() == listcountry.getId()) {
@@ -88,11 +90,10 @@ public class TestCountry {
 
     @Test
     public void testFindAll() {
-        CountryDAO dao = new CountryDAOImpl();
         Country country = createCountry();
 
-        int size = dao.findAll().size();
-        dao.insertCountry(country);
-        Assert.assertEquals(size + 1, dao.findAll().size());
+        long size = repository.count();
+        repository.save(country);
+        Assert.assertEquals(size + 1, repository.count());
     }
 }
