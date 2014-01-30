@@ -35,7 +35,7 @@ public class Customer {
     private String gender;
 
     @Basic
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime birthdate;
 
     @ManyToOne

@@ -20,12 +20,12 @@ public class PaymentCondition {
 
     // Zahlungsziel
     @Basic
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime paymentDate;
 
     // Skontofrist
     @Basic
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime discountDate;
 
     @Basic

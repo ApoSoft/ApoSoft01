@@ -10,10 +10,10 @@ import lombok.Data;
 @Data
 @Entity
 public class ActiveIngredient {
-	@Id
-	@GeneratedValue
-	private int id;
+    @Id
+    @GeneratedValue
+    private int id;
 
-	@Basic
-	private String name;
+    @Basic
+    private String name;
 }
