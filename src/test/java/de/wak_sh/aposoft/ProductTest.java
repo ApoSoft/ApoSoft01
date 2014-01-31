@@ -51,4 +51,22 @@ public class ProductTest {
 
         Assert.assertEquals(count + 1, sizeIterable);
     }
+
+    @Test
+    public void testFindByName() {
+        Product product = createProduct();
+
+        repository.save(product);
+
+        boolean result = false;
+
+        Iterable<Product> iter = repository.findByName("%Sal%");
+        for (Product product2 : iter) {
+            if (product2.getName().equals(product.getName())) {
+                result = true;
+            }
+        }
+
+        Assert.assertTrue(result);
+    }
 }
