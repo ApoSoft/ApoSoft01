@@ -24,6 +24,10 @@ public class Product {
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
     @Basic
     private boolean prescription;
 
