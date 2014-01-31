@@ -8,14 +8,13 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- * Entity class for extemporaneous products
+ * Entity class for extemporaneous products (Rezeptur)
  * 
  * @author Jannik Kuptz
  * 
  */
 @Entity
 @Data
-// Rezeptur
 public class ExtemporaneousProduct {
     @Id
     @GeneratedValue

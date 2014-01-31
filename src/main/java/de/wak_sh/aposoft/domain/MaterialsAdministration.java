@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 import lombok.Data;
 
 /**
- * Entity Class for the administration of the materials
+ * Entity Class for the administration of the materials (Materialwirtschaft)
  * 
  * @author Jannik Kuptz
  * 

@@ -9,6 +9,12 @@ import javax.persistence.OneToOne;
 
 import lombok.Data;
 
+/**
+ * Entity class for Supplier (Hersteller)
+ * 
+ * @author Jannik Kuptz / Artem Hofmann
+ * 
+ */
 @Entity
 @Data
 public class Supplier {
