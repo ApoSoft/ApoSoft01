@@ -84,7 +84,12 @@ public class ActiveIngredientTest {
     public void testFindAll() {
         ActiveIngredient activeIngredient = createActiveIngredient();
         long size = repository.count();
+        long lenghts = 0;
         repository.save(activeIngredient);
-        Assert.assertEquals(size + 1, repository.count());
+        Iterable<ActiveIngredient> it = repository.findAll();
+        for (ActiveIngredient activeIngredient2 : it) {
+            lenghts++;
+        }
+        Assert.assertEquals(size + 1, lenghts);
     }
 }
