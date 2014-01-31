@@ -93,10 +93,13 @@ public class ExtemporaneousProductTest {
         ExtemporaneousProduct extemporaneousProduct = createExtemporaneousProduct();
 
         long size = repository.count();
-
+        long length = 0;
         repository.save(extemporaneousProduct);
-
-        Assert.assertEquals(size + 1, repository.count());
+        Iterable<ExtemporaneousProduct> it = repository.findAll();
+        for (ExtemporaneousProduct extemporaneousProduct2 : it) {
+            length++;
+        }
+        Assert.assertEquals(size + 1, length);
     }
 
 }

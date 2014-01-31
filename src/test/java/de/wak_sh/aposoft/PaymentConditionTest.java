@@ -106,7 +106,12 @@ public class PaymentConditionTest {
     public void testfindAll() {
         PaymentCondition paymentCondition = createPaymentCondition();
         long size = repository.count();
+        long length = 0;
         repository.save(paymentCondition);
-        Assert.assertEquals(size + 1, repository.count());
+        Iterable<PaymentCondition> it = repository.findAll();
+        for (PaymentCondition paymentCondition2 : it) {
+            length++;
+        }
+        Assert.assertEquals(size + 1, length);
     }
 }

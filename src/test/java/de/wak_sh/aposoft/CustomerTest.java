@@ -92,7 +92,12 @@ public class CustomerTest {
         Customer customer = createCustomer();
 
         long size = repository.count();
+        long length = 0;
         repository.save(customer);
-        Assert.assertEquals(size + 1, repository.count());
+        Iterable<Customer> it = repository.findAll();
+        for (Object object : it) {
+            length++;
+        }
+        Assert.assertEquals(size + 1, length);
     }
 }
