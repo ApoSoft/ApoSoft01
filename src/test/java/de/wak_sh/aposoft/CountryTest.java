@@ -92,7 +92,12 @@ public class CountryTest {
         Country country = createCountry();
 
         long size = repository.count();
+        long length = 0;
         repository.save(country);
-        Assert.assertEquals(size + 1, repository.count());
+        Iterable<Country> it = repository.findAll();
+        for (Country country2 : it) {
+            length++;
+        }
+        Assert.assertEquals(size + 1, length);
     }
 }

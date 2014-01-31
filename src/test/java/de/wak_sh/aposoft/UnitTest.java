@@ -83,7 +83,12 @@ public class UnitTest {
     public void testFindAll() {
         Unit unit = createUnit();
         long size = repository.count();
+        long length = 0;
         repository.save(unit);
-        Assert.assertEquals(size + 1, repository.count());
+        Iterable<Unit> it = repository.findAll();
+        for (Unit unit2 : it) {
+            length++;
+        }
+        Assert.assertEquals(size + 1, length);
     }
 }

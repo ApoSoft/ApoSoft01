@@ -90,8 +90,13 @@ public class SupplierTest {
     public void testFindAll() {
         Supplier supplier = createSupplier();
         long size = repository.count();
+        long length = 0;
         repository.save(supplier);
-        Assert.assertEquals(size + 1, repository.count());
+        Iterable<Supplier> it = repository.findAll();
+        for (Supplier supplier2 : it) {
+            length++;
+        }
+        Assert.assertEquals(size + 1, length);
     }
 
 }
