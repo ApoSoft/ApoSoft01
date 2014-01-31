@@ -13,6 +13,12 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
+/**
+ * Entity class for employees
+ * 
+ * @author Christoph Mende
+ * 
+ */
 @Entity
 @Data
 public class Employee {
