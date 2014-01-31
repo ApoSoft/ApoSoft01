@@ -10,6 +10,12 @@ import javax.persistence.OneToMany;
 
 import lombok.Data;
 
+/**
+ * Domain fuer das Land
+ * 
+ * @author lhuebsch
+ * 
+ */
 @Entity
 @Data
 public class Country {

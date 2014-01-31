@@ -10,6 +10,12 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+/**
+ * Domain fuer die Zahlungsbedingung
+ * 
+ * @author lhuebsch
+ * 
+ */
 @Entity
 @Data
 public class PaymentCondition {

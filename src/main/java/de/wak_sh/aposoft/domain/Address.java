@@ -9,6 +9,13 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
+/**
+ * Domain fuer die Adresse
+ * 
+ * @author lhuebsch
+ * 
+ */
+
 @Entity
 @Data
 public class Address {

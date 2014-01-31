@@ -6,6 +6,12 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+/**
+ * Domain fuer die Versicherung
+ * 
+ * @author lhuebsch
+ * 
+ */
 @Entity
 @Data
 public class Insurance {
