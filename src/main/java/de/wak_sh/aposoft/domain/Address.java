@@ -43,7 +43,7 @@ public class Address {
     private String extra03;
 
     @Basic
-    private int phone;
+    private String phone;
 
     @Basic
     private String email;
