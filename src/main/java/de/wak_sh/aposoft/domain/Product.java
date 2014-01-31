@@ -61,4 +61,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "unit_id")
     private Unit unit;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 }
