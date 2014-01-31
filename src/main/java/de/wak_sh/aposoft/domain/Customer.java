@@ -46,6 +46,9 @@ public class Customer {
     @JoinColumn(name = "insurance_id")
     private Insurance insurance;
 
+    @Basic
+    private String insurantNumber;
+
     @ManyToOne
     @JoinColumn(name = "payment_condition_id")
     private PaymentCondition paymentCondition;
