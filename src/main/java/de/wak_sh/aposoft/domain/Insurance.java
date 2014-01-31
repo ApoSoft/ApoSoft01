@@ -34,6 +34,4 @@ public class Insurance {
     @Basic
     private String phone;
 
-    // TODO: lhuebsch - Insurance befuellen sobald Datenmodell fertig
-
 }
