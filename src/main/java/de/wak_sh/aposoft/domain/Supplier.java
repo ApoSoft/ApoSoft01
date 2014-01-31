@@ -32,6 +32,9 @@ public class Supplier {
     @Basic
     private String rating;
 
+    @Basic
+    private String telephoneNumber;
+
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
