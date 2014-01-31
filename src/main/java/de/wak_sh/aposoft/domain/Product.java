@@ -20,6 +20,10 @@ public class Product {
     @Basic
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "vendor_id")
+    private Vendor vendor;
+
     @Basic
     private boolean prescription;
 
