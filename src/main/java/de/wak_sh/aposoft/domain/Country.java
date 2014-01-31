@@ -2,7 +2,7 @@ package de.wak_sh.aposoft.domain;
 
 import java.util.List;
 
-import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,10 +18,10 @@ public class Country {
     @GeneratedValue
     private int id;
 
-    @Basic
+    @Column(unique = true)
     private String countryCode;
 
-    @Basic
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "country")
