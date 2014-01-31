@@ -10,6 +10,6 @@ public interface AddressRepository extends CrudRepository<Address, Integer> {
 
     List<Address> findByCity(String city);
 
-    List<Address> findByPostalCode(int postalCode);
+    List<Address> findByPostalCode(String string);
 
 }

@@ -28,8 +28,8 @@ public class AddressTest {
         address.setEmail("abc@mail.de");
         address.setExtra01("abc");
         address.setNumber("49");
-        address.setPhone(99821);
-        address.setPostalCode(0431);
+        address.setPhone("99821");
+        address.setPostalCode("0431");
         address.setStreet("abcStraße 9");
 
         return address;
@@ -102,7 +102,7 @@ public class AddressTest {
 
         repository.save(address);
 
-        List<Address> listaddress = repository.findByPostalCode(0431);
+        List<Address> listaddress = repository.findByPostalCode("0431");
         boolean exists = false;
         for (Address address2 : listaddress) {
             if (address.getId() == address2.getId()) {

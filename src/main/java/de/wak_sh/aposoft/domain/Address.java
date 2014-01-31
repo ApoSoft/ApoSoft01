@@ -25,7 +25,7 @@ public class Address {
     private String city;
 
     @Basic
-    private int postalCode;
+    private String postalCode;
 
     @Basic
     private String street;
