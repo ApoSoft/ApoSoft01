@@ -82,13 +82,9 @@ public class CountryTest {
         repository.save(country);
         repository.delete(country);
 
-        Country listcountry = repository.findByName(country.getName());
+        Country country2 = repository.findByName(country.getName());
 
-        boolean exists = false;
-        if (country.getId() == listcountry.getId()) {
-            exists = true;
-        }
-        Assert.assertFalse(exists);
+        Assert.assertNull(country2);
     }
 
     @Test
