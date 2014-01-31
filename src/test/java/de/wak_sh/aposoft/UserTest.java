@@ -2,6 +2,8 @@ package de.wak_sh.aposoft;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,6 +17,7 @@ import de.wak_sh.aposoft.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@Transactional
 public class UserTest {
 
     @Autowired

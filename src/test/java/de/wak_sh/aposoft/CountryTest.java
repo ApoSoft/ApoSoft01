@@ -1,5 +1,7 @@
 package de.wak_sh.aposoft;
 
+import javax.transaction.Transactional;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,7 @@ import de.wak_sh.aposoft.domain.Country;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@Transactional
 public class CountryTest {
 
     @Autowired
