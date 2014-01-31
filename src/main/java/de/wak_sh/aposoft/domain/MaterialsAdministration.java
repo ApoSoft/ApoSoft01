@@ -8,6 +8,12 @@ import javax.persistence.OneToOne;
 
 import lombok.Data;
 
+/**
+ * Entity Class for the administration of the materials
+ * 
+ * @author Jannik Kuptz
+ * 
+ */
 @Entity
 @Data
 public class MaterialsAdministration {

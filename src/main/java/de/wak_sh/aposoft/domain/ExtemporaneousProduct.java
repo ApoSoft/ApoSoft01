@@ -7,6 +7,12 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+/**
+ * Entity class for extemporaneous products
+ * 
+ * @author Jannik Kuptz
+ * 
+ */
 @Entity
 @Data
 // Rezeptur
@@ -17,4 +23,6 @@ public class ExtemporaneousProduct {
 
     @Basic
     private String description;
+
+    // TODO manifacturer relation
 }
