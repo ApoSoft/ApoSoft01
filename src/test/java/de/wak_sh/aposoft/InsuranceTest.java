@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.wak_sh.aposoft.dao.InsuranceRepository;
 import de.wak_sh.aposoft.domain.Insurance;
+import de.wak_sh.aposoft.repository.InsuranceRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringConfiguration.class)

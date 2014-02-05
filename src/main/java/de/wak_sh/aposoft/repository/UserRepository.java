@@ -1,4 +1,4 @@
-package de.wak_sh.aposoft.dao;
+package de.wak_sh.aposoft.repository;
 
 import java.util.List;
 
