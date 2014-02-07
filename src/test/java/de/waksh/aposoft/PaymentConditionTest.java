@@ -109,7 +109,7 @@ public class PaymentConditionTest {
         long length = 0;
         repository.save(paymentCondition);
         Iterable<PaymentCondition> it = repository.findAll();
-        for (PaymentCondition paymentCondition2 : it) {
+        for (@SuppressWarnings("unused") PaymentCondition paymentCondition2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

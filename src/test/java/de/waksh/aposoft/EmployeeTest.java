@@ -97,7 +97,7 @@ public class EmployeeTest {
         long length = 0;
         repository.save(employee);
         Iterable<Employee> it = repository.findAll();
-        for (Employee employee2 : it) {
+        for (@SuppressWarnings("unused") Employee employee2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

@@ -67,7 +67,7 @@ public class InsuranceTest {
         repository.save(insurance);
 
         Iterable<Insurance> it = repository.findAll();
-        for (Insurance insurance2 : it) {
+        for (@SuppressWarnings("unused") Insurance insurance2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

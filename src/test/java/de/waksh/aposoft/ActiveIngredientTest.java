@@ -87,7 +87,7 @@ public class ActiveIngredientTest {
         long lenghts = 0;
         repository.save(activeIngredient);
         Iterable<ActiveIngredient> it = repository.findAll();
-        for (ActiveIngredient activeIngredient2 : it) {
+        for (@SuppressWarnings("unused") ActiveIngredient activeIngredient2 : it) {
             lenghts++;
         }
         Assert.assertEquals(size + 1, lenghts);

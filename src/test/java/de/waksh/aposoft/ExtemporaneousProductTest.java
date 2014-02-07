@@ -96,7 +96,7 @@ public class ExtemporaneousProductTest {
         long length = 0;
         repository.save(extemporaneousProduct);
         Iterable<ExtemporaneousProduct> it = repository.findAll();
-        for (ExtemporaneousProduct extemporaneousProduct2 : it) {
+        for (@SuppressWarnings("unused") ExtemporaneousProduct extemporaneousProduct2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

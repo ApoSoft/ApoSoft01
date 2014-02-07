@@ -95,7 +95,7 @@ public class CustomerTest {
         long length = 0;
         repository.save(customer);
         Iterable<Customer> it = repository.findAll();
-        for (Object object : it) {
+        for (@SuppressWarnings("unused") Object object : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

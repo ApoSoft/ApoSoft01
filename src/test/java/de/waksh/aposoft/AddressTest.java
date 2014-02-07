@@ -98,7 +98,7 @@ public class AddressTest {
         long length = 0;
         repository.save(address);
         Iterable<Address> it = repository.findAll();
-        for (Address address2 : it) {
+        for (@SuppressWarnings("unused") Address address2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

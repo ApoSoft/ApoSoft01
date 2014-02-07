@@ -93,7 +93,7 @@ public class SupplierTest {
         long length = 0;
         repository.save(supplier);
         Iterable<Supplier> it = repository.findAll();
-        for (Supplier supplier2 : it) {
+        for (@SuppressWarnings("unused") Supplier supplier2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

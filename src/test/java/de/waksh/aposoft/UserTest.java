@@ -100,7 +100,7 @@ public class UserTest {
         long length = 0;
         repository.save(user);
         Iterable<User> it = repository.findAll();
-        for (User user2 : it) {
+        for (@SuppressWarnings("unused") User user2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

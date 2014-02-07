@@ -86,7 +86,7 @@ public class UnitTest {
         long length = 0;
         repository.save(unit);
         Iterable<Unit> it = repository.findAll();
-        for (Unit unit2 : it) {
+        for (@SuppressWarnings("unused") Unit unit2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

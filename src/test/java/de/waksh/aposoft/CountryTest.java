@@ -95,7 +95,7 @@ public class CountryTest {
         long length = 0;
         repository.save(country);
         Iterable<Country> it = repository.findAll();
-        for (Country country2 : it) {
+        for (@SuppressWarnings("unused") Country country2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);

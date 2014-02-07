@@ -45,7 +45,7 @@ public class ProductTest {
         repository.save(product);
 
         Iterable<Product> iterableproduct = repository.findAll();
-        for (Product product2 : iterableproduct) {
+        for (@SuppressWarnings("unused") Product product2 : iterableproduct) {
             sizeIterable++;
         }
 
