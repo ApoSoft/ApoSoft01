@@ -1,8 +1,8 @@
-package de.wak_sh.aposoft.repository;
+package de.waksh.aposoft.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.wak_sh.aposoft.domain.Store;
+import de.waksh.aposoft.domain.Store;
 
 /**
  * JPA Repository for stores

@@ -1,4 +1,4 @@
-package de.wak_sh.aposoft.repository;
+package de.waksh.aposoft.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import de.wak_sh.aposoft.domain.Product;
+import de.waksh.aposoft.domain.Product;
 
 /**
  * JPA repository for Product objects

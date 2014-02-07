@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.wak_sh.aposoft.domain;
+package de.waksh.aposoft.domain;
 
 import java.util.List;
 

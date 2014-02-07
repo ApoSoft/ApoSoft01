@@ -1,4 +1,4 @@
-package de.wak_sh.aposoft;
+package de.waksh.aposoft;
 
 import javax.sql.DataSource;
 

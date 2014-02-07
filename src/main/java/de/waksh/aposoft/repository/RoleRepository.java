@@ -1,8 +1,8 @@
-package de.wak_sh.aposoft.repository;
+package de.waksh.aposoft.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.wak_sh.aposoft.domain.Role;
+import de.waksh.aposoft.domain.Role;
 
 /**
  * JPA Repository for role objects

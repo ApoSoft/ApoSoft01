@@ -1,10 +1,10 @@
-package de.wak_sh.aposoft.repository;
+package de.waksh.aposoft.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.wak_sh.aposoft.domain.ExtemporaneousProduct;
+import de.waksh.aposoft.domain.ExtemporaneousProduct;
 
 /**
  * JPA Repository for extemporaneous products
