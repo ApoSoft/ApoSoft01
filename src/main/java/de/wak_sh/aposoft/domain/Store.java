@@ -20,6 +20,7 @@ import lombok.Data;
  */
 @Entity
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class Store {
     @Id
     @GeneratedValue

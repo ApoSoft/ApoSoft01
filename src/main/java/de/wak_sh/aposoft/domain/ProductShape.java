@@ -12,6 +12,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class ProductShape {
     @Id
     @GeneratedValue

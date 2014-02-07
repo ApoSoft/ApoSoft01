@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class ActiveIngredient {
     @Id
     @GeneratedValue

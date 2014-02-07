@@ -11,6 +11,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class Product {
 
     @Id

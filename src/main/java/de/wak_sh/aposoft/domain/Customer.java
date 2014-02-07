@@ -19,6 +19,7 @@ import org.joda.time.DateTime;
 
 @Entity
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class Customer {
     @Id
     @GeneratedValue

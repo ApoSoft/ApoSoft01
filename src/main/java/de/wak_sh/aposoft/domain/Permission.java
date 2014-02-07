@@ -16,8 +16,9 @@ import lombok.Data;
  * @author Christoph Mende
  * 
  */
-@Data
 @Entity
+@Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class Permission {
     @Id
     @GeneratedValue
