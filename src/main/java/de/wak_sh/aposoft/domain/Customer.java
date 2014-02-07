@@ -57,6 +57,6 @@ public class Customer {
 
     @ManyToMany
     @JoinTable(joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "customer_group_id") })
-    private CustomerGroup customerGroup;
+    private List<CustomerGroup> customerGroups;
 
 }
