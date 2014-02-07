@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- * Domain fuer die Lieferbedingung
+ * Domain for DeliverCondition
  * 
  * @author lhuebsch
  * 

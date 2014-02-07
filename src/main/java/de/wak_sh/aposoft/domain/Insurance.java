@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- * Domain fuer die Versicherung
+ * Domain for Insurance
  * 
  * @author lhuebsch
  * 
