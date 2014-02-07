@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.wak_sh.aposoft</groupId>
+	<groupId>de.waksh.aposoft</groupId>
 	<artifactId>ApoSoft</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
@@ -15,7 +15,7 @@
 		<!-- use UTF-8 for everything -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<start-class>de.wak_sh.aposoft.ApoSoft</start-class>
+		<start-class>de.waksh.aposoft.ApoSoft</start-class>
 	</properties>
 
 	<build>
