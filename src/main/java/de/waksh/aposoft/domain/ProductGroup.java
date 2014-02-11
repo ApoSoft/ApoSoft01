@@ -10,6 +10,12 @@ import javax.persistence.OneToMany;
 
 import lombok.Data;
 
+/**
+ * 
+ * @author ahofmann
+ * 
+ */
+
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")

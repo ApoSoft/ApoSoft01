@@ -17,6 +17,12 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+/**
+ * 
+ * @author ahofmann
+ * 
+ */
+
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")
@@ -54,7 +60,7 @@ public class Customer {
     private PaymentCondition paymentCondition;
 
     @OneToMany(mappedBy = "customer")
-    private List<Appointment> appointments;
+    private List<AppointmentCustomer> appointments;
 
     @ManyToMany
     @JoinTable(joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "customer_group_id") })

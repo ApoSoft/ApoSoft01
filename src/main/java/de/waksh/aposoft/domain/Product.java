@@ -9,6 +9,12 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
+/**
+ * 
+ * @author ahofmann
+ * 
+ */
+
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")
