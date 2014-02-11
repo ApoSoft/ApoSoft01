@@ -4,6 +4,8 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -24,4 +26,8 @@ public class ActiveIngredient {
 
     @Basic
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "extemporaneous_product_id")
+    private ExtemporaneousProduct extemporaneousProduct;
 }
