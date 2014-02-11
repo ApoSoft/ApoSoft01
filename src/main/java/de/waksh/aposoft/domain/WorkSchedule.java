@@ -13,6 +13,7 @@ import org.joda.time.Duration;
 
 @Entity
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class WorkSchedule {
     @GeneratedValue
     @Id
