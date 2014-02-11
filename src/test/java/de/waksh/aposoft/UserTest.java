@@ -1,5 +1,6 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.waksh.aposoft.domain.Permission;
+import de.waksh.aposoft.domain.Role;
 import de.waksh.aposoft.domain.User;
 import de.waksh.aposoft.repository.UserRepository;
 
@@ -106,4 +109,79 @@ public class UserTest {
         Assert.assertEquals(size + 1, length);
     }
 
+    private Role createRole() {
+        Role role = new Role();
+
+        role.setDescription("abc");
+
+        return role;
+    }
+
+    @Test
+    public void testFindAllR() {
+        Role role = createRole();
+        User user = createUser();
+
+        List<Role> rolle = new ArrayList<Role>();
+        rolle.add(role);
+        user.setRoles(rolle);
+
+        repository.save(user);
+        Iterable<User> it = repository.findAll();
+        boolean exist = false;
+        for (User user2 : it) {
+
+            List<Role> liste = user2.getRoles();
+
+            for (Role role2 : liste) {
+                if (role2.getId() == role.getId()) {
+                    exist = true;
+                    break;
+                }
+            }
+        }
+        Assert.assertTrue(exist);
+    }
+
+    private Permission createPermission() {
+        Permission permission = new Permission();
+
+        permission.setDescription("desc");
+
+        return permission;
+    }
+
+    @Test
+    public void testFindAllP() {
+        Role role = createRole();
+        User user = createUser();
+        Permission permission = createPermission();
+
+        List<Permission> permi = new ArrayList<Permission>();
+        permi.add(permission);
+        role.setPermissions(permi);
+
+        List<Role> rolle = new ArrayList<Role>();
+        rolle.add(role);
+        user.setRoles(rolle);
+
+        repository.save(user);
+        Iterable<User> it = repository.findAll();
+        boolean exist = false;
+        for (User user2 : it) {
+
+            List<Role> liste = user2.getRoles();
+
+            for (Role role2 : liste) {
+                List<Permission> list = role2.getPermissions();
+                for (Permission permission2 : list) {
+                    if (permission2.getId() == permission.getId()) {
+                        exist = true;
+                        break;
+                    }
+                }
+            }
+        }
+        Assert.assertTrue(exist);
+    }
 }
