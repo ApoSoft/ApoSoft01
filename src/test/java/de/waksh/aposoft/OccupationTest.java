@@ -25,8 +25,8 @@ public class OccupationTest {
         Occupation occupation = new Occupation();
 
         occupation.setQualification("Qualifikation");
-        occupation.setFrom((new LocalDate(2000, 1, 1)));
-        occupation.setTo((new LocalDate(2000, 1, 1)));
+        occupation.setStart((new LocalDate(2000, 1, 1)));
+        occupation.setEnd((new LocalDate(2000, 1, 1)));
 
         return occupation;
     }

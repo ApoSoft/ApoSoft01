@@ -28,9 +28,9 @@ public class Occupation {
 
     @Basic
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDate from;
+    private LocalDate start;
 
     @Basic
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDate to;
+    private LocalDate end;
 }
