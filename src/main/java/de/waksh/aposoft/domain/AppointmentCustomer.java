@@ -16,10 +16,16 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
+/**
+ * 
+ * @author ahofmann
+ * 
+ */
+
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")
-public class Appointment {
+public class AppointmentCustomer {
 
     @Id
     @GeneratedValue
