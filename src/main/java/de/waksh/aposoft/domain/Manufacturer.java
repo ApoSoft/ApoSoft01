@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import lombok.Data;
 
 /**
- * Entity class for Supplier (Hersteller)
+ * Entity class for Manufacturer (Hersteller)
  * 
  * @author Jannik Kuptz / Artem Hofmann
  * 
@@ -18,7 +18,7 @@ import lombok.Data;
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")
-public class Supplier {
+public class Manufacturer {
 
     @Id
     @GeneratedValue
