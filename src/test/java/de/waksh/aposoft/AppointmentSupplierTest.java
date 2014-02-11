@@ -32,7 +32,7 @@ public class AppointmentSupplierTest {
         long size = 0;
         repository.save(aposupp);
         Iterable<AppointmentSupplier> it = repository.findAll();
-        for (AppointmentSupplier appointmentSupplier : it) {
+        for (@SuppressWarnings("unused") AppointmentSupplier appointmentSupplier : it) {
             size++;
         }
         Assert.assertEquals(length + 1, size);

@@ -35,7 +35,7 @@ public class WorkScheduleTest {
         long size = 0;
         repository.save(workSchedule);
         Iterable<WorkSchedule> it = repository.findAll();
-        for (WorkSchedule workSchedule2 : it) {
+        for (@SuppressWarnings("unused") WorkSchedule workSchedule2 : it) {
             size++;
         }
         Assert.assertEquals(length + 1, size);
