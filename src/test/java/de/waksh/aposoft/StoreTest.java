@@ -35,7 +35,7 @@ public class StoreTest {
         long size = 0;
         repository.save(store);
         Iterable<Store> it = repository.findAll();
-        for (Store store2 : it) {
+        for (@SuppressWarnings("unused") Store store2 : it) {
             size++;
         }
         Assert.assertEquals(length + 1, size);
