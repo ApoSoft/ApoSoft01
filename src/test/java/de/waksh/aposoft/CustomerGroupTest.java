@@ -80,7 +80,7 @@ public class CustomerGroupTest {
         long length = 0;
         repository.save(customergroup);
         Iterable<CustomerGroup> it = repository.findAll();
-        for (CustomerGroup customergroup2 : it) {
+        for (@SuppressWarnings("unused") CustomerGroup customergroup2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);
