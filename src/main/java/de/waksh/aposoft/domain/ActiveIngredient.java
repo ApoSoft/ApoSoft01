@@ -7,6 +7,12 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+/**
+ * 
+ * @author ahofmann
+ * 
+ */
+
 @Data
 @Entity
 @SuppressWarnings("PMD.UnusedPrivateField")

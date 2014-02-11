@@ -2,8 +2,6 @@ package de.waksh.aposoft.domain;
 
 import java.util.List;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,27 +19,15 @@ import lombok.Data;
 
 @Entity
 @Data
-@SuppressWarnings("PMD.UnusedPrivateField")
-public class Vendor {
-
+public class ProductReservation {
     @Id
     @GeneratedValue
     private int id;
 
-    @Basic
-    private String name;
-
-    @Basic
-    @Column(length = 3)
-    private String vendorCode;
-
-    @Basic
-    private String website;
-
     @ManyToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    @OneToMany(mappedBy = "vendor")
+    @OneToMany
     private List<Product> products;
 }

@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.waksh.aposoft.domain.Supplier;
-import de.waksh.aposoft.repository.SupplierRepository;
+import de.waksh.aposoft.domain.Manufacturer;
+import de.waksh.aposoft.repository.ManufacturerRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringConfiguration.class)
@@ -20,10 +20,10 @@ import de.waksh.aposoft.repository.SupplierRepository;
 public class SupplierTest {
 
     @Autowired
-    private SupplierRepository repository;
+    private ManufacturerRepository repository;
 
-    public Supplier createSupplier() {
-        Supplier supplier = new Supplier();
+    public Manufacturer createSupplier() {
+        Manufacturer supplier = new Manufacturer();
 
         supplier.setContactPerson("Karl Of");
         supplier.setName("Bayer");
@@ -36,13 +36,13 @@ public class SupplierTest {
 
     @Test
     public void testInsert() {
-        Supplier supplier = createSupplier();
+        Manufacturer supplier = createSupplier();
 
         repository.save(supplier);
 
-        List<Supplier> listsupplier = repository.findByName(supplier.getName());
+        List<Manufacturer> listsupplier = repository.findByName(supplier.getName());
         boolean exists = false;
-        for (Supplier supplier2 : listsupplier) {
+        for (Manufacturer supplier2 : listsupplier) {
             if (supplier.getId() == supplier2.getId()) {
                 exists = true;
                 break;
@@ -53,14 +53,14 @@ public class SupplierTest {
 
     @Test
     public void testUpdate() {
-        Supplier supplier = createSupplier();
+        Manufacturer supplier = createSupplier();
 
         repository.save(supplier);
         supplier.setContactPerson("Alfred Bayer");
         repository.save(supplier);
 
-        List<Supplier> listsupplier = repository.findByName(supplier.getName());
-        for (Supplier supplier2 : listsupplier) {
+        List<Manufacturer> listsupplier = repository.findByName(supplier.getName());
+        for (Manufacturer supplier2 : listsupplier) {
             if (supplier.getId() == supplier2.getId()) {
                 Assert.assertEquals(supplier.getContactPerson(), supplier2.getContactPerson());
                 break;
@@ -70,14 +70,14 @@ public class SupplierTest {
 
     @Test
     public void testDelete() {
-        Supplier supplier = createSupplier();
+        Manufacturer supplier = createSupplier();
 
         repository.save(supplier);
         repository.delete(supplier);
 
-        List<Supplier> listsupplier = repository.findByName(supplier.getName());
+        List<Manufacturer> listsupplier = repository.findByName(supplier.getName());
         boolean exists = false;
-        for (Supplier supplier2 : listsupplier) {
+        for (Manufacturer supplier2 : listsupplier) {
             if (supplier.getId() == supplier2.getId()) {
                 exists = true;
                 break;
@@ -88,12 +88,12 @@ public class SupplierTest {
 
     @Test
     public void testFindAll() {
-        Supplier supplier = createSupplier();
+        Manufacturer supplier = createSupplier();
         long size = repository.count();
         long length = 0;
         repository.save(supplier);
-        Iterable<Supplier> it = repository.findAll();
-        for (@SuppressWarnings("unused") Supplier supplier2 : it) {
+        Iterable<Manufacturer> it = repository.findAll();
+        for (@SuppressWarnings("unused") Manufacturer supplier2 : it) {
             length++;
         }
         Assert.assertEquals(size + 1, length);
