@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
+ * Entity class for active ingredients (Wirkstoff)
  * 
  * @author ahofmann
  * 
