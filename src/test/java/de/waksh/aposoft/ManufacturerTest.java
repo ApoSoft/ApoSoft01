@@ -50,7 +50,7 @@ public class ManufacturerTest {
         repository.save(manu);
         Iterable<Manufacturer> it = repository.findByName("Bayer");
         boolean exists = false;
-        for (@SuppressWarnings("unused") Manufacturer manufacturer : it) {
+        for (Manufacturer manufacturer : it) {
             if (manufacturer.getName().equals(manu.getName())) {
                 exists = true;
             }

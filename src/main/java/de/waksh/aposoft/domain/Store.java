@@ -30,7 +30,7 @@ public class Store {
     private String branch;
 
     @Basic
-    private int count;
+    private int amount;
 
     @Basic
     private String depot;

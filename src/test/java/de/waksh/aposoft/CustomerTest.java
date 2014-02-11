@@ -100,4 +100,5 @@ public class CustomerTest {
         }
         Assert.assertEquals(size + 1, length);
     }
+
 }

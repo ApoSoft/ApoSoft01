@@ -11,8 +11,9 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.joda.time.Duration;
 
-@Data
 @Entity
+@Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class WorkSchedule {
     @GeneratedValue
     @Id
