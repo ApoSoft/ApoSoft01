@@ -2,7 +2,7 @@ package de.waksh.aposoft.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import de.waksh.aposoft.domain.Occupation;
+import de.waksh.aposoft.domain.WorkSchedule;
 
 /**
  * JPA repository for Occupation objects
@@ -10,5 +10,5 @@ import de.waksh.aposoft.domain.Occupation;
  * @author Christoph Mende
  * 
  */
-public interface WorkScheduleRepository extends CrudRepository<Occupation, Integer> {
+public interface WorkScheduleRepository extends CrudRepository<WorkSchedule, Integer> {
 }
