@@ -18,6 +18,7 @@ public class NavigationController {
         panel.setCashboxListener(listenerCashbox);
         panel.setMaterialAdminListener(listenerMaterialAdmin);
         panel.setAdminListener(listenerAdmin);
+        panel.setExtemporaneousProductListener(listenerExtemporaneousProduct);
     }
 
     public NavigationPanel getNavigationPanel() {
@@ -29,6 +30,7 @@ public class NavigationController {
         public void actionPerformed(ActionEvent e) {
             CashboxController cashboxController = new CashboxController();
             controller.getMainFrame().setCenter(cashboxController.getCashboxPanel().getPanel());
+            controller.getMainFrame().setRight(cashboxController.getCashboxButtonPanel().getPanel());
         }
     };
 
@@ -43,6 +45,15 @@ public class NavigationController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+        }
+    };
+
+    private ActionListener listenerExtemporaneousProduct = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ExtemporaneousProductController epController = new ExtemporaneousProductController();
+            controller.getMainFrame().setCenter(epController.getExtemporaneousProductPanel().getPanel());
+            controller.getMainFrame().setRight(epController.getExtemporaneousProductButtonPanel().getPanel());
         }
     };
 }
