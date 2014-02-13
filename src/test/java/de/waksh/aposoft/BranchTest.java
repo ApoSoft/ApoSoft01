@@ -26,6 +26,8 @@ public class BranchTest {
         branch.setDescription("Beschreibung");
         branch.setAddress("Straße");
         branch.setLocation("Hier");
+        branch.setManager("Manager");
+        branch.setLogo("Logo");
 
         return branch;
     }
