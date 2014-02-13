@@ -33,15 +33,15 @@ public class Branch {
     @Basic
     private String location;
 
-    @OneToMany
-    private List<Employee> employees;
-
     @Basic
     private String manager;
 
     @Basic
     private String logo;
 
-    @OneToMany
+    @OneToMany(mappedBy = "branch")
     private List<Occupation> occupations;
+
+    @OneToMany(mappedBy = "branch")
+    private List<User> users;
 }

@@ -4,6 +4,8 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -34,4 +36,10 @@ public class Occupation {
     @Basic
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate end;
+
+    @ManyToOne
+    private Branch branch;
+
+    @OneToOne
+    private Employee employee;
 }

@@ -1,9 +1,14 @@
 package de.waksh.aposoft.domain;
 
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -24,5 +29,13 @@ public class ExtemporaneousProduct {
     @Basic
     private String description;
 
-    // TODO manifacturer relation
+    @Basic
+    private String type;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "extemporaneousProduct")
+    private List<ActiveIngredient> activeIngredient;
 }
