@@ -12,6 +12,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.ActiveIngredient;
+import de.waksh.aposoft.domain.ExtemporaneousProduct;
 import de.waksh.aposoft.repository.ActiveIngredientRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,6 +26,12 @@ public class ActiveIngredientTest {
     public ActiveIngredient createActiveIngredient() {
         ActiveIngredient activeIngredient = new ActiveIngredient();
         activeIngredient.setName("abc");
+
+        ExtemporaneousProduct extemporaneousProduct = new ExtemporaneousProduct();
+        extemporaneousProduct.setDescription("Bayer");
+        extemporaneousProduct.setType("Drop");
+        activeIngredient.setExtemporaneousProduct(extemporaneousProduct);
+
         return activeIngredient;
     }
 
