@@ -1,5 +1,6 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.AppointmentCustomer;
 import de.waksh.aposoft.domain.Customer;
+import de.waksh.aposoft.domain.OrderItem;
 import de.waksh.aposoft.repository.AppointmentCustomerRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,16 +33,12 @@ public class AppointmentCustomerTest {
     }
 
     public Customer createCustomer() {
-
         Customer customer = new Customer();
-
         customer.setFirstName("Sebastian");
         customer.setGender("maennlich");
         customer.setName("Bruett");
         customer.setTitle("Herr");
-
         return customer;
-
     }
 
     @Test
@@ -72,5 +70,36 @@ public class AppointmentCustomerTest {
             }
         }
         Assert.assertTrue(exists);
+    }
+
+    @Test
+    public void testItems() {
+        AppointmentCustomer apocustomer = createAppointmentCustomer();
+        OrderItem orderItem = new OrderItem();
+        orderItem.setAmount(20);
+        OrderItem orderItem1 = new OrderItem();
+        orderItem1.setAmount(20);
+
+        List<OrderItem> listorder = new ArrayList<>();
+        listorder.add(orderItem);
+        listorder.add(orderItem1);
+
+        apocustomer.setItems(listorder);
+        repository.save(apocustomer);
+
+        boolean isokay = false;
+        Iterable<AppointmentCustomer> it = repository.findAll();
+        for (AppointmentCustomer appointmentCustomer : it) {
+            List<OrderItem> list = apocustomer.getItems();
+            for (OrderItem orderItem2 : list) {
+                if (orderItem.getId() == orderItem2.getId() || orderItem1.getId() == orderItem2.getId()) {
+                    isokay = true;
+                } else {
+                    isokay = false;
+                    break;
+                }
+            }
+        }
+        Assert.assertTrue(isokay);
     }
 }
