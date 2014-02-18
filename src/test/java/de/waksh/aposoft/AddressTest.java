@@ -12,6 +12,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.Address;
+import de.waksh.aposoft.domain.Country;
 import de.waksh.aposoft.repository.AddressRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,6 +28,11 @@ public class AddressTest {
         Address address = new Address();
 
         address.setCity("Kiel");
+
+        Country country = new Country();
+        country.setCountryCode("Ger");
+        country.setName("Germany");
+        address.setCountry(country);
 
         address.setEmail("abc@mail.de");
         address.setExtra01("abc");
