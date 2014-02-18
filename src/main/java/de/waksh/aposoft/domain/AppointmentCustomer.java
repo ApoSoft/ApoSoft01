@@ -3,6 +3,7 @@ package de.waksh.aposoft.domain;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -35,8 +36,7 @@ public class AppointmentCustomer {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate date;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Customer customer;
 
     @ManyToMany
