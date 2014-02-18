@@ -1,5 +1,6 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.ExtemporaneousProduct;
 import de.waksh.aposoft.repository.ExtemporaneousProductRepository;
 
@@ -26,6 +28,15 @@ public class ExtemporaneousProductTest {
         ExtemporaneousProduct extemporaneousProduct = new ExtemporaneousProduct();
 
         extemporaneousProduct.setDescription("Salbe");
+
+        List<ActiveIngredient> items = new ArrayList<>();
+        ActiveIngredient activeIngredient = new ActiveIngredient();
+        activeIngredient.setName("test");
+        ActiveIngredient activeIngredient2 = new ActiveIngredient();
+        activeIngredient.setName("test2");
+        items.add(activeIngredient2);
+        items.add(activeIngredient);
+        extemporaneousProduct.setActiveIngredient(items);
 
         return extemporaneousProduct;
     }
