@@ -65,8 +65,8 @@ public class AppointmentCustomerTest {
         List<AppointmentCustomer> listcustomer = repository.findByCustomer(customer);
         boolean exists = false;
         for (AppointmentCustomer appointmentCustomer : listcustomer) {
-            Customer cust = appointmentCustomer.getCustomer();
-            if (cust == customer) {
+            // Customer cust = appointmentCustomer.getCustomer();
+            if (apocustomer.getId() == appointmentCustomer.getId()) {
                 exists = true;
                 break;
             }
