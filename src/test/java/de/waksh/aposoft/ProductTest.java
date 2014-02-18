@@ -10,6 +10,13 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.Product;
+import de.waksh.aposoft.domain.ProductGroup;
+import de.waksh.aposoft.domain.ProductShape;
+import de.waksh.aposoft.domain.ProductType;
+import de.waksh.aposoft.domain.Recipe;
+import de.waksh.aposoft.domain.Store;
+import de.waksh.aposoft.domain.Unit;
+import de.waksh.aposoft.domain.Vendor;
 import de.waksh.aposoft.repository.ProductRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,6 +37,38 @@ public class ProductTest {
         product.setPrescription(true);
         product.setPrice(19.99f);
         product.setWidth(150);
+
+        Vendor vendor = new Vendor();
+        vendor.setName("abc");
+        vendor.setVendorCode("123");
+        vendor.setWebsite("www.website.de");
+        product.setVendor(vendor);
+
+        Recipe recipe = new Recipe();
+        product.setRecipe(recipe);
+
+        ProductShape productshape = new ProductShape();
+        productshape.setName("Name");
+        product.setProductShape(productshape);
+
+        ProductType producttype = new ProductType();
+        producttype.setName("abc");
+        product.setProductType(producttype);
+
+        ProductGroup productgroup = new ProductGroup();
+        productgroup.setName("abc");
+        productgroup.setDescription("description");
+        product.setProductGroup(productgroup);
+
+        Unit unit = new Unit();
+        unit.setName("abc");
+        product.setUnit(unit);
+
+        Store store = new Store();
+        store.setBranch("abc");
+        store.setAmount(543);
+        store.setDepot("cba");
+        product.setStore(store);
 
         return product;
     }
