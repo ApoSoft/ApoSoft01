@@ -14,7 +14,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.Employee;
+import de.waksh.aposoft.domain.Occupation;
 import de.waksh.aposoft.domain.Qualification;
+import de.waksh.aposoft.domain.User;
 import de.waksh.aposoft.repository.EmployeeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -59,6 +61,19 @@ public class EmployeeTest {
         list.add(quali);
         list.add(qualification);
         employee.setQualifications(list);
+
+        Occupation occupation = new Occupation();
+        occupation.setEnd(new LocalDate(2002, 2, 2));
+        employee.setOccupation(occupation);
+
+        User user = new User();
+        user.setName("name");
+        User user2 = new User();
+        user.setName("name2");
+        List<User> users = new ArrayList<User>();
+        users.add(user2);
+        users.add(user);
+        employee.setUsers(users);
 
         return employee;
     }
