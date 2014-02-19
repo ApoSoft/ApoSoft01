@@ -3,7 +3,6 @@ package de.waksh.aposoft.domain;
 import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,7 +31,6 @@ public class Vendor {
     private String name;
 
     @Basic
-    @Column(length = 3)
     private String vendorCode;
 
     @Basic

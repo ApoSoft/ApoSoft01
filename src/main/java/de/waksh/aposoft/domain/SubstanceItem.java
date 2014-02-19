@@ -1,6 +1,7 @@
 package de.waksh.aposoft.domain;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,14 +25,14 @@ public class SubstanceItem {
     @GeneratedValue
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "substance_id")
     private Substance substance;
 
     @Basic
     private float amount;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "unit_id")
     private Unit unit;
 }

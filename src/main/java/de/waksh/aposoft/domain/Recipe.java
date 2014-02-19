@@ -2,6 +2,7 @@ package de.waksh.aposoft.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class Recipe {
     @GeneratedValue
     private int id;
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(joinColumns = { @JoinColumn(name = "recipe_id") }, inverseJoinColumns = { @JoinColumn(name = "substance_item_id") })
     private List<SubstanceItem> items;
 }
