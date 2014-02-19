@@ -3,7 +3,8 @@
  */
 package de.waksh.aposoft.view;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -19,8 +20,8 @@ import de.waksh.aposoft.model.ProductAppointment;
  */
 public class CustomerAppointmentHistoryTableModel implements TableModel {
 
-    private Vector productAppointments = new Vector();
-    private Vector listeners = new Vector();
+    private List<ProductAppointment> productAppointments = new ArrayList<>();
+    private List<TableModelListener> listeners = new ArrayList<>();
 
     public void addProductAppointment(ProductAppointment productAppointment) {
         int index = productAppointments.size();
@@ -29,7 +30,7 @@ public class CustomerAppointmentHistoryTableModel implements TableModel {
         TableModelEvent e = new TableModelEvent(this, index, index, TableModelEvent.ALL_COLUMNS, TableModelEvent.INSERT);
 
         for (int i = 0, n = listeners.size(); i < n; i++) {
-            ((TableModelListener) listeners.get(i)).tableChanged(e);
+            listeners.get(i).tableChanged(e);
         }
     }
 
@@ -83,7 +84,7 @@ public class CustomerAppointmentHistoryTableModel implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        ProductAppointment productAppointment = (ProductAppointment) productAppointments.get(rowIndex);
+        ProductAppointment productAppointment = productAppointments.get(rowIndex);
         switch (columnIndex) {
         case 0:
             return productAppointment.getDate();

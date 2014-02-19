@@ -89,7 +89,7 @@ public class AppointmentCustomerTest {
 
         boolean isokay = false;
         Iterable<AppointmentCustomer> it = repository.findAll();
-        for (AppointmentCustomer appointmentCustomer : it) {
+        for (@SuppressWarnings("unused") AppointmentCustomer appointmentCustomer : it) {
             List<OrderItem> list = apocustomer.getItems();
             for (OrderItem orderItem2 : list) {
                 if (orderItem.getId() == orderItem2.getId() || orderItem1.getId() == orderItem2.getId()) {
