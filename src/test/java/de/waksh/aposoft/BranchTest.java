@@ -51,6 +51,8 @@ public class BranchTest {
         user2.setFirstName("f");
         user2.setName("n");
         List<User> users = new ArrayList<>();
+        users.add(user2);
+        users.add(user);
         branch.setUsers(users);
 
         return branch;
