@@ -24,7 +24,7 @@ public class OccupationTest {
     private Occupation createOccupation() {
         Occupation occupation = new Occupation();
 
-        occupation.setQualification("Qualifikation");
+        // occupation.setQualification("Qualifikation");
         occupation.setStart((new LocalDate(2000, 1, 1)));
         occupation.setEnd((new LocalDate(2000, 1, 1)));
 

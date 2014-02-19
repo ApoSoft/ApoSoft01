@@ -35,9 +35,9 @@ public class BranchTest {
         branch.setLogo("Logo");
 
         Occupation occupation = new Occupation();
-        occupation.setQualification("qualifikation");
+        // occupation.setQualification("qualifikation");
         Occupation occu = new Occupation();
-        occu.setQualification("quali");
+        // occu.setQualification("quali");
         List<Occupation> occupations = new ArrayList<>();
         occupations.add(occu);
         occupations.add(occupation);

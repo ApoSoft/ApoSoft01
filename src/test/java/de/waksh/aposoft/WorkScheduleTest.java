@@ -24,7 +24,7 @@ public class WorkScheduleTest {
         WorkSchedule workSchedule = new WorkSchedule();
         workSchedule.setAccountBalance(1.1f);
         workSchedule.setDays(5f);
-        workSchedule.setQualification("Admin");
+        // workSchedule.setQualification("Admin");
         return workSchedule;
     }
 

@@ -1,9 +1,12 @@
 package de.waksh.aposoft.domain;
 
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -26,8 +29,8 @@ public class Occupation {
     @Id
     private int id;
 
-    @Basic
-    private String qualification;
+    @ManyToMany
+    private List<Qualification> qualifications;
 
     @Basic
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
