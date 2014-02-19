@@ -16,7 +16,7 @@ import de.waksh.aposoft.domain.Country;
 import de.waksh.aposoft.repository.AddressRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class AddressTest {
 

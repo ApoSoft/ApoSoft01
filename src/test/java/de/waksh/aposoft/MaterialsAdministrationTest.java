@@ -13,7 +13,7 @@ import de.waksh.aposoft.domain.MaterialsAdministration;
 import de.waksh.aposoft.repository.MaterialsAdministrationRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class MaterialsAdministrationTest {
 

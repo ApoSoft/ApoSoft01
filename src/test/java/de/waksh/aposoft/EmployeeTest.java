@@ -16,7 +16,7 @@ import de.waksh.aposoft.domain.Employee;
 import de.waksh.aposoft.repository.EmployeeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class EmployeeTest {
 

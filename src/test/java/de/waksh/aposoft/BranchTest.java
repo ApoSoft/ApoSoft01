@@ -18,7 +18,7 @@ import de.waksh.aposoft.domain.User;
 import de.waksh.aposoft.repository.BranchRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class BranchTest {
 

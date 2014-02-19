@@ -16,7 +16,7 @@ import de.waksh.aposoft.domain.ExtemporaneousProduct;
 import de.waksh.aposoft.repository.ActiveIngredientRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class ActiveIngredientTest {
 

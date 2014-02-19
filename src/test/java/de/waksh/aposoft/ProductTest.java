@@ -20,7 +20,7 @@ import de.waksh.aposoft.domain.Vendor;
 import de.waksh.aposoft.repository.ProductRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class ProductTest {
 

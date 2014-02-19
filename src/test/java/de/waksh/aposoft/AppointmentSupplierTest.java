@@ -18,7 +18,7 @@ import de.waksh.aposoft.domain.OrderItem;
 import de.waksh.aposoft.repository.AppointmentSupplierRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class AppointmentSupplierTest {
 

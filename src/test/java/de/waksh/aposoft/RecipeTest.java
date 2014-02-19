@@ -17,7 +17,7 @@ import de.waksh.aposoft.domain.SubstanceItem;
 import de.waksh.aposoft.repository.RecipeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class RecipeTest {
 

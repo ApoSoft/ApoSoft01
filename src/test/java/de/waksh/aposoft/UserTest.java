@@ -19,7 +19,7 @@ import de.waksh.aposoft.domain.User;
 import de.waksh.aposoft.repository.UserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class UserTest {
 

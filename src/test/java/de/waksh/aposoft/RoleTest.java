@@ -13,7 +13,7 @@ import de.waksh.aposoft.domain.Role;
 import de.waksh.aposoft.repository.RoleRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringConfiguration.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 @Transactional
 public class RoleTest {
 
