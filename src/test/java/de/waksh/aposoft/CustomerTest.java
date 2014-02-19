@@ -1,9 +1,12 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.waksh.aposoft.domain.Address;
+import de.waksh.aposoft.domain.AppointmentCustomer;
 import de.waksh.aposoft.domain.Customer;
+import de.waksh.aposoft.domain.CustomerGroup;
+import de.waksh.aposoft.domain.Insurance;
+import de.waksh.aposoft.domain.PaymentCondition;
 import de.waksh.aposoft.repository.CustomerRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,6 +38,44 @@ public class CustomerTest {
         customer.setGender("maennlich");
         customer.setName("Bruett");
         customer.setTitle("Herr");
+
+        Address address = new Address();
+        address.setCity("city");
+        address.setEmail("email");
+        customer.setAddress(address);
+
+        AppointmentCustomer apoCustomer = new AppointmentCustomer();
+        apoCustomer.setDate(new LocalDate(2002, 2, 2));
+        AppointmentCustomer apoCustomer2 = new AppointmentCustomer();
+        apoCustomer2.setDate(new LocalDate(2002, 2, 2));
+        List<AppointmentCustomer> appointments = new ArrayList<AppointmentCustomer>();
+        appointments.add(apoCustomer2);
+        appointments.add(apoCustomer);
+        customer.setAppointments(appointments);
+
+        customer.setBirthdate(new DateTime(2222, 2, 22, 2, 2));
+
+        CustomerGroup customergruop = new CustomerGroup();
+        customergruop.setDescription("Gruppe");
+        customergruop.setName("Name");
+        CustomerGroup customergruop2 = new CustomerGroup();
+        customergruop2.setDescription("Gruppe1");
+        customergruop2.setName("Name1");
+        List<CustomerGroup> customerGroups = new ArrayList<CustomerGroup>();
+        customerGroups.add(customergruop2);
+        customerGroups.add(customergruop);
+        customer.setCustomerGroups(customerGroups);
+
+        Insurance insurance = new Insurance();
+        insurance.setName("bac");
+        insurance.setInsuranceIdNumber("12344");
+        insurance.setPhone("+49 111 1112");
+        insurance.setPrivateInsurance(false);
+        customer.setInsurance(insurance);
+
+        PaymentCondition paymentCondition = new PaymentCondition();
+        paymentCondition.setDiscountValue(11f);
+        customer.setPaymentCondition(paymentCondition);
 
         return customer;
 
