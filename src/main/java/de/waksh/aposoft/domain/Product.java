@@ -1,6 +1,7 @@
 package de.waksh.aposoft.domain;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,11 +28,11 @@ public class Product {
     @Basic
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
@@ -53,23 +54,23 @@ public class Product {
     @Basic
     private float price;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "product_shape_id")
     private ProductShape productShape;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "product_type_id")
     private ProductType productType;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "product_group_id")
     private ProductGroup productGroup;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "unit_id")
     private Unit unit;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "store_id")
     private Store store;
 }

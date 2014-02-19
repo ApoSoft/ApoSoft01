@@ -1,6 +1,7 @@
 package de.waksh.aposoft.domain;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class ActiveIngredient {
     @Basic
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "extemporaneous_product_id")
     private ExtemporaneousProduct extemporaneousProduct;
 }

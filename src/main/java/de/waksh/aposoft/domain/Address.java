@@ -1,6 +1,7 @@
 package de.waksh.aposoft.domain;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class Address {
     @GeneratedValue
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "country_id")
     private Country country;
 
