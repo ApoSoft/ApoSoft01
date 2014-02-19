@@ -12,7 +12,7 @@ import de.waksh.aposoft.domain.Customer;
 import de.waksh.aposoft.model.ProductAppointment;
 import de.waksh.aposoft.repository.AppointmentCustomerRepository;
 import de.waksh.aposoft.view.CustomerAppointmentHistoryTableModel;
-import de.waksh.aposoft.view.CustomerPanel;
+import de.waksh.aposoft.view.cashbox.CustomerPanel;
 
 /**
  * Controller for the customer panel.

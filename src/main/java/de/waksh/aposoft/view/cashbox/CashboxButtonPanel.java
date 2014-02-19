@@ -1,4 +1,4 @@
-package de.waksh.aposoft.view;
+package de.waksh.aposoft.view.cashbox;
 
 import javax.swing.JPanel;
 

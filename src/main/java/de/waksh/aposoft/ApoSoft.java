@@ -14,6 +14,7 @@ public class ApoSoft {
                 .run(args);
 
         MainController controller = ctx.getBean(MainController.class);
+        // MainController controller = new MainController();
         controller.init();
     }
 

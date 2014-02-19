@@ -3,6 +3,7 @@ package de.waksh.aposoft.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.waksh.aposoft.controller.cashbox.CashboxController;
 import de.waksh.aposoft.view.NavigationPanel;
 
 public class NavigationController {

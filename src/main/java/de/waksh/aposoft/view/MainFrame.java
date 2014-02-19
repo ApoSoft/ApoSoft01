@@ -11,6 +11,7 @@ public class MainFrame {
 
     @SuppressWarnings("unused")
     private MainController controller;
+
     private JFrame frame;
     private BorderLayout borderLayout = new BorderLayout(0, 0);
 
@@ -32,20 +33,18 @@ public class MainFrame {
     public void setCenter(JPanel panel) {
         if (frame.getContentPane().getComponentCount() >= 2) {
             frame.getContentPane().remove(borderLayout.getLayoutComponent(BorderLayout.CENTER));
-            frame.getContentPane().add(panel, BorderLayout.CENTER);
-        } else {
-            frame.getContentPane().add(panel, BorderLayout.CENTER);
         }
+
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.pack();
     }
 
     public void setRight(JPanel panel) {
         if (frame.getContentPane().getComponentCount() >= 3) {
             frame.getContentPane().remove(borderLayout.getLayoutComponent(BorderLayout.EAST));
-            frame.getContentPane().add(panel, BorderLayout.EAST);
-        } else {
-            frame.getContentPane().add(panel, BorderLayout.EAST);
         }
+
+        frame.getContentPane().add(panel, BorderLayout.EAST);
         frame.pack();
     }
 
