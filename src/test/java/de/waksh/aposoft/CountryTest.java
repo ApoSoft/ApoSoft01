@@ -33,6 +33,8 @@ public class CountryTest {
         addr.setCity("bigcity");
         addr.setEmail("email");
         List<Address> addresses = new ArrayList<Address>();
+        addresses.add(address);
+        addresses.add(addr);
         country.setAddresses(addresses);
 
         country.setCountryCode("Ger");
