@@ -16,7 +16,7 @@ public class OutputAreaPanel {
 
     private JPanel panel;
     private JTable table;
-    private TableModel<Product> model;
+    private TableModel model;
 
     public OutputAreaPanel(OutputAreaController controller) {
         this.controller = controller;
@@ -28,7 +28,7 @@ public class OutputAreaPanel {
         panel = new JPanel();
         panel.setLayout(new BorderLayout(0, 0));
 
-        model = new TableModel<Product>();
+        model = new TableModel();
         table = new JTable(model);
 
         JScrollPane scrollPane = new JScrollPane();
@@ -41,7 +41,7 @@ public class OutputAreaPanel {
         return panel;
     }
 
-    private class TableModel<Product> extends AbstractTableModel<Product> {
+    private class TableModel extends AbstractTableModel<Product> {
 
         public TableModel() {
             super(new String[] { "Anzahl", "Bezeichnung", "Hersteller", "Inhalt", "Wirkstoffe", "Art", "Einzelpreis",
