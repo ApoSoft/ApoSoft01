@@ -1,5 +1,6 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.Employee;
+import de.waksh.aposoft.domain.Qualification;
 import de.waksh.aposoft.repository.EmployeeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,6 +52,14 @@ public class EmployeeTest {
         employee.setName("Brütt");
         employee.setPartTimePart(1.0f);
         employee.setTitle("Dr.");
+
+        Qualification qualification = new Qualification();
+        Qualification quali = new Qualification();
+        List<Qualification> list = new ArrayList<Qualification>();
+        list.add(quali);
+        list.add(qualification);
+        employee.setQualifications(list);
+
         return employee;
     }
 
