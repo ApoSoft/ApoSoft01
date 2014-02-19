@@ -3,6 +3,7 @@ package de.waksh.aposoft.domain;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -48,12 +49,12 @@ public class Employee {
     @Basic
     private float partTimePart;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = { CascadeType.ALL })
     private List<User> users;
 
-    @OneToOne(mappedBy = "employee")
+    @OneToOne(mappedBy = "employee", cascade = { CascadeType.ALL })
     private Occupation occupation;
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
     private List<Qualification> qualifications;
 }
