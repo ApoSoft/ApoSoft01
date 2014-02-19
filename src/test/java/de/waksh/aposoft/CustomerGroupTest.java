@@ -31,6 +31,17 @@ public class CustomerGroupTest {
         customergroup.setName("Jenni");
         customergroup.setDescription("desc");
 
+        Customer customer = new Customer();
+        customer.setFirstName("Bill");
+        customer.setName("Becker");
+        Customer customer2 = new Customer();
+        customer2.setFirstName("Boris");
+        customer2.setName("Becker");
+        List<Customer> customers = new ArrayList<Customer>();
+        customers.add(customer2);
+        customers.add(customer);
+        customergroup.setCustomers(customers);
+
         return customergroup;
     }
 
