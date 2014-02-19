@@ -11,13 +11,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import de.waksh.aposoft.controller.ExtemporaneousProductController;
+import de.waksh.aposoft.domain.ExtemporaneousProduct;
 
 public class ExtemporaneousProductPanel {
 
     @SuppressWarnings("unused")
     private ExtemporaneousProductController controller;
+
+    private ExtemporaneousProduct extProd;
 
     private JPanel panel;
     private JTextField txtId;
@@ -29,9 +33,11 @@ public class ExtemporaneousProductPanel {
     private Vector<String> cmbTypeItems;
     private String[] columnTitles;
     private JTable table;
+    private DefaultTableModel model;
 
-    public ExtemporaneousProductPanel(ExtemporaneousProductController controller) {
+    public ExtemporaneousProductPanel(ExtemporaneousProductController controller, ExtemporaneousProduct extProd) {
         this.controller = controller;
+        this.extProd = extProd;
 
         initialize();
         build();
@@ -48,7 +54,10 @@ public class ExtemporaneousProductPanel {
         cmbTypeItems.add("Salbe");
         cmbTypeItems.add("Tabletten");
 
-        columnTitles = new String[] { "Wirkstoff", "Menge" };
+        // columnTitles = new String[] { "Wirkstoff", "Menge" };
+        model = new DefaultTableModel();
+        model.addColumn("Wirkstoff");
+        model.addColumn("Menge");
     }
 
     private void build() {
@@ -70,6 +79,7 @@ public class ExtemporaneousProductPanel {
 
         txtId = new JTextField();
         txtId.setEditable(false);
+        txtId.setText(String.valueOf(extProd.getId()));
         GridBagConstraints gbc_txtId = new GridBagConstraints();
         gbc_txtId.insets = new Insets(5, 5, 5, 5);
         gbc_txtId.fill = GridBagConstraints.HORIZONTAL;
@@ -88,6 +98,11 @@ public class ExtemporaneousProductPanel {
 
         txtMadeBy = new JTextField();
         txtMadeBy.setEditable(false);
+        if (extProd.getUser() != null) {
+            txtMadeBy.setText(String.valueOf(extProd.getUser().getId()));
+        } else {
+            txtMadeBy.setText("no user set");
+        }
         GridBagConstraints gbc_txtMadeBy = new GridBagConstraints();
         gbc_txtMadeBy.insets = new Insets(5, 5, 5, 5);
         gbc_txtMadeBy.fill = GridBagConstraints.HORIZONTAL;
@@ -171,11 +186,43 @@ public class ExtemporaneousProductPanel {
         gbc_scrollPane.gridy = 4;
         panel.add(scrollPane, gbc_scrollPane);
 
-        table = new JTable(new String[][] {}, columnTitles);
+        // table = new JTable(new String[][] {}, columnTitles);
+        table = new JTable(model);
         scrollPane.setViewportView(table);
     }
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    public String getActiveIngredient() {
+        return txtActiveIngredient.getText();
+    }
+
+    public DefaultTableModel getTableModel() {
+        return model;
+    }
+
+    public JTable getTable() {
+        return table;
+    }
+
+    public String getAmount() {
+        return txtAmount.getText();
+    }
+
+    public String getUnity() {
+        return cmbUnity.getSelectedItem().toString();
+    }
+
+    public void selectAmount() {
+        txtAmount.requestFocus();
+        txtAmount.selectAll();
+    }
+
+    public void resetTextFields() {
+        txtActiveIngredient.setText("");
+        txtAmount.setText("");
+        cmbUnity.setSelectedIndex(0);
     }
 }

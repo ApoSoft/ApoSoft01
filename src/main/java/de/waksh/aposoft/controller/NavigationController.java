@@ -51,7 +51,7 @@ public class NavigationController {
     private ActionListener listenerExtemporaneousProduct = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ExtemporaneousProductController epController = new ExtemporaneousProductController();
+            ExtemporaneousProductController epController = new ExtemporaneousProductController(controller);
             controller.getMainFrame().setCenter(epController.getExtemporaneousProductPanel().getPanel());
             controller.getMainFrame().setRight(epController.getExtemporaneousProductButtonPanel().getPanel());
         }

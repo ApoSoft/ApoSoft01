@@ -3,14 +3,20 @@ package de.waksh.aposoft.view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import de.waksh.aposoft.controller.ExtemporaneousProductController;
+
 public class ExtemporaneousProductButtonPanel {
     private JPanel panel;
+    private ExtemporaneousProductController controller;
 
-    public ExtemporaneousProductButtonPanel() {
+    public ExtemporaneousProductButtonPanel(ExtemporaneousProductController controller) {
+        this.controller = controller;
         build();
     }
 
@@ -24,6 +30,12 @@ public class ExtemporaneousProductButtonPanel {
         panel.setLayout(gbl_panel);
 
         JButton btnAdd = new JButton("hinzufügen");
+        btnAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                controller.addRow();
+            }
+        });
         GridBagConstraints gbc_btnAdd = new GridBagConstraints();
         gbc_btnAdd.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnAdd.insets = new Insets(5, 5, 5, 5);
@@ -33,6 +45,12 @@ public class ExtemporaneousProductButtonPanel {
         panel.add(btnAdd, gbc_btnAdd);
 
         JButton btnDelete = new JButton("entfernen");
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                controller.removeRow();
+            }
+        });
         GridBagConstraints gbc_btnDelete = new GridBagConstraints();
         gbc_btnDelete.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnDelete.anchor = GridBagConstraints.NORTH;
@@ -42,6 +60,12 @@ public class ExtemporaneousProductButtonPanel {
         panel.add(btnDelete, gbc_btnDelete);
 
         JButton btnNext = new JButton("weiter");
+        btnNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.next();
+            }
+        });
         GridBagConstraints gbc_btnNext = new GridBagConstraints();
         gbc_btnNext.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnNext.insets = new Insets(5, 5, 5, 5);

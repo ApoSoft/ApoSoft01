@@ -48,4 +48,8 @@ public class MainFrame {
         }
         frame.pack();
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
 }
