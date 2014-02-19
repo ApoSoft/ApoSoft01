@@ -1,5 +1,8 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.joda.time.LocalDate;
@@ -11,6 +14,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.Occupation;
+import de.waksh.aposoft.domain.Qualification;
 import de.waksh.aposoft.repository.OccupationRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,7 +28,13 @@ public class OccupationTest {
     private Occupation createOccupation() {
         Occupation occupation = new Occupation();
 
-        // occupation.setQualification("Qualifikation");
+        Qualification qualification = new Qualification();
+        Qualification quali = new Qualification();
+        List<Qualification> list = new ArrayList<Qualification>();
+        list.add(quali);
+        list.add(qualification);
+        occupation.setQualifications(list);
+
         occupation.setStart((new LocalDate(2000, 1, 1)));
         occupation.setEnd((new LocalDate(2000, 1, 1)));
 
