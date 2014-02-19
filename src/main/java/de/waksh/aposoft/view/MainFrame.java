@@ -2,29 +2,34 @@ package de.waksh.aposoft.view;
 
 import java.awt.BorderLayout;
 
+import javax.annotation.PostConstruct;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import de.waksh.aposoft.controller.MainController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import de.waksh.aposoft.controller.NavigationController;
+
+@Component
 public class MainFrame {
 
-    @SuppressWarnings("unused")
-    private MainController controller;
+    @Autowired
+    private NavigationController navigationController;
 
     private JFrame frame;
     private BorderLayout borderLayout = new BorderLayout(0, 0);
 
-    public MainFrame(MainController controller) {
-        this.controller = controller;
-
+    public MainFrame() {
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(borderLayout);
+    }
 
-        frame.getContentPane().add(controller.getNavigationController().getNavigationPanel().getPanel(),
-                BorderLayout.WEST);
+    @PostConstruct
+    public void postConstruct() {
+        frame.getContentPane().add(navigationController.getNavigationPanel().getPanel(), BorderLayout.WEST);
 
         frame.pack();
         frame.setVisible(true);

@@ -4,17 +4,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import de.waksh.aposoft.domain.ExtemporaneousProduct;
 import de.waksh.aposoft.view.ExtemporaneousProductButtonPanel;
 import de.waksh.aposoft.view.ExtemporaneousProductPanel;
+import de.waksh.aposoft.view.MainFrame;
 
 public class ExtemporaneousProductController {
+
+    @Autowired
+    private MainFrame mainFrame;
+
     private ExtemporaneousProductPanel panel;
     private ExtemporaneousProductButtonPanel btnPanel;
-    private MainController mainController;
 
-    public ExtemporaneousProductController(MainController mainController) {
-        this.mainController = mainController;
+    public ExtemporaneousProductController() {
         panel = new ExtemporaneousProductPanel(this, new ExtemporaneousProduct());
         btnPanel = new ExtemporaneousProductButtonPanel(this);
     }
@@ -36,8 +41,8 @@ public class ExtemporaneousProductController {
         try {
             Double.parseDouble(amount);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(mainController.getMainFrame().getFrame(),
-                    "Bitte bei Menge eine Fließkommazahl eingeben.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(mainFrame.getFrame(), "Bitte bei Menge eine Fließkommazahl eingeben.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             panel.selectAmount();
             return;
         }
@@ -52,7 +57,7 @@ public class ExtemporaneousProductController {
     }
 
     public void next() {
-        JOptionPane.showMessageDialog(mainController.getMainFrame().getFrame(),
+        JOptionPane.showMessageDialog(mainFrame.getFrame(),
                 "Wird implementiert, sobald die Mitarbeiterverwaltung fertig ist.");
         panel.resetTextFields();
     }

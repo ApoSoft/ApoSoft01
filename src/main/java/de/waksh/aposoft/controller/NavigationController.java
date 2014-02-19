@@ -3,18 +3,22 @@ package de.waksh.aposoft.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import de.waksh.aposoft.controller.cashbox.CashboxController;
+import de.waksh.aposoft.view.MainFrame;
 import de.waksh.aposoft.view.NavigationPanel;
 
+@Component
 public class NavigationController {
 
-    private MainController controller;
+    @Autowired
+    private MainFrame mainFrame;
 
     private NavigationPanel panel;
 
-    public NavigationController(MainController controller) {
-        this.controller = controller;
-
+    public NavigationController() {
         panel = new NavigationPanel(this);
         panel.setCashboxListener(listenerCashbox);
         panel.setMaterialAdminListener(listenerMaterialAdmin);
@@ -30,8 +34,8 @@ public class NavigationController {
         @Override
         public void actionPerformed(ActionEvent e) {
             CashboxController cashboxController = new CashboxController();
-            controller.getMainFrame().setCenter(cashboxController.getCashboxPanel().getPanel());
-            controller.getMainFrame().setRight(cashboxController.getCashboxButtonPanel().getPanel());
+            mainFrame.setCenter(cashboxController.getCashboxPanel().getPanel());
+            mainFrame.setRight(cashboxController.getCashboxButtonPanel().getPanel());
         }
     };
 
@@ -52,9 +56,9 @@ public class NavigationController {
     private ActionListener listenerExtemporaneousProduct = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ExtemporaneousProductController epController = new ExtemporaneousProductController(controller);
-            controller.getMainFrame().setCenter(epController.getExtemporaneousProductPanel().getPanel());
-            controller.getMainFrame().setRight(epController.getExtemporaneousProductButtonPanel().getPanel());
+            ExtemporaneousProductController epController = new ExtemporaneousProductController();
+            mainFrame.setCenter(epController.getExtemporaneousProductPanel().getPanel());
+            mainFrame.setRight(epController.getExtemporaneousProductButtonPanel().getPanel());
         }
     };
 }
