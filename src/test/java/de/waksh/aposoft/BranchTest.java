@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,9 +36,9 @@ public class BranchTest {
         branch.setLogo("Logo");
 
         Occupation occupation = new Occupation();
-        // occupation.setQualification("qualifikation");
+        occupation.setEnd(new LocalDate(2002, 2, 2));
         Occupation occu = new Occupation();
-        // occu.setQualification("quali");
+        occu.setEnd(new LocalDate(2003, 2, 2));
         List<Occupation> occupations = new ArrayList<>();
         occupations.add(occu);
         occupations.add(occupation);
