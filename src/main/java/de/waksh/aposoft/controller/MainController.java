@@ -1,7 +1,10 @@
 package de.waksh.aposoft.controller;
 
+import org.springframework.stereotype.Component;
+
 import de.waksh.aposoft.view.MainFrame;
 
+@Component
 public class MainController {
 
     private NavigationController navigationController;

@@ -1,6 +1,7 @@
 package de.waksh.aposoft;
 
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import de.waksh.aposoft.controller.MainController;
 
@@ -9,10 +10,11 @@ public class ApoSoft {
     }
 
     public static void main(String[] args) {
-        MainController controller = new MainController();
-        controller.init();
+        ConfigurableApplicationContext ctx = new SpringApplicationBuilder(SpringConfiguration.class).headless(false)
+                .run(args);
 
-        SpringApplication.run(SpringConfiguration.class, args);
+        MainController controller = ctx.getBean(MainController.class);
+        controller.init();
     }
 
 }
