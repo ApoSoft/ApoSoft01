@@ -1,5 +1,8 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.junit.Assert;
@@ -9,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.waksh.aposoft.domain.Qualification;
 import de.waksh.aposoft.domain.WorkSchedule;
 import de.waksh.aposoft.repository.WorkScheduleRepository;
 
@@ -24,7 +28,14 @@ public class WorkScheduleTest {
         WorkSchedule workSchedule = new WorkSchedule();
         workSchedule.setAccountBalance(1.1f);
         workSchedule.setDays(5f);
-        // workSchedule.setQualification("Admin");
+
+        Qualification qualification = new Qualification();
+        Qualification quali = new Qualification();
+        List<Qualification> list = new ArrayList<Qualification>();
+        list.add(quali);
+        list.add(qualification);
+        workSchedule.setQualifications(list);
+
         return workSchedule;
     }
 
