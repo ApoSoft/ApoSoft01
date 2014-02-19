@@ -34,6 +34,8 @@ public class QualificationTest {
         empl.setFirstName("second");
         empl.setGender("secondgender");
         List<Employee> employees = new ArrayList<>();
+        employees.add(empl);
+        employees.add(empl2);
         qualification.setEmployees(employees);
 
         return qualification;
