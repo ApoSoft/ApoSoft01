@@ -1,5 +1,8 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.junit.Assert;
@@ -9,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.waksh.aposoft.domain.Address;
 import de.waksh.aposoft.domain.Country;
 import de.waksh.aposoft.repository.CountryRepository;
 
@@ -22,6 +26,14 @@ public class CountryTest {
 
     public Country createCountry() {
         Country country = new Country();
+
+        Address address = new Address();
+        address.setCity("city");
+        Address addr = new Address();
+        addr.setCity("bigcity");
+        addr.setEmail("email");
+        List<Address> addresses = new ArrayList<Address>();
+        country.setAddresses(addresses);
 
         country.setCountryCode("Ger");
         country.setName("Germany");
