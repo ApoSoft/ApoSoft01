@@ -31,7 +31,6 @@ public class ExtemporaneousProductPanel {
     private JComboBox<String> cmbUnity;
     private Vector<String> cmbUnityItems;
     private Vector<String> cmbTypeItems;
-    private String[] columnTitles;
     private JTable table;
     private DefaultTableModel model;
 
