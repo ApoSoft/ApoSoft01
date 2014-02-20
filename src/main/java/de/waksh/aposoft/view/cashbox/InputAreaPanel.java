@@ -5,26 +5,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import lombok.Data;
+
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.waksh.aposoft.controller.cashbox.InputAreaController;
 import de.waksh.aposoft.domain.Product;
 
+@Data
 public class InputAreaPanel {
-    private InputAreaController controller;
     private JPanel panel;
 
     private JTextField tfCustomerNumber;
-    private JTextField tfCashboxNumber;
+    private JTextField tfInsuranceNumber;
     private JTextField tfCashbox;
 
     private JComboBox<Product> comboBox;
     private JTextField tfSubstance1;
     private JTextField tfSubstance2;
 
-    public InputAreaPanel(InputAreaController controller) {
-        this.controller = controller;
+    public InputAreaPanel() {
         build();
     }
 
@@ -37,10 +37,11 @@ public class InputAreaPanel {
         panel = new JPanel(layout);
 
         tfCustomerNumber = new JTextField();
-        tfCashboxNumber = new JTextField();
-        tfCashbox = new JTextField();
+        tfInsuranceNumber = new JTextField();
         tfSubstance1 = new JTextField();
         tfSubstance2 = new JTextField();
+        tfCashbox = new JTextField();
+        tfCashbox.setEditable(false);
 
         comboBox = new JComboBox<Product>();
         comboBox.setEditable(true);
@@ -48,7 +49,7 @@ public class InputAreaPanel {
         panel.add(new JLabel("Kundennummer"), cc.xy(2, 2));
         panel.add(tfCustomerNumber, cc.xy(4, 2));
         panel.add(new JLabel("Kassennummer"), cc.xy(6, 2));
-        panel.add(tfCashboxNumber, cc.xy(8, 2));
+        panel.add(tfInsuranceNumber, cc.xy(8, 2));
         panel.add(new JLabel("Kasse"), cc.xy(10, 2));
         panel.add(tfCashbox, cc.xy(12, 2));
 
@@ -60,7 +61,4 @@ public class InputAreaPanel {
         panel.add(tfSubstance2, cc.xy(12, 4));
     }
 
-    public JPanel getPanel() {
-        return panel;
-    }
 }

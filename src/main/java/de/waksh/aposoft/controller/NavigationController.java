@@ -10,20 +10,29 @@ import de.waksh.aposoft.controller.cashbox.CashboxController;
 import de.waksh.aposoft.view.MainFrame;
 import de.waksh.aposoft.view.NavigationPanel;
 
+/**
+ * 
+ * @author ahofmann
+ * 
+ */
+
 @Component
 public class NavigationController {
 
     @Autowired
     private MainFrame mainFrame;
 
+    @Autowired
+    private CashboxController cashboxController;
+
     private NavigationPanel panel;
 
     public NavigationController() {
-        panel = new NavigationPanel(this);
-        panel.setCashboxListener(listenerCashbox);
-        panel.setMaterialAdminListener(listenerMaterialAdmin);
-        panel.setAdminListener(listenerAdmin);
-        panel.setExtemporaneousProductListener(listenerExtemporaneousProduct);
+        panel = new NavigationPanel();
+        panel.getBtnCashbox().addActionListener(listenerCashbox);
+        panel.getBtnMaterialAdmin().addActionListener(listenerMaterialAdmin);
+        panel.getBtnAdmin().addActionListener(listenerAdmin);
+        panel.getBtnExtemporaneousProduct().addActionListener(listenerExtemporaneousProduct);
     }
 
     public NavigationPanel getNavigationPanel() {
@@ -33,7 +42,6 @@ public class NavigationController {
     private ActionListener listenerCashbox = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            CashboxController cashboxController = new CashboxController();
             mainFrame.setCenter(cashboxController.getCashboxPanel().getPanel());
             mainFrame.setRight(cashboxController.getCashboxButtonPanel().getPanel());
         }

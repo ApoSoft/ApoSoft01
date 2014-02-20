@@ -3,6 +3,7 @@ package de.waksh.aposoft;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 public class ApoSoft {
+
     private ApoSoft() {
     }
 

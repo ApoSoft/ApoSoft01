@@ -13,12 +13,13 @@ import javax.swing.JTable;
 
 import lombok.Data;
 
+import org.joda.time.LocalDate;
+
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.waksh.aposoft.controller.CustomerController;
-import de.waksh.aposoft.domain.Customer;
-import de.waksh.aposoft.view.CustomerAppointmentHistoryTableModel;
+import de.waksh.aposoft.model.ProductAppointment;
+import de.waksh.aposoft.view.backend.AbstractTableModel;
 
 /**
  * Panel for the informations about Customer at the bottom of the main panel.
@@ -30,31 +31,30 @@ import de.waksh.aposoft.view.CustomerAppointmentHistoryTableModel;
 public class CustomerPanel {
 
     private JPanel panel;
-    private JLabel customerNumberData;
-    private JLabel firstNameData;
-    private JLabel lastNameData;
-    private JLabel insuranceNumberData;
-    private JLabel insuranceData;
-    private CustomerController controller;
-    private CustomerAppointmentHistoryTableModel customerAppointmentHistoryTableModel;
+    private JLabel lblCustomerNumberData;
+    private JLabel lblFirstNameData;
+    private JLabel lblLastNameData;
+    private JLabel lblInsuranceNumberData;
+    private JLabel lblInsuranceData;
 
-    public CustomerPanel(CustomerController customerController, CustomerAppointmentHistoryTableModel tableModel1) {
-        controller = customerController;
-        customerAppointmentHistoryTableModel = tableModel1;
-        init();
+    private JTable historyTable;
+    private HistoryTableModel historyTableModel;
+
+    public CustomerPanel() {
+        build();
     }
 
-    private void init() {
+    private void build() {
         CellConstraints cc = new CellConstraints();
         FormLayout layout = new FormLayout("fill:pref:grow", "pref");
 
         panel = new JPanel(layout);
 
-        customerNumberData = new JLabel();
-        firstNameData = new JLabel();
-        lastNameData = new JLabel();
-        insuranceNumberData = new JLabel();
-        insuranceData = new JLabel();
+        lblCustomerNumberData = new JLabel();
+        lblFirstNameData = new JLabel();
+        lblLastNameData = new JLabel();
+        lblInsuranceNumberData = new JLabel();
+        lblInsuranceData = new JLabel();
 
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.putClientProperty("putClientProperty", Boolean.TRUE);
@@ -71,7 +71,8 @@ public class CustomerPanel {
         FormLayout layout = new FormLayout("fill:pref:grow", "fill:pref");
         JPanel historyPanel = new JPanel(layout);
 
-        JTable historyTable = new JTable(customerAppointmentHistoryTableModel);
+        historyTableModel = new HistoryTableModel();
+        historyTable = new JTable(historyTableModel);
 
         JScrollPane scrollPane = new JScrollPane();
         Dimension dimension = new Dimension(450, 120);
@@ -91,25 +92,70 @@ public class CustomerPanel {
         JPanel dataPanel = new JPanel(layout);
 
         dataPanel.add(new JLabel("Kundennummer: "), cc.xy(2, 2));
-        dataPanel.add(customerNumberData, cc.xy(4, 2));
+        dataPanel.add(lblCustomerNumberData, cc.xy(4, 2));
         dataPanel.add(new JLabel("Vorname: "), cc.xy(2, 4));
-        dataPanel.add(firstNameData, cc.xy(4, 4));
+        dataPanel.add(lblFirstNameData, cc.xy(4, 4));
         dataPanel.add(new JLabel("Nachname: "), cc.xy(2, 6));
-        dataPanel.add(lastNameData, cc.xy(4, 6));
+        dataPanel.add(lblLastNameData, cc.xy(4, 6));
         dataPanel.add(new JLabel("Krankenkasse-Nr: "), cc.xy(2, 8));
-        dataPanel.add(insuranceNumberData, cc.xy(4, 8));
+        dataPanel.add(lblInsuranceNumberData, cc.xy(4, 8));
         dataPanel.add(new JLabel("Krankenkasse: "), cc.xy(2, 10));
-        dataPanel.add(insuranceData, cc.xy(4, 10));
+        dataPanel.add(lblInsuranceData, cc.xy(4, 10));
 
         return dataPanel;
     }
 
-    public void setCustomerData(Customer customer) {
-        customerNumberData.setText(customer.getId() + "");
-        firstNameData.setText(customer.getFirstName());
-        lastNameData.setText(customer.getName());
-        insuranceNumberData.setText(customer.getInsurance().getInsuranceIdNumber());
-        insuranceData.setText(customer.getInsurance().getName());
+    public class HistoryTableModel extends AbstractTableModel<ProductAppointment> {
+
+        public HistoryTableModel() {
+            super(new String[] { "Datum", "Medikament", "Anzahl", "Wirkstoffe" });
+        }
+
+        @Override
+        public Class<?> getColumnClass(int columnIndex) {
+            switch (columnIndex) {
+            case 0:
+                return LocalDate.class;
+            case 1:
+                return String.class;
+            case 2:
+                return Integer.class;
+            case 3:
+                return String.class;
+            default:
+                return null;
+            }
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            ProductAppointment productAppointment = items.get(rowIndex);
+            switch (columnIndex) {
+            case 0:
+                return productAppointment.getDate();
+            case 1:
+                return productAppointment.getProduct();
+            case 2:
+                return productAppointment.getAmount();
+            case 3:
+                return productAppointment.getSubstances();
+            default:
+                return null;
+            }
+        }
+
+        @Override
+        public boolean isCellEditable(int arg0, int arg1) {
+            // TODO Auto-generated method stub
+            return false;
+        }
+
+        @Override
+        public void setValueAt(java.lang.Object arg0, int arg1, int arg2) {
+            // TODO Auto-generated method stub
+
+        }
+
     }
 
 }

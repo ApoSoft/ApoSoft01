@@ -6,21 +6,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import de.waksh.aposoft.controller.cashbox.OutputAreaController;
+import lombok.Data;
 import de.waksh.aposoft.domain.Product;
 import de.waksh.aposoft.view.backend.AbstractTableModel;
 
+@Data
 public class OutputAreaPanel {
-
-    private OutputAreaController controller;
 
     private JPanel panel;
     private JTable table;
     private TableModel model;
 
-    public OutputAreaPanel(OutputAreaController controller) {
-        this.controller = controller;
-
+    public OutputAreaPanel() {
         build();
     }
 
@@ -35,10 +32,6 @@ public class OutputAreaPanel {
         scrollPane.setViewportView(table);
 
         panel.add(scrollPane, BorderLayout.CENTER);
-    }
-
-    public JPanel getPanel() {
-        return panel;
     }
 
     private class TableModel extends AbstractTableModel<Product> {

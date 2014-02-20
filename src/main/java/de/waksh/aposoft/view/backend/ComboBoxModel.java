@@ -8,34 +8,39 @@ import javax.swing.event.ListDataListener;
 
 public class ComboBoxModel<T> implements javax.swing.ComboBoxModel<T>, ListDataListener {
     private List<ListDataListener> listeners;
-    private List<T> list;
+    private List<T> items;
     private T selectedItem;
 
     public ComboBoxModel() {
         listeners = new ArrayList<>();
-        list = new ArrayList<T>();
+        items = new ArrayList<T>();
+    }
+
+    public ComboBoxModel(List<T> items) {
+        this();
+        addAll(items);
     }
 
     public void addItem(T item) {
-        list.add(item);
+        items.add(item);
     }
 
     public void addAll(List<T> items) {
-        list.addAll(items);
+        items.addAll(items);
     }
 
     public void removeItem(T item) {
-        list.remove(item);
+        items.remove(item);
     }
 
     @Override
     public int getSize() {
-        return list.size();
+        return items.size();
     }
 
     @Override
     public T getElementAt(int index) {
-        return list.get(index);
+        return items.get(index);
     }
 
     @Override
@@ -78,4 +83,5 @@ public class ComboBoxModel<T> implements javax.swing.ComboBoxModel<T>, ListDataL
             l.intervalRemoved(e);
         }
     }
+
 }

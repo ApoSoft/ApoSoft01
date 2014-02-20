@@ -11,6 +11,12 @@ import org.springframework.stereotype.Component;
 
 import de.waksh.aposoft.controller.NavigationController;
 
+/**
+ * 
+ * @author ahofmann
+ * 
+ */
+
 @Component
 public class MainFrame {
 
