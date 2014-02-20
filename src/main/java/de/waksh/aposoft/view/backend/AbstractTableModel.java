@@ -24,6 +24,7 @@ public abstract class AbstractTableModel<T> implements TableModel, TableModelLis
 
     public void addItems(List<T> items) {
         items.addAll(items);
+        update();
     }
 
     public void removeItem(T item) {
@@ -65,4 +66,9 @@ public abstract class AbstractTableModel<T> implements TableModel, TableModelLis
             l.tableChanged(e);
         }
     }
+
+    public void update() {
+        tableChanged(new TableModelEvent(this));
+    }
+
 }
