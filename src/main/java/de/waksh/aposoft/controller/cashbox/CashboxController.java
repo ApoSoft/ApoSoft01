@@ -21,6 +21,8 @@ import de.waksh.aposoft.model.ProductAppointment;
 import de.waksh.aposoft.repository.AppointmentCustomerRepository;
 import de.waksh.aposoft.repository.CustomerRepository;
 import de.waksh.aposoft.repository.ProductRepository;
+import de.waksh.aposoft.repository.ProductReservationRepository;
+import de.waksh.aposoft.repository.StoreRepository;
 import de.waksh.aposoft.view.backend.ComboBoxModel;
 import de.waksh.aposoft.view.cashbox.CashboxButtonPanel;
 import de.waksh.aposoft.view.cashbox.CashboxPanel;
@@ -44,6 +46,12 @@ public class CashboxController {
 
     @Autowired
     private AppointmentCustomerRepository appointmentCustomerRepository;
+
+    @Autowired
+    private ProductReservationRepository productReservationRepository;
+
+    @Autowired
+    private StoreRepository storeRepository;
 
     private CashboxPanel cashboxPanel;
     private CashboxButtonPanel cashboxButtonPanel;
@@ -104,8 +112,8 @@ public class CashboxController {
         cp.getLblInsuranceNumberData().setText(customer.getInsurance().getInsuranceIdNumber());
         cp.getLblInsuranceData().setText(customer.getInsurance().getName());
 
-        List<AppointmentCustomer> list = appointmentCustomerRepository.findByCustomer(customer);
-        for (AppointmentCustomer appointmentCustomer : list) {
+        List<AppointmentCustomer> listAppCust = appointmentCustomerRepository.findByCustomer(customer);
+        for (AppointmentCustomer appointmentCustomer : listAppCust) {
             for (OrderItem orderItem : appointmentCustomer.getItems()) {
                 ProductAppointment productAppointment = new ProductAppointment();
                 productAppointment.setProduct(orderItem.getProduct().getName());
@@ -120,6 +128,16 @@ public class CashboxController {
                 cp.getHistoryTableModel().addItem(productAppointment);
             }
         }
+
+        // List<ProductReservation> listProdRes =
+        // productReservationRepository.findByCustomer(customer);
+        // for (ProductReservation productReservation : listProdRes) {
+        // for (Product product : productReservation.getProducts()) {
+        // ProductReservationItem productReservationItem = new
+        // ProductReservationItem();
+        // productReservationItem.setProduct(product.getName());
+        // }
+        // }
 
         cp.getHistoryTableModel().update();
     }

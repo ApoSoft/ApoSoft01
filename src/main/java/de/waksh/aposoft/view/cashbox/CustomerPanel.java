@@ -19,6 +19,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.waksh.aposoft.model.ProductAppointment;
+import de.waksh.aposoft.model.ProductReservationItem;
 import de.waksh.aposoft.view.backend.AbstractTableModel;
 
 /**
@@ -38,7 +39,9 @@ public class CustomerPanel {
     private JLabel lblInsuranceData;
 
     private JTable historyTable;
+    private JTable reservationTable;
     private HistoryTableModel historyTableModel;
+    private ReservationTableModel reservationTableModel;
 
     public CustomerPanel() {
         build();
@@ -61,9 +64,27 @@ public class CustomerPanel {
 
         tabbedPane.add("Data", buildDataPanel());
         tabbedPane.add("Historie", buildHistoryPanel());
+        tabbedPane.add("Reservierungen", buildReservationPanel());
 
         panel.add(tabbedPane, cc.xy(1, 1));
 
+    }
+
+    private JPanel buildReservationPanel() {
+        CellConstraints cc = new CellConstraints();
+        FormLayout layout = new FormLayout("fill:pref:grow", "fill:pref");
+        JPanel reservationPanel = new JPanel(layout);
+
+        reservationTableModel = new ReservationTableModel();
+        reservationTable = new JTable(reservationTableModel);
+
+        JScrollPane scrollPane = new JScrollPane();
+        Dimension dimension = new Dimension(450, 120);
+        scrollPane.setPreferredSize(dimension);
+        scrollPane.setViewportView(reservationTable);
+
+        reservationPanel.add(scrollPane, cc.xy(1, 1));
+        return reservationPanel;
     }
 
     private JPanel buildHistoryPanel() {
@@ -139,6 +160,63 @@ public class CustomerPanel {
                 return productAppointment.getAmount();
             case 3:
                 return productAppointment.getSubstances();
+            default:
+                return null;
+            }
+        }
+
+        @Override
+        public boolean isCellEditable(int arg0, int arg1) {
+            // TODO Auto-generated method stub
+            return false;
+        }
+
+        @Override
+        public void setValueAt(java.lang.Object arg0, int arg1, int arg2) {
+            // TODO Auto-generated method stub
+
+        }
+
+    }
+
+    public class ReservationTableModel extends AbstractTableModel<ProductReservationItem> {
+
+        public ReservationTableModel() {
+            super(new String[] { "Medikament", "Anzahl", "Filiale", "Vorhanden", "Reserviert bis" });
+        }
+
+        @Override
+        public Class<?> getColumnClass(int columnIndex) {
+            switch (columnIndex) {
+            case 0:
+                return String.class;
+            case 1:
+                return Integer.class;
+            case 2:
+                return String.class;
+            case 3:
+                return Boolean.class;
+            case 4:
+                return LocalDate.class;
+            default:
+                return null;
+            }
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            ProductReservationItem productReservationItem = items.get(rowIndex);
+            switch (columnIndex) {
+            case 0:
+                return productReservationItem.getProduct();
+            case 1:
+                return productReservationItem.getAmount();
+            case 2:
+                return productReservationItem.getBranch();
+            case 3:
+                return productReservationItem.getAvailable();
+            case 4:
+                return productReservationItem.getReservedUntil();
             default:
                 return null;
             }
