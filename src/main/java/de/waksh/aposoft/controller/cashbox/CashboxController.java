@@ -2,6 +2,8 @@ package de.waksh.aposoft.controller.cashbox;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.swing.JComboBox;
@@ -62,6 +64,7 @@ public class CashboxController {
 
         cashboxPanel.getInputAreaPanel().getTfCustomerNumber().addActionListener(actionListenerTextFieldCustomerNumber);
         cashboxPanel.getInputAreaPanel().getComboBox().addActionListener(actionListenerComboBox);
+        cashboxPanel.getInputAreaPanel().getComboBox().addItemListener(itemListenerComboBox);
     }
 
     private ActionListener actionListenerTextFieldCustomerNumber = new ActionListener() {
@@ -72,7 +75,7 @@ public class CashboxController {
             try {
                 customerNumber = Integer.parseInt(e.getActionCommand());
             } catch (NumberFormatException e1) {
-                JOptionPane.showMessageDialog(cashboxButtonPanel.getPanel(), "Ungültige Eingabe", "Fehler",
+                JOptionPane.showMessageDialog(cashboxPanel.getPanel(), "Ungültige Eingabe", "Fehler",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -80,8 +83,8 @@ public class CashboxController {
             Customer customer = customerRepository.findOne(customerNumber);
 
             if (customer == null) {
-                JOptionPane.showMessageDialog(cashboxButtonPanel.getPanel(), "Kunde mit der Kundennummer ["
-                        + customerNumber + "] nicht gefunden!", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(cashboxPanel.getPanel(), "Kunde mit der Kundennummer [" + customerNumber
+                        + "] nicht gefunden!", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
 
@@ -92,12 +95,29 @@ public class CashboxController {
     private ActionListener actionListenerComboBox = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getActionCommand().equals("comboBoxChanged")) {
-                JComboBox box = (JComboBox) e.getSource();
+            if (e.getActionCommand().equals("comboBoxEdited")) {
+                JComboBox<Product> box = cashboxPanel.getInputAreaPanel().getComboBox();
                 String query = String.format("%%%s%%", box.getSelectedItem());
 
                 List<Product> list = productRepository.findByName(query);
+
                 box.setModel(new ComboBoxModel<Product>(list));
+                box.showPopup();
+            }
+        }
+    };
+
+    private ItemListener itemListenerComboBox = new ItemListener() {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                JComboBox<Product> box = cashboxPanel.getInputAreaPanel().getComboBox();
+                int index = box.getSelectedIndex();
+
+                if (index != -1) {
+                    Product product = (Product) box.getSelectedItem();
+                    box.setToolTipText(product.toString());
+                }
             }
         }
     };
