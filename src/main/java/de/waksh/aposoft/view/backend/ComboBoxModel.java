@@ -26,7 +26,7 @@ public class ComboBoxModel<T> implements javax.swing.ComboBoxModel<T>, ListDataL
     }
 
     public void addAll(List<T> items) {
-        items.addAll(items);
+        this.items.addAll(items);
     }
 
     public void removeItem(T item) {
