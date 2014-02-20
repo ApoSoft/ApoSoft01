@@ -3,6 +3,8 @@
  */
 package de.waksh.aposoft.view.cashbox;
 
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -66,12 +68,14 @@ public class CustomerPanel {
 
     private JPanel buildHistoryPanel() {
         CellConstraints cc = new CellConstraints();
-        FormLayout layout = new FormLayout("fill:pref:grow", "fill:pref:grow");
+        FormLayout layout = new FormLayout("fill:pref:grow", "fill:pref");
         JPanel historyPanel = new JPanel(layout);
 
         JTable historyTable = new JTable(customerAppointmentHistoryTableModel);
 
         JScrollPane scrollPane = new JScrollPane();
+        Dimension dimension = new Dimension(450, 120);
+        scrollPane.setPreferredSize(dimension);
         scrollPane.setViewportView(historyTable);
 
         historyPanel.add(scrollPane, cc.xy(1, 1));
@@ -81,8 +85,8 @@ public class CustomerPanel {
 
     private JPanel buildDataPanel() {
         CellConstraints cc = new CellConstraints();
-        FormLayout layout = new FormLayout("3dlu, right:pref, 3dlu, left:pref, 3dlu",
-                "3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu");
+        FormLayout layout = new FormLayout("3dlu, right:pref, 3dlu, left:pref, 3dlu", // coloumns
+                "3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu"); // rows
 
         JPanel dataPanel = new JPanel(layout);
 
@@ -94,9 +98,8 @@ public class CustomerPanel {
         dataPanel.add(lastNameData, cc.xy(4, 6));
         dataPanel.add(new JLabel("Krankenkasse-Nr: "), cc.xy(2, 8));
         dataPanel.add(insuranceNumberData, cc.xy(4, 8));
-        // dataPanel.add(insuranceNoData, cc.xy(4, 8));
-        // dataPanel.add(insuranceLabel, cc.xy(2, 10));
-        // dataPanel.add(insuranceData, cc.xy(4, 10));
+        dataPanel.add(new JLabel("Krankenkasse: "), cc.xy(2, 10));
+        dataPanel.add(insuranceData, cc.xy(4, 10));
 
         return dataPanel;
     }
