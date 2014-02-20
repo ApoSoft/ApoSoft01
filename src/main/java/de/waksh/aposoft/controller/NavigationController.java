@@ -25,6 +25,9 @@ public class NavigationController {
     @Autowired
     private CashboxController cashboxController;
 
+    @Autowired
+    private AdminController adminController;
+
     private NavigationPanel panel;
 
     public NavigationController() {
@@ -57,7 +60,8 @@ public class NavigationController {
     private ActionListener listenerAdmin = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            mainFrame.setCenter(adminController.getMainPanel());
+            mainFrame.setRight(adminController.getButtonPanel());
         }
     };
 
