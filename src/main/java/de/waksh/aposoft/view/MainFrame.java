@@ -38,6 +38,7 @@ public class MainFrame {
         frame.getContentPane().add(navigationController.getNavigationPanel().getPanel(), BorderLayout.WEST);
 
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
@@ -48,6 +49,7 @@ public class MainFrame {
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     public void setRight(JPanel panel) {
@@ -57,6 +59,7 @@ public class MainFrame {
 
         frame.getContentPane().add(panel, BorderLayout.EAST);
         frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     public JFrame getFrame() {
