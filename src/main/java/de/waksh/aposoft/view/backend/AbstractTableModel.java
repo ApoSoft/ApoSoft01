@@ -31,8 +31,8 @@ public abstract class AbstractTableModel<T> implements TableModel, TableModelLis
         items.remove(item);
     }
 
-    public void removeItem(int index) {
-        items.remove(index);
+    public T removeItem(int index) {
+        return items.remove(index);
     }
 
     @Override
