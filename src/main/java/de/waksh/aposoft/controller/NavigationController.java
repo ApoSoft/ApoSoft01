@@ -28,6 +28,9 @@ public class NavigationController {
     @Autowired
     private AdminController adminController;
 
+    @Autowired
+    private ExtemporaneousProductController epController;
+
     private NavigationPanel panel;
 
     public NavigationController() {
@@ -68,7 +71,6 @@ public class NavigationController {
     private ActionListener listenerExtemporaneousProduct = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ExtemporaneousProductController epController = new ExtemporaneousProductController();
             mainFrame.setCenter(epController.getExtemporaneousProductPanel().getPanel());
             mainFrame.setRight(epController.getExtemporaneousProductButtonPanel().getPanel());
         }

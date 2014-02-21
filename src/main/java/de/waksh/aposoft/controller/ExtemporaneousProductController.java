@@ -5,12 +5,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import de.waksh.aposoft.domain.ExtemporaneousProduct;
 import de.waksh.aposoft.view.ExtemporaneousProductButtonPanel;
 import de.waksh.aposoft.view.ExtemporaneousProductPanel;
 import de.waksh.aposoft.view.MainFrame;
 
+@Component
 public class ExtemporaneousProductController {
 
     @Autowired
