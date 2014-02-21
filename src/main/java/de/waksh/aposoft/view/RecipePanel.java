@@ -13,15 +13,15 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import de.waksh.aposoft.controller.ExtemporaneousProductController;
-import de.waksh.aposoft.domain.ExtemporaneousProduct;
+import de.waksh.aposoft.controller.RecipeController;
+import de.waksh.aposoft.domain.Recipe;
 
-public class ExtemporaneousProductPanel {
+public class RecipePanel {
 
     @SuppressWarnings("unused")
-    private ExtemporaneousProductController controller;
+    private RecipeController controller;
 
-    private ExtemporaneousProduct extProd;
+    private Recipe extProd;
 
     private JPanel panel;
     private JTextField txtId;
@@ -34,7 +34,7 @@ public class ExtemporaneousProductPanel {
     private JTable table;
     private DefaultTableModel model;
 
-    public ExtemporaneousProductPanel(ExtemporaneousProductController controller, ExtemporaneousProduct extProd) {
+    public RecipePanel(RecipeController controller, Recipe extProd) {
         this.controller = controller;
         this.extProd = extProd;
 

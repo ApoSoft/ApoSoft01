@@ -29,7 +29,7 @@ public class NavigationController {
     private AdminController adminController;
 
     @Autowired
-    private ExtemporaneousProductController epController;
+    private RecipeController recipeController;
 
     private NavigationPanel panel;
 
@@ -38,7 +38,7 @@ public class NavigationController {
         panel.getBtnCashbox().addActionListener(listenerCashbox);
         panel.getBtnMaterialAdmin().addActionListener(listenerMaterialAdmin);
         panel.getBtnAdmin().addActionListener(listenerAdmin);
-        panel.getBtnExtemporaneousProduct().addActionListener(listenerExtemporaneousProduct);
+        panel.getBtnRecipe().addActionListener(listenerRecipe);
     }
 
     public NavigationPanel getNavigationPanel() {
@@ -68,11 +68,11 @@ public class NavigationController {
         }
     };
 
-    private ActionListener listenerExtemporaneousProduct = new ActionListener() {
+    private ActionListener listenerRecipe = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            mainFrame.setCenter(epController.getExtemporaneousProductPanel().getPanel());
-            mainFrame.setRight(epController.getExtemporaneousProductButtonPanel().getPanel());
+            mainFrame.setCenter(recipeController.getRecipePanel().getPanel());
+            mainFrame.setRight(recipeController.getRecipeButtonPanel().getPanel());
         }
     };
 }

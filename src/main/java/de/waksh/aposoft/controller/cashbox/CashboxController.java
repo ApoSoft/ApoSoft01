@@ -14,11 +14,11 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.AppointmentCustomer;
 import de.waksh.aposoft.domain.Customer;
 import de.waksh.aposoft.domain.OrderItem;
 import de.waksh.aposoft.domain.Product;
-import de.waksh.aposoft.domain.SubstanceItem;
 import de.waksh.aposoft.model.ProductAppointment;
 import de.waksh.aposoft.repository.AppointmentCustomerRepository;
 import de.waksh.aposoft.repository.CustomerRepository;
@@ -141,9 +141,9 @@ public class CashboxController {
                 productAppointment.setAmount(orderItem.getAmount());
                 productAppointment.setDate(appointmentCustomer.getDate());
 
-                for (SubstanceItem substanceItem : orderItem.getProduct().getRecipe().getItems()) {
+                for (ActiveIngredient ac : orderItem.getProduct().getRecipe().getActiveIngredient()) {
                     String substances = productAppointment.getSubstances();
-                    productAppointment.setSubstances(substances + "; " + substanceItem.getSubstance().getName());
+                    productAppointment.setSubstances(substances + "; " + ac.getName());
                 }
 
                 cp.getHistoryTableModel().addItem(productAppointment);

@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.Recipe;
-import de.waksh.aposoft.domain.SubstanceItem;
 import de.waksh.aposoft.repository.RecipeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,33 +27,88 @@ public class RecipeTest {
     private Recipe createRecipe() {
         Recipe recipe = new Recipe();
 
-        List<SubstanceItem> items = new ArrayList<>();
-        SubstanceItem item = new SubstanceItem();
-        item.setAmount(20);
-        SubstanceItem item2 = new SubstanceItem();
-        item.setAmount(1);
-        items.add(item2);
-        items.add(item);
-        recipe.setItems(items);
+        recipe.setDescription("Salbe");
+
+        List<ActiveIngredient> items = new ArrayList<>();
+        ActiveIngredient activeIngredient = new ActiveIngredient();
+        activeIngredient.setName("test");
+        ActiveIngredient activeIngredient2 = new ActiveIngredient();
+        activeIngredient.setName("test2");
+        items.add(activeIngredient2);
+        items.add(activeIngredient);
+        recipe.setActiveIngredient(items);
 
         return recipe;
     }
 
     @Test
-    public void testFindAll() {
+    public void testInsert() {
         Recipe recipe = createRecipe();
-
-        long count = repository.count();
-
-        long sizeIterable = 0;
 
         repository.save(recipe);
 
-        Iterable<Recipe> iterablerecipe = repository.findAll();
-        for (@SuppressWarnings("unused") Recipe recipe2 : iterablerecipe) {
-            sizeIterable++;
+        List<Recipe> listext = repository.findByDescription(recipe.getDescription());
+        boolean exists = false;
+        for (Recipe ext2 : listext) {
+            if (recipe.getId() == ext2.getId()) {
+                exists = true;
+                break;
+            }
         }
 
-        Assert.assertEquals(count + 1, sizeIterable);
+        Assert.assertTrue(exists);
     }
+
+    @Test
+    public void testUpdate() {
+        Recipe recipe = createRecipe();
+
+        repository.save(recipe);
+
+        recipe.setDescription("Creme");
+
+        repository.save(recipe);
+
+        List<Recipe> listextemproduct = repository.findByDescription(recipe.getDescription());
+        for (Recipe rec : listextemproduct) {
+            if (recipe.getId() == rec.getId()) {
+                Assert.assertEquals(rec.getDescription(), "Creme");
+                break;
+            }
+        }
+    }
+
+    @Test
+    public void testDelete() {
+        Recipe recipe = createRecipe();
+
+        repository.save(recipe);
+
+        repository.delete(recipe);
+
+        List<Recipe> listRecipe = repository.findByDescription(recipe.getDescription());
+        boolean exists = false;
+        for (Recipe ext : listRecipe) {
+            if (recipe.getId() == ext.getId()) {
+                exists = true;
+                break;
+            }
+        }
+        Assert.assertFalse(exists);
+    }
+
+    @Test
+    public void testfindAll() {
+        Recipe recipe = createRecipe();
+
+        long size = repository.count();
+        long length = 0;
+        repository.save(recipe);
+        Iterable<Recipe> it = repository.findAll();
+        for (@SuppressWarnings("unused") Recipe recipe2 : it) {
+            length++;
+        }
+        Assert.assertEquals(size + 1, length);
+    }
+
 }

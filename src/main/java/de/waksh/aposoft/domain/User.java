@@ -65,5 +65,5 @@ public class User {
     private Branch branch;
 
     @OneToMany(mappedBy = "user")
-    private List<ExtemporaneousProduct> extemporaneousProducts;
+    private List<Recipe> recipe;
 }

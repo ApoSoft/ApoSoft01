@@ -20,7 +20,7 @@ public class NavigationPanel {
     private JButton btnCashbox;
     private JButton btnMaterialAdmin;
     private JButton btnAdmin;
-    private JButton btnExtemporaneousProduct;
+    private JButton btnRecipe;
 
     public NavigationPanel() {
         build();
@@ -30,7 +30,7 @@ public class NavigationPanel {
         btnCashbox = new JButton("Kasse");
         btnMaterialAdmin = new JButton("Materialwirtschaft");
         btnAdmin = new JButton("Administration");
-        btnExtemporaneousProduct = new JButton("Rezeptur");
+        btnRecipe = new JButton("Rezeptur");
 
         CellConstraints cc = new CellConstraints();
         FormLayout layout = new FormLayout("fill:pref", "pref, 3dlu, pref, 3dlu, pref, 3dlu, pref");
@@ -39,6 +39,6 @@ public class NavigationPanel {
         panel.add(btnCashbox, cc.xy(1, 1));
         panel.add(btnMaterialAdmin, cc.xy(1, 3));
         panel.add(btnAdmin, cc.xy(1, 5));
-        panel.add(btnExtemporaneousProduct, cc.xy(1, 7));
+        panel.add(btnRecipe, cc.xy(1, 7));
     }
 }

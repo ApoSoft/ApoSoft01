@@ -9,13 +9,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import de.waksh.aposoft.controller.ExtemporaneousProductController;
+import de.waksh.aposoft.controller.RecipeController;
 
-public class ExtemporaneousProductButtonPanel {
+public class RecipeButtonPanel {
     private JPanel panel;
-    private ExtemporaneousProductController controller;
+    private RecipeController controller;
 
-    public ExtemporaneousProductButtonPanel(ExtemporaneousProductController controller) {
+    public RecipeButtonPanel(RecipeController controller) {
         this.controller = controller;
         build();
     }

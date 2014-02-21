@@ -7,30 +7,30 @@ import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import de.waksh.aposoft.domain.ExtemporaneousProduct;
-import de.waksh.aposoft.view.ExtemporaneousProductButtonPanel;
-import de.waksh.aposoft.view.ExtemporaneousProductPanel;
+import de.waksh.aposoft.domain.Recipe;
+import de.waksh.aposoft.view.RecipeButtonPanel;
+import de.waksh.aposoft.view.RecipePanel;
 import de.waksh.aposoft.view.MainFrame;
 
 @Component
-public class ExtemporaneousProductController {
+public class RecipeController {
 
     @Autowired
     private MainFrame mainFrame;
 
-    private ExtemporaneousProductPanel panel;
-    private ExtemporaneousProductButtonPanel btnPanel;
+    private RecipePanel panel;
+    private RecipeButtonPanel btnPanel;
 
-    public ExtemporaneousProductController() {
-        panel = new ExtemporaneousProductPanel(this, new ExtemporaneousProduct());
-        btnPanel = new ExtemporaneousProductButtonPanel(this);
+    public RecipeController() {
+        panel = new RecipePanel(this, new Recipe());
+        btnPanel = new RecipeButtonPanel(this);
     }
 
-    public ExtemporaneousProductPanel getExtemporaneousProductPanel() {
+    public RecipePanel getRecipePanel() {
         return panel;
     }
 
-    public ExtemporaneousProductButtonPanel getExtemporaneousProductButtonPanel() {
+    public RecipeButtonPanel getRecipeButtonPanel() {
         return btnPanel;
     }
 

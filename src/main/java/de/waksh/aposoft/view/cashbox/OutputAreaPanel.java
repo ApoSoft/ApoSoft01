@@ -9,8 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import lombok.Data;
+import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.Product;
-import de.waksh.aposoft.domain.SubstanceItem;
 import de.waksh.aposoft.view.backend.AbstractTableModel;
 
 @Data
@@ -108,8 +108,8 @@ public class OutputAreaPanel {
                 return product.getDosage() + " " + product.getUnit().getName();
             case 4:
                 StringBuilder builder = new StringBuilder();
-                for (SubstanceItem item : product.getRecipe().getItems()) {
-                    builder.append(item.getSubstance().getName()).append(", ");
+                for (ActiveIngredient ac : product.getRecipe().getActiveIngredient()) {
+                    builder.append(ac.getName()).append(", ");
                 }
                 // TODO: Check if it works
                 builder.setLength(builder.length() - 2);

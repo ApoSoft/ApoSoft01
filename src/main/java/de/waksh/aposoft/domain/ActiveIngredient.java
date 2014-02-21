@@ -29,6 +29,6 @@ public class ActiveIngredient {
     private String name;
 
     @ManyToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "extemporaneous_product_id")
-    private ExtemporaneousProduct extemporaneousProduct;
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
 }
