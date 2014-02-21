@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-import lombok.Data;
+import lombok.Getter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,7 +37,6 @@ import de.waksh.aposoft.view.cashbox.CustomerPanel;
  */
 
 @Component
-@Data
 public class CashboxController {
 
     @Autowired
@@ -55,7 +54,9 @@ public class CashboxController {
     @Autowired
     private StoreRepository storeRepository;
 
+    @Getter
     private CashboxPanel cashboxPanel;
+    @Getter
     private CashboxButtonPanel cashboxButtonPanel;
 
     public CashboxController() {
@@ -161,4 +162,5 @@ public class CashboxController {
 
         cp.getHistoryTableModel().update();
     }
+
 }
