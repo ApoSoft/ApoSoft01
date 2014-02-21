@@ -18,8 +18,8 @@ import org.joda.time.LocalDate;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+import de.waksh.aposoft.domain.ProductReservationItem;
 import de.waksh.aposoft.model.ProductAppointment;
-import de.waksh.aposoft.model.ProductReservationItem;
 import de.waksh.aposoft.view.backend.AbstractTableModel;
 
 /**
@@ -208,13 +208,13 @@ public class CustomerPanel {
             ProductReservationItem productReservationItem = items.get(rowIndex);
             switch (columnIndex) {
             case 0:
-                return productReservationItem.getProduct();
+                return productReservationItem.getProduct().getName();
             case 1:
                 return productReservationItem.getAmount();
             case 2:
-                return productReservationItem.getBranch();
+                return productReservationItem.getBranch().getDescription();
             case 3:
-                return productReservationItem.getAvailable();
+                return productReservationItem.isAvailable();
             case 4:
                 return productReservationItem.getReservedUntil();
             default:

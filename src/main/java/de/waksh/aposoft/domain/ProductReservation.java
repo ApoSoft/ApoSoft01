@@ -2,6 +2,7 @@ package de.waksh.aposoft.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,10 +26,10 @@ public class ProductReservation {
     @GeneratedValue
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany
-    private List<Product> products;
+    @OneToMany(cascade = { CascadeType.ALL })
+    private List<ProductReservationItem> items;
 }
