@@ -19,6 +19,7 @@ import de.waksh.aposoft.domain.AppointmentCustomer;
 import de.waksh.aposoft.domain.Customer;
 import de.waksh.aposoft.domain.OrderItem;
 import de.waksh.aposoft.domain.Product;
+import de.waksh.aposoft.domain.ProductReservation;
 import de.waksh.aposoft.model.ProductAppointment;
 import de.waksh.aposoft.repository.AppointmentCustomerRepository;
 import de.waksh.aposoft.repository.CustomerRepository;
@@ -150,16 +151,11 @@ public class CashboxController {
             }
         }
 
-        // List<ProductReservation> listProdRes =
-        // productReservationRepository.findByCustomer(customer);
-        // for (ProductReservation productReservation : listProdRes) {
-        // for (Product product : productReservation.getProducts()) {
-        // ProductReservationItem productReservationItem = new
-        // ProductReservationItem();
-        // productReservationItem.setProduct(product.getName());
-        // }
-        // }
-
+        List<ProductReservation> productReservations = productReservationRepository.findByCustomer(customer);
+        for (ProductReservation productReservation : productReservations) {
+            cp.getReservationTableModel().addItems(productReservation.getItems());
+        }
+        cp.getReservationTableModel().update();
         cp.getHistoryTableModel().update();
     }
 
