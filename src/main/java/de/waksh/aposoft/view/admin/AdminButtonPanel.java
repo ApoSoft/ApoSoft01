@@ -1,43 +1,66 @@
 package de.waksh.aposoft.view.admin;
 
-import java.awt.Component;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import de.waksh.aposoft.controller.AdminController;
+import lombok.Getter;
+
+import com.jgoodies.forms.builder.PanelBuilder;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+
+/**
+ * 
+ * @author Christoph Mende
+ * 
+ */
 
 public class AdminButtonPanel {
 
+    @Getter
     private JPanel panel;
 
-    public AdminButtonPanel(AdminController adminController) {
+    @Getter
+    private JButton btnRolesPerms;
+    @Getter
+    private JButton btnLog;
+    @Getter
+    private JButton btnBranch;
+    @Getter
+    private JButton btnUserMgmt;
+    @Getter
+    private JButton btnEmplMgmt;
+    @Getter
+    private JButton btnProdGrp;
+    @Getter
+    private JButton btnCstGrp;
+
+    public AdminButtonPanel() {
         initialize();
     }
 
     private void initialize() {
-        panel = new JPanel();
-        BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
-        panel.setLayout(layout);
+        btnRolesPerms = new JButton("Rollen/Rechte");
+        btnLog = new JButton("Protokoll");
+        btnBranch = new JButton("Filiale");
+        btnUserMgmt = new JButton("Benutzerverwaltung");
+        btnEmplMgmt = new JButton("Mitarbeiterverwaltung");
+        btnProdGrp = new JButton("Produktgruppen");
+        btnCstGrp = new JButton("Kundengruppen");
 
-        addButton("Rollen/Rechte");
-        addButton("Protokoll");
-        addButton("Filiale");
-        addButton("Benutzerverwaltung");
-        addButton("Mitarbeiterverwaltung");
-        addButton("Produktgruppen");
-        addButton("Kundengruppen");
-    }
+        FormLayout layout = new FormLayout("fill:pref",
+                "pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref");
 
-    public JPanel getPanel() {
-        return panel;
-    }
-
-    private void addButton(String text) {
-        JButton button = new JButton(text);
-        button.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        panel.add(button);
+        PanelBuilder builder = new PanelBuilder(layout);
+        CellConstraints cc = new CellConstraints();
+        builder.add(btnRolesPerms, cc.xy(1, 1));
+        builder.add(btnLog, cc.xy(1, 3));
+        builder.add(btnBranch, cc.xy(1, 5));
+        builder.add(btnUserMgmt, cc.xy(1, 7));
+        builder.add(btnEmplMgmt, cc.xy(1, 9));
+        builder.add(btnProdGrp, cc.xy(1, 11));
+        builder.add(btnCstGrp, cc.xy(1, 13));
+        panel = builder.getPanel();
     }
 
 }

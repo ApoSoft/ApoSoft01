@@ -24,7 +24,7 @@ public class AdminController {
 
     public AdminController() {
         panel = new AdminPanel(this);
-        buttonPanel = new AdminButtonPanel(this);
+        buttonPanel = new AdminButtonPanel();
     }
 
     public JPanel getMainPanel() {
