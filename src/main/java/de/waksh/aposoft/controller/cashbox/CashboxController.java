@@ -5,9 +5,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 import lombok.Getter;
 
@@ -68,6 +73,13 @@ public class CashboxController {
         cashboxPanel.getInputAreaPanel().getTfCustomerNumber().addActionListener(actionListenerTextFieldCustomerNumber);
         cashboxPanel.getInputAreaPanel().getComboBox().addActionListener(actionListenerComboBox);
         cashboxPanel.getInputAreaPanel().getComboBox().addItemListener(itemListenerComboBox);
+
+        cashboxPanel.getOutputAreaPanel().getTable().getSelectionModel()
+                .addListSelectionListener(tableListSelectionListener);
+        cashboxPanel.getOutputAreaPanel().getModel().addTableModelListener(tableModelListener);
+
+        cashboxButtonPanel.getBtnAddProduct().addActionListener(actionListenerButtonAddProduct);
+        cashboxButtonPanel.getBtnRemoveProduct().addActionListener(actionListenerButtonRemoveProduct);
     }
 
     private ActionListener actionListenerTextFieldCustomerNumber = new ActionListener() {
@@ -120,8 +132,63 @@ public class CashboxController {
                 if (index != -1) {
                     Product product = (Product) box.getSelectedItem();
                     box.setToolTipText(product.toString());
+
+                    // TODO: Produkt wurde ausgewählt => Button "Hinzufügen"
+                    // aktivieren
                 }
             }
+        }
+    };
+
+    private ListSelectionListener tableListSelectionListener = new ListSelectionListener() {
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            // Wird aufgerufen, wenn ein Element in der Tabelle selektiert wurde
+            // TODO: Implement => Button "Entfernen" aktivieren
+            System.out.println(e);
+        }
+    };
+
+    private ActionListener actionListenerButtonAddProduct = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JComboBox<Product> box = cashboxPanel.getInputAreaPanel().getComboBox();
+            int index = box.getSelectedIndex();
+
+            if (index != -1) {
+                Product product = (Product) box.getSelectedItem();
+
+                cashboxPanel.getOutputAreaPanel().getModel().addItem(product);
+                cashboxPanel.getOutputAreaPanel().getModel().update();
+            }
+        }
+    };
+
+    private ActionListener actionListenerButtonRemoveProduct = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int index = cashboxPanel.getOutputAreaPanel().getTable().getSelectedRow();
+
+            if (index != -1) {
+                cashboxPanel.getOutputAreaPanel().getModel().removeItem(index);
+                cashboxPanel.getOutputAreaPanel().getModel().update();
+            }
+        }
+    };
+
+    private TableModelListener tableModelListener = new TableModelListener() {
+        @Override
+        public void tableChanged(TableModelEvent e) {
+            // Wird aufgerufen, wenn sich die Daten in der Tabelle verändern
+            // TODO: Implement => Tabelleninfo aktualisieren
+
+            float sum = 0.0f;
+
+            for (Product product : cashboxPanel.getOutputAreaPanel().getModel().getItems()) {
+                sum += product.getPrice() * cashboxPanel.getOutputAreaPanel().getModel().getCount(product);
+            }
+
+            cashboxPanel.getCustomerPanel().getTxtSum().setText(String.format(Locale.US, "%.2f", sum));
         }
     };
 
