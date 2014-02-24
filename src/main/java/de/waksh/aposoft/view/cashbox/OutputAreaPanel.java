@@ -8,16 +8,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import lombok.Data;
+import lombok.Getter;
 import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.Product;
 import de.waksh.aposoft.view.backend.AbstractTableModel;
 
-@Data
 public class OutputAreaPanel {
 
+    @Getter
     private JPanel panel;
+
+    @Getter
     private JTable table;
+
+    @Getter
     private TableModel model;
 
     public OutputAreaPanel() {
@@ -37,7 +41,7 @@ public class OutputAreaPanel {
         panel.add(scrollPane, BorderLayout.CENTER);
     }
 
-    private class TableModel extends AbstractTableModel<Product> {
+    public class TableModel extends AbstractTableModel<Product> {
 
         private Hashtable<Product, Integer> productCounter;
 
@@ -74,6 +78,10 @@ public class OutputAreaPanel {
             productCounter.remove(item);
         }
 
+        public int getCount(Product item) {
+            return productCounter.get(item);
+        }
+
         @Override
         public Class<?> getColumnClass(int columnIndex) {
             switch (columnIndex) {
@@ -99,7 +107,7 @@ public class OutputAreaPanel {
 
             switch (columnIndex) {
             case 0:
-                return productCounter.get(product);
+                return getCount(product);
             case 1:
                 return product.getName();
             case 2:
@@ -119,8 +127,7 @@ public class OutputAreaPanel {
             case 6:
                 return product.getPrice();
             case 7:
-                int count = productCounter.get(product);
-                return product.getPrice() * count;
+                return product.getPrice() * getCount(product);
             default:
                 return null;
             }

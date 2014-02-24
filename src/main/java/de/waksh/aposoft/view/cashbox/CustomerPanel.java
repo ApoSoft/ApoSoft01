@@ -50,10 +50,19 @@ public class CustomerPanel {
     @Getter
     private JLabel lblInsuranceData;
 
+    @Getter
     private JTextField txtDiscount;
+
+    @Getter
     private JTextField txtSum;
+
+    @Getter
     private JComboBox comboBoxPaymentType;
+
+    @Getter
     private JTextField txtReceive;
+
+    @Getter
     private JTextField txtRetoure;
 
     private JTable historyTable;
