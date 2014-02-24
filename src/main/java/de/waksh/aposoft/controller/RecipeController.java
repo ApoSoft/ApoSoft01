@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import de.waksh.aposoft.domain.Recipe;
+import de.waksh.aposoft.view.MainFrame;
 import de.waksh.aposoft.view.RecipeButtonPanel;
 import de.waksh.aposoft.view.RecipePanel;
-import de.waksh.aposoft.view.MainFrame;
 
 @Component
 public class RecipeController {
@@ -40,6 +40,12 @@ public class RecipeController {
         String amount = panel.getAmount();
         String unity = panel.getUnity();
 
+        if (panel.getActiveIngredient().equals("")) {
+            JOptionPane.showMessageDialog(mainFrame.getFrame(), "Bitte Wirkstoff angeben.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
             Double.parseDouble(amount);
         } catch (Exception e) {
@@ -50,6 +56,7 @@ public class RecipeController {
         }
 
         model.addRow(new Object[] { activeIngredient, amount + " " + unity });
+        panel.resetTextFields();
     }
 
     public void removeRow() {
