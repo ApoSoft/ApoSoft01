@@ -2,17 +2,20 @@ package de.waksh.aposoft.view.cashbox;
 
 import javax.swing.JPanel;
 
-import lombok.Data;
+import lombok.Getter;
 
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-@Data
 public class CashboxPanel {
 
+    @Getter
     private JPanel panel;
+    @Getter
     private InputAreaPanel inputAreaPanel;
+    @Getter
     private OutputAreaPanel outputAreaPanel;
+    @Getter
     private CustomerPanel customerPanel;
 
     public CashboxPanel() {

@@ -5,13 +5,15 @@ package de.waksh.aposoft.view.cashbox;
 
 import java.awt.Dimension;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
-import lombok.Data;
+import lombok.Getter;
 
 import org.joda.time.LocalDate;
 
@@ -28,19 +30,39 @@ import de.waksh.aposoft.view.backend.AbstractTableModel;
  * @author lhuebsch
  * 
  */
-@Data
 public class CustomerPanel {
 
+    @Getter
     private JPanel panel;
+
+    @Getter
     private JLabel lblCustomerNumberData;
+
+    @Getter
     private JLabel lblFirstNameData;
+
+    @Getter
     private JLabel lblLastNameData;
+
+    @Getter
     private JLabel lblInsuranceNumberData;
+
+    @Getter
     private JLabel lblInsuranceData;
+
+    private JTextField txtDiscount;
+    private JTextField txtSum;
+    private JComboBox comboBoxPaymentType;
+    private JTextField txtReceive;
+    private JTextField txtRetoure;
 
     private JTable historyTable;
     private JTable reservationTable;
+
+    @Getter
     private HistoryTableModel historyTableModel;
+
+    @Getter
     private ReservationTableModel reservationTableModel;
 
     public CustomerPanel() {
@@ -49,7 +71,7 @@ public class CustomerPanel {
 
     private void build() {
         CellConstraints cc = new CellConstraints();
-        FormLayout layout = new FormLayout("fill:pref:grow", "pref");
+        FormLayout layout = new FormLayout("fill:pref:grow, 3dlu, pref", "pref");
 
         panel = new JPanel(layout);
 
@@ -67,7 +89,7 @@ public class CustomerPanel {
         tabbedPane.add("Reservierungen", buildReservationPanel());
 
         panel.add(tabbedPane, cc.xy(1, 1));
-
+        panel.add(buildCashboxResultPanel(), cc.xy(3, 1));
     }
 
     private JPanel buildReservationPanel() {
@@ -126,6 +148,33 @@ public class CustomerPanel {
         return dataPanel;
     }
 
+    private JPanel buildCashboxResultPanel() {
+        CellConstraints cc = new CellConstraints();
+        FormLayout layout = new FormLayout("pref, 3dlu, 50dlu", "pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref");
+
+        JPanel panel = new JPanel(layout);
+
+        txtDiscount = new JTextField();
+        txtSum = new JTextField();
+        comboBoxPaymentType = new JComboBox<>();
+        txtReceive = new JTextField();
+        txtRetoure = new JTextField();
+
+        panel.add(new JLabel("Rabatt"), cc.xy(1, 1));
+        panel.add(new JLabel("Summe"), cc.xy(1, 3));
+        panel.add(new JLabel("Zahlungsart"), cc.xy(1, 5));
+        panel.add(new JLabel("Gegeben"), cc.xy(1, 7));
+        panel.add(new JLabel("Retoure"), cc.xy(1, 9));
+
+        panel.add(txtDiscount, cc.xy(3, 1));
+        panel.add(txtSum, cc.xy(3, 3));
+        panel.add(comboBoxPaymentType, cc.xy(3, 5));
+        panel.add(txtReceive, cc.xy(3, 7));
+        panel.add(txtRetoure, cc.xy(3, 9));
+
+        return panel;
+    }
+
     public class HistoryTableModel extends AbstractTableModel<ProductAppointment> {
 
         public HistoryTableModel() {
@@ -176,7 +225,6 @@ public class CustomerPanel {
             // TODO Auto-generated method stub
 
         }
-
     }
 
     public class ReservationTableModel extends AbstractTableModel<ProductReservationItem> {

@@ -57,6 +57,7 @@ public class CashboxController {
 
     @Getter
     private CashboxPanel cashboxPanel;
+
     @Getter
     private CashboxButtonPanel cashboxButtonPanel;
 

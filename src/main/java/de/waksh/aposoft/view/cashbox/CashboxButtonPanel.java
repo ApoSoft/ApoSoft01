@@ -3,13 +3,18 @@ package de.waksh.aposoft.view.cashbox;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import lombok.Getter;
+
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 public class CashboxButtonPanel {
 
+    @Getter
     private JPanel panel;
+    @Getter
     private JButton btnAddProduct;
+    @Getter
     private JButton btnRemoveProduct;
 
     public CashboxButtonPanel() {
@@ -28,10 +33,6 @@ public class CashboxButtonPanel {
 
         panel.add(btnAddProduct, cc.xy(1, 2));
         panel.add(btnRemoveProduct, cc.xy(1, 4));
-    }
-
-    public JPanel getPanel() {
-        return panel;
     }
 
 }
