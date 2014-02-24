@@ -48,6 +48,7 @@ public class ComboBoxModel<T> implements javax.swing.ComboBoxModel<T>, ListDataL
         return selectedItem;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void setSelectedItem(Object anItem) {
         selectedItem = (T) anItem;
