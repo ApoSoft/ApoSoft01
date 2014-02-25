@@ -229,4 +229,12 @@ public class RecipePanel {
         txtAmount.setText("");
         cmbUnity.setSelectedIndex(0);
     }
+
+    public void removeAllRows() {
+        if (model.getRowCount() > 0) {
+            for (int i = model.getRowCount() - 1; i > -1; i--) {
+                model.removeRow(i);
+            }
+        }
+    }
 }

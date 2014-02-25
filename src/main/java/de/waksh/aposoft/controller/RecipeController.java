@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import de.waksh.aposoft.domain.Recipe;
+import de.waksh.aposoft.repository.ProductRepository;
 import de.waksh.aposoft.repository.ProtocolRepository;
 import de.waksh.aposoft.view.ConfirmDialog;
 import de.waksh.aposoft.view.MainFrame;
@@ -29,16 +30,19 @@ public class RecipeController {
     private MainFrame mainFrame;
 
     @Autowired
-    ProtocolRepository repo;
+    ProtocolRepository protocolRepo;
 
-    private RecipePanel panel;
+    @Autowired
+    ProductRepository productRepo;
+
+    private RecipePanel recipePanel;
     private RecipeButtonPanel btnPanel;
     private Recipe recipe;
     private ConfirmDialog confirmDialog;
 
     public RecipeController() {
         recipe = new Recipe();
-        panel = new RecipePanel(this, recipe);
+        recipePanel = new RecipePanel(this, recipe);
         btnPanel = new RecipeButtonPanel();
 
         btnPanel.getBtnAdd().addActionListener(listenerAdd);
@@ -47,7 +51,7 @@ public class RecipeController {
     }
 
     public RecipePanel getRecipePanel() {
-        return panel;
+        return recipePanel;
     }
 
     public RecipeButtonPanel getRecipeButtonPanel() {
@@ -55,12 +59,12 @@ public class RecipeController {
     }
 
     public void addRow() {
-        DefaultTableModel model = panel.getTableModel();
-        String activeIngredient = panel.getActiveIngredient();
-        String amount = panel.getAmount();
-        String unity = panel.getUnity();
+        DefaultTableModel model = recipePanel.getTableModel();
+        String activeIngredient = recipePanel.getActiveIngredient();
+        String amount = recipePanel.getAmount();
+        String unity = recipePanel.getUnity();
 
-        if (panel.getActiveIngredient().equals("")) {
+        if (recipePanel.getActiveIngredient().equals("")) {
             JOptionPane.showMessageDialog(mainFrame.getFrame(), "Bitte Wirkstoff angeben.", "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
@@ -69,34 +73,45 @@ public class RecipeController {
         try {
             Double.parseDouble(amount);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(mainFrame.getFrame(), "Bitte bei Menge eine Fließkommazahl eingeben.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            panel.selectAmount();
+            JOptionPane.showMessageDialog(mainFrame.getFrame(), "Bitte bei Menge eine Zahl eingeben.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            recipePanel.selectAmount();
             return;
         }
 
         model.addRow(new Object[] { activeIngredient, amount + " " + unity });
-        panel.resetTextFields();
+        recipePanel.resetTextFields();
     }
 
     public void removeRow() {
-        DefaultTableModel model = panel.getTableModel();
-        JTable table = panel.getTable();
+        DefaultTableModel model = recipePanel.getTableModel();
+        JTable table = recipePanel.getTable();
+        if (model.getRowCount() == 0 || table.getSelectedRow() == -1) {
+            return;
+        }
         model.removeRow(table.getSelectedRow());
     }
 
     public void next() {
+        if (recipePanel.getTableModel().getRowCount() == 0) {
+            JOptionPane.showMessageDialog(mainFrame.getFrame(), "Bitte erst Wirkstoffe hinzufügen.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        recipePanel.resetTextFields();
         confirmDialog = new ConfirmDialog();
-        confirmDialog.getBtnOK().addActionListener(enterPressed);
-        panel.resetTextFields();
+        confirmDialog.getBtnOK().addActionListener(listenerConfirm);
+        confirmDialog.setModal(true);
+        confirmDialog.setVisible(true);
     }
 
-    private ActionListener enterPressed = new ActionListener() {
+    private ActionListener listenerConfirm = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             // repo.save(new Protocol(new User(), "MA fügte Rezeptur mit ID: " +
             // recipe.getId() + " hinzu.", ""));
             confirmDialog.dispose();
+            new ProductDialogController(recipe, mainFrame, productRepo, recipePanel);
         }
     };
 

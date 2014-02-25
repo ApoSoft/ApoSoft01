@@ -22,7 +22,6 @@ public class ConfirmDialog {
 
     public ConfirmDialog() {
         initialize();
-        dialog.setVisible(true);
     }
 
     private void initialize() {
@@ -69,5 +68,13 @@ public class ConfirmDialog {
 
     public void dispose() {
         dialog.dispose();
+    }
+
+    public void setModal(boolean b) {
+        dialog.setModal(b);
+    }
+
+    public void setVisible(boolean b) {
+        dialog.setVisible(true);
     }
 }
