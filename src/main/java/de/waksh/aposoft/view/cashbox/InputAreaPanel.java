@@ -18,7 +18,7 @@ public class InputAreaPanel {
 
     private JTextField tfCustomerNumber;
     private JTextField tfInsuranceNumber;
-    private JTextField tfCashbox;
+    private JTextField tfInsuranceName;
 
     private JComboBox<Product> comboBox;
     private JTextField tfSubstance1;
@@ -40,8 +40,8 @@ public class InputAreaPanel {
         tfInsuranceNumber = new JTextField();
         tfSubstance1 = new JTextField();
         tfSubstance2 = new JTextField();
-        tfCashbox = new JTextField();
-        tfCashbox.setEditable(false);
+        tfInsuranceName = new JTextField();
+        tfInsuranceName.setEditable(false);
 
         comboBox = new JComboBox<Product>();
         comboBox.setEditable(true);
@@ -50,8 +50,8 @@ public class InputAreaPanel {
         panel.add(tfCustomerNumber, cc.xy(4, 2));
         panel.add(new JLabel("Kassennummer"), cc.xy(6, 2));
         panel.add(tfInsuranceNumber, cc.xy(8, 2));
-        panel.add(new JLabel("Kasse"), cc.xy(10, 2));
-        panel.add(tfCashbox, cc.xy(12, 2));
+        panel.add(new JLabel("Krankenkasse"), cc.xy(10, 2));
+        panel.add(tfInsuranceName, cc.xy(12, 2));
 
         panel.add(new JLabel("Produkt"), cc.xy(2, 4));
         panel.add(comboBox, cc.xy(4, 4));
