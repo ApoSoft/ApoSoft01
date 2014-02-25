@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.waksh.aposoft.domain.Product;
 import de.waksh.aposoft.domain.ProductReservation;
+import de.waksh.aposoft.domain.ProductReservationItem;
 import de.waksh.aposoft.repository.ProductReservationRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,14 +28,12 @@ public class ProductReservationTest {
 
         ProductReservation productreservation = new ProductReservation();
 
-        List<Product> items = new ArrayList<>();
-        Product product = new Product();
-        product.setLength(200);
-        Product product2 = new Product();
-        product.setLength(300);
+        List<ProductReservationItem> items = new ArrayList<>();
+        ProductReservationItem product = new ProductReservationItem();
+        ProductReservationItem product2 = new ProductReservationItem();
         items.add(product2);
         items.add(product);
-        productreservation.setProducts(items);
+        productreservation.setItems(items);
 
         return productreservation;
 
