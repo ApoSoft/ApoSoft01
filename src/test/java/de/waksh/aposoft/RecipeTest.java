@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +14,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.ActiveIngredient;
+import de.waksh.aposoft.domain.Product;
 import de.waksh.aposoft.domain.Recipe;
+import de.waksh.aposoft.domain.User;
 import de.waksh.aposoft.repository.RecipeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,6 +31,7 @@ public class RecipeTest {
         Recipe recipe = new Recipe();
 
         recipe.setDescription("Salbe");
+        recipe.setType("Typ");
 
         List<ActiveIngredient> items = new ArrayList<>();
         ActiveIngredient activeIngredient = new ActiveIngredient();
@@ -37,6 +41,25 @@ public class RecipeTest {
         items.add(activeIngredient2);
         items.add(activeIngredient);
         recipe.setActiveIngredient(items);
+
+        List<Product> products = new ArrayList<>();
+        Product product = new Product();
+        product.setName("test");
+        Product product2 = new Product();
+        product2.setName("test2");
+        products.add(product2);
+        products.add(product);
+        recipe.setProducts(products);
+
+        User user = new User();
+        user.setBirthdate(new LocalDate(2000, 1, 1));
+        user.setFirstName("Sebastian");
+        user.setGender("maennlich");
+        user.setName("Bruett");
+        user.setPassword("abc");
+        user.setTitle("Dr.");
+        user.setUsername("abc");
+        recipe.setUser(user);
 
         return recipe;
     }

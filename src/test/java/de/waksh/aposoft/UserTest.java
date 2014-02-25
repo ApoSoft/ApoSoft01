@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.waksh.aposoft.domain.Branch;
+import de.waksh.aposoft.domain.Employee;
 import de.waksh.aposoft.domain.Permission;
+import de.waksh.aposoft.domain.Recipe;
 import de.waksh.aposoft.domain.Role;
 import de.waksh.aposoft.domain.User;
 import de.waksh.aposoft.repository.UserRepository;
@@ -55,6 +58,41 @@ public class UserTest {
         user.setPassword("abc");
         user.setTitle("Dr.");
         user.setUsername("abc");
+
+        Branch branch = new Branch();
+        branch.setDescription("Beschreibung");
+        branch.setAddress("Straße");
+        branch.setLocation("Hier");
+        branch.setManager("Manager");
+        branch.setLogo("Logo");
+        user.setBranch(branch);
+
+        Employee employee = new Employee();
+        employee.setBirthdate(new LocalDate(2000, 1, 1));
+        employee.setFirstName("Sebastian");
+        employee.setGender("männlich");
+        employee.setName("Brütt");
+        employee.setPartTimePart(1.0f);
+        employee.setTitle("Dr.");
+        user.setEmployee(employee);
+
+        List<Role> roles = new ArrayList<>();
+        Role role = new Role();
+        role.setDescription("test");
+        Role role2 = new Role();
+        role2.setDescription("test2");
+        roles.add(role2);
+        roles.add(role);
+        user.setRoles(roles);
+
+        List<Recipe> recipe = new ArrayList<>();
+        Recipe recipes = new Recipe();
+        recipes.setDescription("test");
+        Recipe recipes2 = new Recipe();
+        recipes2.setDescription("test2");
+        recipe.add(recipes2);
+        recipe.add(recipes);
+        user.setRecipe(recipe);
 
         return user;
     }

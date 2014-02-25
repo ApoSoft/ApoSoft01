@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.waksh.aposoft.domain.Employee;
 import de.waksh.aposoft.domain.Qualification;
 import de.waksh.aposoft.domain.WorkSchedule;
 import de.waksh.aposoft.repository.WorkScheduleRepository;
@@ -35,6 +37,15 @@ public class WorkScheduleTest {
         list.add(quali);
         list.add(qualification);
         workSchedule.setQualifications(list);
+
+        Employee employee = new Employee();
+        employee.setBirthdate(new LocalDate(2000, 1, 1));
+        employee.setFirstName("Sebastian");
+        employee.setGender("männlich");
+        employee.setName("Brütt");
+        employee.setPartTimePart(1.0f);
+        employee.setTitle("Dr.");
+        workSchedule.setEmployee(employee);
 
         return workSchedule;
     }
