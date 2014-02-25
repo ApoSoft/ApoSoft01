@@ -1,8 +1,5 @@
 package de.waksh.aposoft.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -11,15 +8,15 @@ import lombok.Getter;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.waksh.aposoft.controller.RecipeController;
-
 public class RecipeButtonPanel {
     @Getter
     private JPanel panel;
-    private RecipeController controller;
 
-    public RecipeButtonPanel(RecipeController controller) {
-        this.controller = controller;
+    private JButton btnAdd;
+    private JButton btnDelete;
+    private JButton btnNext;
+
+    public RecipeButtonPanel() {
         build();
     }
 
@@ -29,33 +26,24 @@ public class RecipeButtonPanel {
 
         panel = new JPanel(formLayout);
 
-        JButton btnAdd = new JButton("Hinzufügen");
-        JButton btnDelete = new JButton("Entfernen");
-        JButton btnNext = new JButton("Weiter");
+        btnAdd = new JButton("Hinzufügen");
+        btnDelete = new JButton("Entfernen");
+        btnNext = new JButton("Weiter");
 
         panel.add(btnAdd, cc.xy(2, 2));
         panel.add(btnDelete, cc.xy(2, 4));
         panel.add(btnNext, cc.xy(2, 6));
+    }
 
-        btnAdd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                controller.addRow();
-            }
-        });
+    public JButton getBtnAdd() {
+        return btnAdd;
+    }
 
-        btnDelete.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                controller.removeRow();
-            }
-        });
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
 
-        btnNext.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.next();
-            }
-        });
+    public JButton getBtnNext() {
+        return btnNext;
     }
 }
