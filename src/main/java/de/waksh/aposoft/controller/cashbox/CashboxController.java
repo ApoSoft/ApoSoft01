@@ -19,6 +19,7 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import de.waksh.aposoft.controller.addcustomer.AddCustomerController;
 import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.AppointmentCustomer;
 import de.waksh.aposoft.domain.Customer;
@@ -44,6 +45,9 @@ import de.waksh.aposoft.view.cashbox.CustomerPanel;
 
 @Component
 public class CashboxController {
+
+    @Autowired
+    private AddCustomerController addCustomerController;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -80,6 +84,7 @@ public class CashboxController {
 
         cashboxButtonPanel.getBtnAddProduct().addActionListener(actionListenerButtonAddProduct);
         cashboxButtonPanel.getBtnRemoveProduct().addActionListener(actionListenerButtonRemoveProduct);
+        cashboxButtonPanel.getBtnAddCustomer().addActionListener(actionListenerButtonAddCustomer);
     }
 
     private ActionListener actionListenerTextFieldCustomerNumber = new ActionListener() {
@@ -104,6 +109,13 @@ public class CashboxController {
             }
 
             updateCustomerPanel(customer);
+        }
+    };
+    private ActionListener actionListenerButtonAddCustomer = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            addCustomerController.showMeTheDialog();
+            addCustomerController.getAddCustomerDialog().getAddCustomerDialog().setVisible(true);
         }
     };
 
@@ -193,7 +205,10 @@ public class CashboxController {
     };
 
     private void updateCustomerPanel(Customer customer) {
-        cashboxPanel.getInputAreaPanel().getTfInsuranceNumber().setText(customer.getInsurance().getInsuranceIdNumber());
+        if (!(customer.getInsurance() == null)) {
+            cashboxPanel.getInputAreaPanel().getTfInsuranceNumber()
+                    .setText(customer.getInsurance().getInsuranceIdNumber());
+        }
 
         CustomerPanel cp = cashboxPanel.getCustomerPanel();
         cp.getLblCustomerNumberData().setText("" + customer.getId());
