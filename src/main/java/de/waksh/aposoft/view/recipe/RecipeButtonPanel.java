@@ -1,4 +1,4 @@
-package de.waksh.aposoft.view;
+package de.waksh.aposoft.view.recipe;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;

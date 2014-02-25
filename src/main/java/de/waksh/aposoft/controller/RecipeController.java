@@ -14,8 +14,8 @@ import de.waksh.aposoft.domain.Recipe;
 import de.waksh.aposoft.repository.ProtocolRepository;
 import de.waksh.aposoft.view.ConfirmDialog;
 import de.waksh.aposoft.view.MainFrame;
-import de.waksh.aposoft.view.RecipeButtonPanel;
-import de.waksh.aposoft.view.RecipePanel;
+import de.waksh.aposoft.view.recipe.RecipeButtonPanel;
+import de.waksh.aposoft.view.recipe.RecipePanel;
 
 /**
  * 
