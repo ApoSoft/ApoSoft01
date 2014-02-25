@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
@@ -19,6 +22,8 @@ import org.joda.time.LocalDateTime;
  */
 
 @Data
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @SuppressWarnings("PMD.UnusedPrivateField")
 public class Protocol {
@@ -27,15 +32,19 @@ public class Protocol {
     private int id;
 
     @ManyToOne
+    @NonNull
     private User userId;
 
     @Basic
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+    @NonNull
     private LocalDateTime time;
 
     @Basic
+    @NonNull
     private String description;
 
     @Basic
+    @NonNull
     private String comment;
 }
