@@ -17,6 +17,11 @@ import de.waksh.aposoft.view.MainFrame;
 import de.waksh.aposoft.view.RecipeButtonPanel;
 import de.waksh.aposoft.view.RecipePanel;
 
+/**
+ * 
+ * @author Jannik Kuptz
+ * 
+ */
 @Component
 public class RecipeController {
 

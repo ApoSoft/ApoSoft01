@@ -9,6 +9,11 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 
+/**
+ * 
+ * @author Jannik Kuptz
+ * 
+ */
 public class ConfirmDialog {
 
     private JDialog dialog;

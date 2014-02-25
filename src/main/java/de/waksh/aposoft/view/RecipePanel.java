@@ -16,6 +16,11 @@ import javax.swing.table.DefaultTableModel;
 import de.waksh.aposoft.controller.RecipeController;
 import de.waksh.aposoft.domain.Recipe;
 
+/**
+ * 
+ * @author Jannik Kuptz
+ * 
+ */
 public class RecipePanel {
 
     @SuppressWarnings("unused")
