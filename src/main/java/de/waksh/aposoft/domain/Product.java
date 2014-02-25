@@ -74,4 +74,9 @@ public class Product {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    @Override
+    public String toString() {
+        return "Product [id=" + id + ", name=" + name + ", vendor=" + vendor.getName() + "]";
+    }
+
 }
