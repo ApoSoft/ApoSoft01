@@ -27,8 +27,8 @@ public class Store {
     @GeneratedValue
     private int id;
 
-    @Basic
-    private String branch;
+    @OneToOne
+    private Branch branch;
 
     @Basic
     private int amount;
