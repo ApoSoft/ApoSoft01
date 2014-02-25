@@ -33,7 +33,7 @@ public class Protocol {
 
     @ManyToOne
     @NonNull
-    private User userId;
+    private User user;
 
     @Basic
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
