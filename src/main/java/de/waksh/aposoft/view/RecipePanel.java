@@ -21,7 +21,7 @@ public class RecipePanel {
     @SuppressWarnings("unused")
     private RecipeController controller;
 
-    private Recipe extProd;
+    private Recipe recipe;
 
     private JPanel panel;
     private JTextField txtId;
@@ -34,9 +34,9 @@ public class RecipePanel {
     private JTable table;
     private DefaultTableModel model;
 
-    public RecipePanel(RecipeController controller, Recipe extProd) {
+    public RecipePanel(RecipeController controller, Recipe recipe) {
         this.controller = controller;
-        this.extProd = extProd;
+        this.recipe = recipe;
 
         initialize();
         build();
@@ -78,7 +78,7 @@ public class RecipePanel {
 
         txtId = new JTextField();
         txtId.setEditable(false);
-        txtId.setText(String.valueOf(extProd.getId()));
+        txtId.setText(String.valueOf(recipe.getId()));
         GridBagConstraints gbc_txtId = new GridBagConstraints();
         gbc_txtId.insets = new Insets(5, 5, 5, 5);
         gbc_txtId.fill = GridBagConstraints.HORIZONTAL;
@@ -97,8 +97,8 @@ public class RecipePanel {
 
         txtMadeBy = new JTextField();
         txtMadeBy.setEditable(false);
-        if (extProd.getUser() != null) {
-            txtMadeBy.setText(String.valueOf(extProd.getUser().getId()));
+        if (recipe.getUser() != null) {
+            txtMadeBy.setText(String.valueOf(recipe.getUser().getId()));
         } else {
             txtMadeBy.setText("no user set");
         }
