@@ -27,7 +27,7 @@ public class StoreTest {
 
     private Store createStore() {
         Store store = new Store();
-        store.setBranch("Medikamentenindustrie");
+        // store.setBranch("Medikamentenindustrie");
         store.setAmount(10);
         store.setDepot("A");
 
