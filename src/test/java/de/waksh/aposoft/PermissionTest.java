@@ -1,5 +1,8 @@
 package de.waksh.aposoft;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.junit.Assert;
@@ -10,6 +13,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.waksh.aposoft.domain.Permission;
+import de.waksh.aposoft.domain.Role;
 import de.waksh.aposoft.repository.PermissionRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,6 +28,15 @@ public class PermissionTest {
         Permission permission = new Permission();
 
         permission.setDescription("abc");
+
+        List<Role> items = new ArrayList<>();
+        Role role = new Role();
+        role.setDescription("test");
+        Role role2 = new Role();
+        role.setDescription("test2");
+        items.add(role2);
+        items.add(role);
+        permission.setRoles(items);
 
         return permission;
     }
