@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import lombok.Data;
 
 /**
- * Entity class for branch offices
+ * Entity class for branch offices (Filiale)
  * 
  * @author Christoph Mende
  * 
