@@ -65,7 +65,7 @@ public class ProductTest {
         product.setUnit(unit);
 
         Store store = new Store();
-        store.setBranch("abc");
+        // store.setBranch("abc");
         store.setAmount(543);
         store.setDepot("cba");
         product.setStore(store);
