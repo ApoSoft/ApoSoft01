@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 /**
  * 
@@ -16,8 +19,10 @@ import lombok.Data;
  * 
  */
 
-@Entity
 @Data
+@RequiredArgsConstructor
+@NoArgsConstructor
+@Entity
 @SuppressWarnings("PMD.UnusedPrivateField")
 public class ProductGroup {
 
@@ -26,9 +31,11 @@ public class ProductGroup {
     private int id;
 
     @Basic
+    @NonNull
     private String name;
 
     @Basic
+    @NonNull
     private String description;
 
     @OneToMany(mappedBy = "productGroup")
