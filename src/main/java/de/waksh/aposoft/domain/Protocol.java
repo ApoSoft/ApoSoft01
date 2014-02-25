@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +38,6 @@ public class Protocol {
 
     @Basic
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
-    @NonNull
     private LocalDateTime time;
 
     @Basic
@@ -47,4 +47,9 @@ public class Protocol {
     @Basic
     @NonNull
     private String comment;
+
+    @PrePersist
+    public void prePersist() {
+        time = new LocalDateTime();
+    }
 }
