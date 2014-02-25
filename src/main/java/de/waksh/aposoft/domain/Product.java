@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
+
 /**
  * 
  * @author ahofmann
@@ -53,6 +56,10 @@ public class Product {
 
     @Basic
     private float price;
+
+    @Basic
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private LocalDate bestBeforeDate;
 
     @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "product_shape_id")
