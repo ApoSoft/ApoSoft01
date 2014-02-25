@@ -164,10 +164,13 @@ public class CustomerPanel {
         JPanel panel = new JPanel(layout);
 
         txtDiscount = new JTextField();
+        txtDiscount.setEditable(false);
         txtSum = new JTextField();
+        txtSum.setEditable(false);
         comboBoxPaymentType = new JComboBox<>();
         txtReceive = new JTextField();
         txtRetoure = new JTextField();
+        txtRetoure.setEditable(false);
 
         panel.add(new JLabel("Rabatt"), cc.xy(1, 1));
         panel.add(new JLabel("Summe"), cc.xy(1, 3));
