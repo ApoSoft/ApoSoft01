@@ -5,9 +5,12 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -37,8 +40,9 @@ public class Recipe {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "recipe")
-    private List<ActiveIngredient> activeIngredient;
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = { @JoinColumn(name = "recipe_id") }, inverseJoinColumns = { @JoinColumn(name = "active_ingredient_id") })
+    private List<ActiveIngredient> activeIngredients;
 
     @OneToMany(mappedBy = "recipe")
     private List<Product> products;
