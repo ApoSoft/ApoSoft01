@@ -116,11 +116,9 @@ public class OutputAreaPanel {
                 return product.getDosage() + " " + product.getUnit().getName();
             case 4:
                 StringBuilder builder = new StringBuilder();
-                for (ActiveIngredient ac : product.getRecipe().getActiveIngredient()) {
+                for (ActiveIngredient ac : product.getRecipe().getActiveIngredients()) {
                     builder.append(ac.getName()).append(", ");
                 }
-                // TODO: Check if it works
-                builder.setLength(builder.length() - 2);
                 return builder.toString();
             case 5:
                 return product.getProductType().getName();
@@ -135,10 +133,7 @@ public class OutputAreaPanel {
 
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
-            if (columnIndex == 0) {
-                return true;
-            }
-            return false;
+            return true;
         }
 
         @Override
@@ -148,9 +143,11 @@ public class OutputAreaPanel {
             switch (columnIndex) {
             case 0:
                 productCounter.remove(product);
-                productCounter.put(product, Integer.parseInt((String) obj));
+                productCounter.put(product, (int) obj);
+                update();
                 break;
             }
+
         }
 
     }

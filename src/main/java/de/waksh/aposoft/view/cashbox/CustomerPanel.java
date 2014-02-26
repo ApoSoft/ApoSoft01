@@ -5,6 +5,7 @@ package de.waksh.aposoft.view.cashbox;
 
 import java.awt.Dimension;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -57,7 +58,7 @@ public class CustomerPanel {
     private JTextField txtSum;
 
     @Getter
-    private JComboBox comboBoxPaymentType;
+    private JComboBox<String> comboBoxPaymentType;
 
     @Getter
     private JTextField txtReceive;
@@ -168,6 +169,7 @@ public class CustomerPanel {
         txtSum = new JTextField();
         txtSum.setEditable(false);
         comboBoxPaymentType = new JComboBox<>();
+        comboBoxPaymentType.setModel(new DefaultComboBoxModel<>(new String[] { "Bargeld", "Karte", "Rechnung" }));
         txtReceive = new JTextField();
         txtRetoure = new JTextField();
         txtRetoure.setEditable(false);
