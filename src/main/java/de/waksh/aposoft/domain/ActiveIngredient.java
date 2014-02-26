@@ -1,12 +1,13 @@
 package de.waksh.aposoft.domain;
 
+import java.util.List;
+
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
@@ -28,7 +29,6 @@ public class ActiveIngredient {
     @Basic
     private String name;
 
-    @ManyToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+    @ManyToMany(mappedBy = "activeIngredients", fetch = FetchType.EAGER)
+    private List<Recipe> recipes;
 }
