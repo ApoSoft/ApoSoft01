@@ -33,6 +33,10 @@ public class ComboBoxModel<T> implements javax.swing.ComboBoxModel<T>, ListDataL
         items.remove(item);
     }
 
+    public void clear() {
+        items.clear();
+    }
+
     @Override
     public int getSize() {
         return items.size();

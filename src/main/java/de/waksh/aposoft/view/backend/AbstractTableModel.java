@@ -39,6 +39,11 @@ public abstract class AbstractTableModel<T> implements TableModel, TableModelLis
         return items;
     }
 
+    public void clear() {
+        items.clear();
+        update();
+    }
+
     @Override
     public int getRowCount() {
         return items.size();
