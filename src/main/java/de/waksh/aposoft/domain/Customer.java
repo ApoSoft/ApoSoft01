@@ -52,7 +52,7 @@ public class Customer {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @ManyToOne(cascade = { CascadeType.ALL })
+    @ManyToOne
     @JoinColumn(name = "insurance_id")
     private Insurance insurance;
 
@@ -63,7 +63,8 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = { CascadeType.ALL })
     private List<AppointmentCustomer> appointments;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    // @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany
     @JoinTable(joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "customer_group_id") })
     private List<CustomerGroup> customerGroups;
 
