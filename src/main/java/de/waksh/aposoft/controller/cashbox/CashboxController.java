@@ -4,11 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
@@ -16,6 +19,7 @@ import javax.swing.event.TableModelListener;
 
 import lombok.Getter;
 
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -70,6 +74,8 @@ public class CashboxController {
     @Getter
     private CashboxButtonPanel cashboxButtonPanel;
 
+    private Customer customer;
+
     public CashboxController() {
         cashboxPanel = new CashboxPanel();
         cashboxButtonPanel = new CashboxButtonPanel();
@@ -81,11 +87,93 @@ public class CashboxController {
         cashboxPanel.getOutputAreaPanel().getTable().getSelectionModel()
                 .addListSelectionListener(tableListSelectionListener);
         cashboxPanel.getOutputAreaPanel().getModel().addTableModelListener(tableModelListener);
+        cashboxPanel.getCustomerPanel().getTxtReceive().addActionListener(actionListenerTextFieldReceive);
 
         cashboxButtonPanel.getBtnAddProduct().addActionListener(actionListenerButtonAddProduct);
         cashboxButtonPanel.getBtnRemoveProduct().addActionListener(actionListenerButtonRemoveProduct);
         cashboxButtonPanel.getBtnAddCustomer().addActionListener(actionListenerButtonAddCustomer);
+        cashboxButtonPanel.getBtnConfirmPayment().addActionListener(actionListenerButtonConfirmPayment);
     }
+
+    private ActionListener actionListenerButtonConfirmPayment = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (customer == null) {
+                JOptionPane.showMessageDialog(cashboxPanel.getPanel(), "Es wurde kein Kunde ausgewählt", "Hinweis",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            List<OrderItem> items = new ArrayList<>();
+            for (Product p : cashboxPanel.getOutputAreaPanel().getModel().getItems()) {
+                OrderItem item = new OrderItem();
+                item.setProduct(p);
+                item.setAmount(cashboxPanel.getOutputAreaPanel().getModel().getCount(p));
+                items.add(item);
+            }
+
+            AppointmentCustomer ac = new AppointmentCustomer();
+            ac.setCustomer(customer);
+            ac.setItems(items);
+            ac.setDate(new LocalDate());
+
+            appointmentCustomerRepository.save(ac);
+
+            cashboxPanel.getInputAreaPanel().getComboBox().setModel(new DefaultComboBoxModel<Product>());
+            cashboxPanel.getInputAreaPanel().getTfCustomerNumber().setText("");
+            cashboxPanel.getInputAreaPanel().getTfInsuranceName().setText("");
+            cashboxPanel.getInputAreaPanel().getTfInsuranceNumber().setText("");
+            cashboxPanel.getInputAreaPanel().getTfSubstance1().setText("");
+            cashboxPanel.getInputAreaPanel().getTfSubstance2().setText("");
+            cashboxPanel.getOutputAreaPanel().getModel().clear();
+            cashboxPanel.getCustomerPanel().getTxtSum().setText("");
+            cashboxPanel.getCustomerPanel().getTxtRetoure().setText("");
+            cashboxPanel.getCustomerPanel().getTxtReceive().setText("");
+            cashboxPanel.getCustomerPanel().getTxtDiscount().setText("");
+            cashboxPanel.getCustomerPanel().getLblCustomerNumberData().setText("");
+            cashboxPanel.getCustomerPanel().getLblFirstNameData().setText("");
+            cashboxPanel.getCustomerPanel().getLblInsuranceData().setText("");
+            cashboxPanel.getCustomerPanel().getLblInsuranceNumberData().setText("");
+            cashboxPanel.getCustomerPanel().getLblLastNameData().setText("");
+            cashboxPanel.getCustomerPanel().getHistoryTableModel().clear();
+            cashboxPanel.getCustomerPanel().getReservationTableModel().clear();
+            cashboxButtonPanel.getBtnAddProduct().setEnabled(false);
+            cashboxButtonPanel.getBtnConfirmPayment().setEnabled(false);
+            cashboxButtonPanel.getBtnRemoveProduct().setEnabled(false);
+        }
+    };
+
+    private ActionListener actionListenerTextFieldReceive = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JTextField field = (JTextField) e.getSource();
+
+            float receive = 0.0f;
+            float sum = 0.0f;
+
+            try {
+                receive = Float.parseFloat(field.getText());
+            } catch (Exception e2) {
+                JOptionPane.showMessageDialog(cashboxPanel.getPanel(), "Ungültige Eingabe", "Fehler",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            try {
+                sum = Float.parseFloat(cashboxPanel.getCustomerPanel().getTxtSum().getText());
+            } catch (Exception e2) {
+                return;
+            }
+
+            if (receive >= sum) {
+                cashboxPanel.getCustomerPanel().getTxtRetoure().setText("" + String.format("%.2f", receive - sum));
+                cashboxButtonPanel.getBtnConfirmPayment().setEnabled(true);
+            } else {
+                cashboxPanel.getCustomerPanel().getTxtRetoure().setText("Bitch, give me my MONEY!!!");
+                cashboxButtonPanel.getBtnConfirmPayment().setEnabled(false);
+            }
+        }
+    };
 
     private ActionListener actionListenerTextFieldCustomerNumber = new ActionListener() {
         @Override
@@ -100,7 +188,7 @@ public class CashboxController {
                 return;
             }
 
-            Customer customer = customerRepository.findOne(customerNumber);
+            customer = customerRepository.findOne(customerNumber);
 
             if (customer == null) {
                 JOptionPane.showMessageDialog(cashboxPanel.getPanel(), "Kunde mit der Kundennummer [" + customerNumber
@@ -125,8 +213,42 @@ public class CashboxController {
             if (e.getActionCommand().equals("comboBoxEdited")) {
                 JComboBox<Product> box = cashboxPanel.getInputAreaPanel().getComboBox();
                 String query = String.format("%%%s%%", box.getSelectedItem());
+                String substance1 = cashboxPanel.getInputAreaPanel().getTfSubstance1().getText();
+                String substance2 = cashboxPanel.getInputAreaPanel().getTfSubstance2().getText();
 
                 List<Product> list = productRepository.findByName(query);
+                List<Product> remove = new ArrayList<>();
+
+                for (Product p : list) {
+                    boolean b = false; // TODO: Implement => Button "Entfernen"
+                                       // akt
+
+                    List<String> ingredients = new ArrayList<>();
+
+                    for (ActiveIngredient ai : p.getRecipe().getActiveIngredients()) {
+                        ingredients.add(ai.getName());
+                    }
+
+                    if (!substance1.isEmpty() && !substance2.isEmpty()) {
+                        if (!ingredients.contains(substance1) && !ingredients.contains(substance2)) {
+                            b = true;
+                        }
+                    } else if (!substance1.isEmpty()) {
+                        if (!ingredients.contains(substance1)) {
+                            b = true;
+                        }
+                    } else if (!substance2.isEmpty()) {
+                        if (!ingredients.contains(substance2)) {
+                            b = true;
+                        }
+                    }
+
+                    if (b) {
+                        remove.add(p);
+                    }
+                }
+
+                list.removeAll(remove);
 
                 box.setModel(new ComboBoxModel<Product>(list));
                 box.showPopup();
@@ -145,8 +267,7 @@ public class CashboxController {
                     Product product = (Product) box.getSelectedItem();
                     box.setToolTipText(product.toString());
 
-                    // TODO: Produkt wurde ausgewählt => Button "Hinzufügen"
-                    // aktivieren
+                    cashboxButtonPanel.getBtnAddProduct().setEnabled(true);
                 }
             }
         }
@@ -157,7 +278,12 @@ public class CashboxController {
         public void valueChanged(ListSelectionEvent e) {
             // Wird aufgerufen, wenn ein Element in der Tabelle selektiert wurde
             // TODO: Implement => Button "Entfernen" aktivieren
-            System.out.println(e);
+            int row = cashboxPanel.getOutputAreaPanel().getTable().getSelectedRow();
+            if (row != -1) {
+                cashboxButtonPanel.getBtnRemoveProduct().setEnabled(true);
+            } else {
+                cashboxButtonPanel.getBtnRemoveProduct().setEnabled(false);
+            }
         }
     };
 
@@ -172,6 +298,11 @@ public class CashboxController {
 
                 cashboxPanel.getOutputAreaPanel().getModel().addItem(product);
                 cashboxPanel.getOutputAreaPanel().getModel().update();
+
+                box.setModel(new DefaultComboBoxModel<Product>());
+                cashboxButtonPanel.getBtnAddProduct().setEnabled(false);
+                cashboxPanel.getInputAreaPanel().getTfSubstance1().setText("");
+                cashboxPanel.getInputAreaPanel().getTfSubstance2().setText("");
             }
         }
     };
@@ -184,6 +315,7 @@ public class CashboxController {
             if (index != -1) {
                 cashboxPanel.getOutputAreaPanel().getModel().removeItem(index);
                 cashboxPanel.getOutputAreaPanel().getModel().update();
+
             }
         }
     };
@@ -201,11 +333,14 @@ public class CashboxController {
             }
 
             cashboxPanel.getCustomerPanel().getTxtSum().setText(String.format(Locale.US, "%.2f", sum));
+            cashboxButtonPanel.getBtnConfirmPayment().setEnabled(false);
+            cashboxPanel.getCustomerPanel().getTxtRetoure().setText("");
+            cashboxPanel.getCustomerPanel().getTxtReceive().setText("");
         }
     };
 
     private void updateCustomerPanel(Customer customer) {
-        if (!(customer.getInsurance() == null)) {
+        if (customer.getInsurance() != null) {
             cashboxPanel.getInputAreaPanel().getTfInsuranceNumber()
                     .setText(customer.getInsurance().getInsuranceIdNumber());
         }
@@ -225,7 +360,7 @@ public class CashboxController {
                 productAppointment.setAmount(orderItem.getAmount());
                 productAppointment.setDate(appointmentCustomer.getDate());
 
-                for (ActiveIngredient ac : orderItem.getProduct().getRecipe().getActiveIngredient()) {
+                for (ActiveIngredient ac : orderItem.getProduct().getRecipe().getActiveIngredients()) {
                     String substances = productAppointment.getSubstances();
                     productAppointment.setSubstances(substances + "; " + ac.getName());
                 }
