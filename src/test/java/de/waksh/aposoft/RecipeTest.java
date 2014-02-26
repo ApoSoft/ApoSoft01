@@ -40,7 +40,7 @@ public class RecipeTest {
         activeIngredient.setName("test2");
         items.add(activeIngredient2);
         items.add(activeIngredient);
-        recipe.setActiveIngredient(items);
+        recipe.setActiveIngredients(items);
 
         List<Product> products = new ArrayList<>();
         Product product = new Product();

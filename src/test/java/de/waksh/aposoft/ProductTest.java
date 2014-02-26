@@ -31,12 +31,9 @@ public class ProductTest {
         Product product = new Product();
 
         product.setDosage(10000.99f);
-        product.setHeight(320);
-        product.setLength(200);
         product.setName("Salbe abc");
         product.setPrescription(true);
         product.setPrice(19.99f);
-        product.setWidth(150);
 
         Vendor vendor = new Vendor();
         vendor.setName("abc");
