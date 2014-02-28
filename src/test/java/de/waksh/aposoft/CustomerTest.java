@@ -17,8 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import de.waksh.aposoft.domain.Address;
 import de.waksh.aposoft.domain.AppointmentCustomer;
 import de.waksh.aposoft.domain.Customer;
-import de.waksh.aposoft.domain.CustomerGroup;
-import de.waksh.aposoft.domain.Insurance;
 import de.waksh.aposoft.domain.PaymentCondition;
 import de.waksh.aposoft.repository.CustomerRepository;
 
@@ -55,23 +53,23 @@ public class CustomerTest {
 
         customer.setBirthdate(new DateTime(2222, 2, 22, 2, 2));
 
-        CustomerGroup customergruop = new CustomerGroup();
-        customergruop.setDescription("Gruppe");
-        customergruop.setName("Name");
-        CustomerGroup customergruop2 = new CustomerGroup();
-        customergruop2.setDescription("Gruppe1");
-        customergruop2.setName("Name1");
-        List<CustomerGroup> customerGroups = new ArrayList<CustomerGroup>();
-        customerGroups.add(customergruop2);
-        customerGroups.add(customergruop);
-        customer.setCustomerGroups(customerGroups);
+        // CustomerGroup customergruop = new CustomerGroup();
+        // customergruop.setDescription("Gruppe");
+        // customergruop.setName("Name");
+        // CustomerGroup customergruop2 = new CustomerGroup();
+        // customergruop2.setDescription("Gruppe1");
+        // customergruop2.setName("Name1");
+        // List<CustomerGroup> customerGroups = new ArrayList<CustomerGroup>();
+        // customerGroups.add(customergruop2);
+        // customerGroups.add(customergruop);
+        // customer.setCustomerGroups(customerGroups);
 
-        Insurance insurance = new Insurance();
-        insurance.setName("bac");
-        insurance.setInsuranceIdNumber("12344");
-        insurance.setPhone("+49 111 1112");
-        insurance.setPrivateInsurance(false);
-        customer.setInsurance(insurance);
+        // Insurance insurance = new Insurance();
+        // insurance.setName("bac");
+        // insurance.setInsuranceIdNumber("12344");
+        // insurance.setPhone("+49 111 1112");
+        // insurance.setPrivateInsurance(false);
+        // customer.setInsurance(insurance);
 
         PaymentCondition paymentCondition = new PaymentCondition();
         paymentCondition.setDiscountValue(11f);
