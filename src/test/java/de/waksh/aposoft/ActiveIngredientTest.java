@@ -23,16 +23,9 @@ public class ActiveIngredientTest {
     private ActiveIngredientRepository repository;
 
     public ActiveIngredient createActiveIngredient() {
-        // ActiveIngredient activeIngredient = new ActiveIngredient();
-        // activeIngredient.setName("abc");
-        //
-        // Recipe recipe = new Recipe();
-        // recipe.setDescription("Bayer");
-        // recipe.setType("Drop");
-        // activeIngredient.setRecipe(recipe);
-        //
-        // return activeIngredient;
-        return null;
+        ActiveIngredient activeIngredient = new ActiveIngredient();
+        activeIngredient.setName("abc");
+        return activeIngredient;
     }
 
     @Test
