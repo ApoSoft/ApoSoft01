@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import de.waksh.aposoft.domain.Customer;
 import de.waksh.aposoft.repository.CustomerRepository;
+import de.waksh.aposoft.repository.InsuranceRepository;
 import de.waksh.aposoft.view.addcustomer.AddCustomerDialog;
 
 /**
@@ -24,6 +25,8 @@ import de.waksh.aposoft.view.addcustomer.AddCustomerDialog;
 @Component
 public class AddCustomerController {
 
+    @Autowired
+    InsuranceRepository insuranceRepository;
     @Autowired
     CustomerRepository customerRepository;
     @Getter
@@ -66,6 +69,8 @@ public class AddCustomerController {
             Customer customer = new Customer();
             customer.setFirstName(firstName);
             customer.setName(lastName);
+
+            customer.setInsurance(insuranceRepository.findByInsuranceIdNumber(insuranceNo));
 
             customerRepository.save(customer);
 
