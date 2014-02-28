@@ -5,6 +5,8 @@ package de.waksh.aposoft.controller.addcustomer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import de.waksh.aposoft.domain.Customer;
+import de.waksh.aposoft.domain.Insurance;
 import de.waksh.aposoft.repository.CustomerRepository;
 import de.waksh.aposoft.repository.InsuranceRepository;
 import de.waksh.aposoft.view.addcustomer.AddCustomerDialog;
@@ -45,6 +48,7 @@ public class AddCustomerController {
 
         addCustomerDialog.getBtnCancel().addActionListener(actionListenerButtonCancel);
         addCustomerDialog.getBtnAddCustomer().addActionListener(actionListenerButtonAddCustomer);
+        addCustomerDialog.getTfInsuranceNo().addKeyListener(keyListenerInsuranceNoTextField);
 
     }
 
@@ -75,6 +79,31 @@ public class AddCustomerController {
             customerRepository.save(customer);
 
             addCustomerDialog.getAddCustomerDialog().dispose();
+        }
+    };
+
+    private KeyListener keyListenerInsuranceNoTextField = new KeyListener() {
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            Insurance insurance = insuranceRepository.findByInsuranceIdNumber(addCustomerDialog.getTfInsuranceNo()
+                    .getText());
+            if (!(insurance == null)) {
+                addCustomerDialog.getTfInsuranceName().setText(insurance.getName());
+            } else {
+                addCustomerDialog.getTfInsuranceName().setText("");
+            }
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            // TODO Auto-generated method stub
+
         }
     };
 
