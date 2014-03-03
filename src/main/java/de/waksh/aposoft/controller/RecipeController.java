@@ -25,6 +25,7 @@ import de.waksh.aposoft.view.recipe.RecipePanel;
 @Component
 public class RecipeController {
 
+    @Autowired
     private MainController mainController;
 
     @Autowired
@@ -100,6 +101,7 @@ public class RecipeController {
         confirmDialog = new ConfirmDialog();
         confirmDialog.getBtnOK().addActionListener(listenerConfirm);
         confirmDialog.setModal(true);
+        confirmDialog.getPasswordField().setText("topSecret");
         confirmDialog.setVisible(true);
     }
 

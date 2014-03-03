@@ -78,6 +78,7 @@ public class ProductDialogController {
             confirmDialog = new ConfirmDialog();
             confirmDialog.getBtnOK().addActionListener(listenerConfirm);
             confirmDialog.setModal(true);
+            confirmDialog.getPasswordField().setText("topSecret");
             confirmDialog.setVisible(true);
         }
     };

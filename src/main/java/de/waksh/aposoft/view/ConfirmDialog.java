@@ -77,4 +77,8 @@ public class ConfirmDialog {
     public void setVisible(boolean b) {
         dialog.setVisible(true);
     }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
 }
