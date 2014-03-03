@@ -62,7 +62,7 @@ public class NavigationController {
     private ActionListener listenerAdmin = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            mainController.setCenter(adminController.getMainPanel());
+            mainController.setCenter(adminController.getSelected());
             mainController.setRight(adminController.getButtonPanel());
         }
     };
