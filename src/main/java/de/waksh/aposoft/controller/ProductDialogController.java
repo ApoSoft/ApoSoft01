@@ -9,8 +9,11 @@ import org.joda.time.LocalDate;
 
 import de.waksh.aposoft.domain.Product;
 import de.waksh.aposoft.domain.ProductGroup;
+import de.waksh.aposoft.domain.Protocol;
 import de.waksh.aposoft.domain.Recipe;
+import de.waksh.aposoft.domain.User;
 import de.waksh.aposoft.repository.ProductRepository;
+import de.waksh.aposoft.repository.ProtocolRepository;
 import de.waksh.aposoft.view.ConfirmDialog;
 import de.waksh.aposoft.view.recipe.ProductDialog;
 import de.waksh.aposoft.view.recipe.RecipePanel;
@@ -28,15 +31,17 @@ public class ProductDialogController {
     private Product product;
     @SuppressWarnings("unused")
     private ProductRepository productRepo;
+    private ProtocolRepository protocolRepo;
     private LocalDate bestBeforeDate;
     private ConfirmDialog confirmDialog;
     private RecipePanel recipePanel;
 
     public ProductDialogController(Recipe recipe, MainController mainController, ProductRepository productRepo,
-            RecipePanel recipePanel) {
+            RecipePanel recipePanel, ProtocolRepository protocolRepo) {
         this.recipe = recipe;
         this.mainFrame = mainController;
         this.productRepo = productRepo;
+        this.protocolRepo = protocolRepo;
         this.recipePanel = recipePanel;
         productDialog = new ProductDialog();
         productDialog.getBtnAbort().addActionListener(listenerAbort);
@@ -102,8 +107,9 @@ public class ProductDialogController {
             product.setName(productDialog.getProductName());
             product.setBestBeforeDate(bestBeforeDate);
 
+            protocolRepo.save(new Protocol(new User(), "MA fügte Rezeptur mit ID: " + recipe.getId() + " hinzu.", ""));
             // productRepo.save(product);
-            // führt zu: user lacks privilege or object not found: PRODUCTGROUP
+            // führt zu: detached entity passed to persist
 
             recipePanel.removeAllRows();
             confirmDialog.dispose();

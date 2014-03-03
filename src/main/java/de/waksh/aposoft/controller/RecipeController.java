@@ -108,10 +108,8 @@ public class RecipeController {
     private ActionListener listenerConfirm = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // repo.save(new Protocol(new User(), "MA fügte Rezeptur mit ID: " +
-            // recipe.getId() + " hinzu.", ""));
             confirmDialog.dispose();
-            new ProductDialogController(recipe, mainController, productRepo, recipePanel);
+            new ProductDialogController(recipe, mainController, productRepo, recipePanel, protocolRepo);
         }
     };
 
