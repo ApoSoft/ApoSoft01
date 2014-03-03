@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import de.waksh.aposoft.controller.cashbox.CashboxController;
-import de.waksh.aposoft.view.MainFrame;
 import de.waksh.aposoft.view.NavigationPanel;
 
 /**
@@ -20,7 +19,7 @@ import de.waksh.aposoft.view.NavigationPanel;
 public class NavigationController {
 
     @Autowired
-    private MainFrame mainFrame;
+    private MainController mainController;
 
     @Autowired
     private CashboxController cashboxController;
@@ -48,8 +47,8 @@ public class NavigationController {
     private ActionListener listenerCashbox = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            mainFrame.setCenter(cashboxController.getCashboxPanel().getPanel());
-            mainFrame.setRight(cashboxController.getCashboxButtonPanel().getPanel());
+            mainController.setCenter(cashboxController.getCashboxPanel().getPanel());
+            mainController.setRight(cashboxController.getCashboxButtonPanel().getPanel());
         }
     };
 
@@ -63,16 +62,16 @@ public class NavigationController {
     private ActionListener listenerAdmin = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            mainFrame.setCenter(adminController.getMainPanel());
-            mainFrame.setRight(adminController.getButtonPanel());
+            mainController.setCenter(adminController.getMainPanel());
+            mainController.setRight(adminController.getButtonPanel());
         }
     };
 
     private ActionListener listenerRecipe = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            mainFrame.setCenter(recipeController.getRecipePanel().getPanel());
-            mainFrame.setRight(recipeController.getRecipeButtonPanel().getPanel());
+            mainController.setCenter(recipeController.getRecipePanel().getPanel());
+            mainController.setRight(recipeController.getRecipeButtonPanel().getPanel());
         }
     };
 }

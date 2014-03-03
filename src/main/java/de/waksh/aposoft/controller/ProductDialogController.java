@@ -12,7 +12,6 @@ import de.waksh.aposoft.domain.ProductGroup;
 import de.waksh.aposoft.domain.Recipe;
 import de.waksh.aposoft.repository.ProductRepository;
 import de.waksh.aposoft.view.ConfirmDialog;
-import de.waksh.aposoft.view.MainFrame;
 import de.waksh.aposoft.view.recipe.ProductDialog;
 import de.waksh.aposoft.view.recipe.RecipePanel;
 
@@ -22,7 +21,7 @@ import de.waksh.aposoft.view.recipe.RecipePanel;
  * 
  */
 public class ProductDialogController {
-    private MainFrame mainFrame;
+    private MainController mainFrame;
 
     private ProductDialog productDialog;
     private Recipe recipe;
@@ -33,10 +32,10 @@ public class ProductDialogController {
     private ConfirmDialog confirmDialog;
     private RecipePanel recipePanel;
 
-    public ProductDialogController(Recipe recipe, MainFrame mainFrame, ProductRepository productRepo,
+    public ProductDialogController(Recipe recipe, MainController mainController, ProductRepository productRepo,
             RecipePanel recipePanel) {
         this.recipe = recipe;
-        this.mainFrame = mainFrame;
+        this.mainFrame = mainController;
         this.productRepo = productRepo;
         this.recipePanel = recipePanel;
         productDialog = new ProductDialog();
