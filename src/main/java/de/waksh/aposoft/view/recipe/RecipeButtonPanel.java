@@ -8,6 +8,11 @@ import lombok.Getter;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+/**
+ * 
+ * @author jkuptz
+ * 
+ */
 public class RecipeButtonPanel {
     @Getter
     private JPanel panel;
@@ -16,6 +21,9 @@ public class RecipeButtonPanel {
     private JButton btnDelete;
     private JButton btnNext;
 
+    /**
+     * Constructor of {@link RecipeButtonPanel}. Runs build().
+     */
     public RecipeButtonPanel() {
         build();
     }
@@ -35,14 +43,29 @@ public class RecipeButtonPanel {
         panel.add(btnNext, cc.xy(2, 6));
     }
 
+    /**
+     * Returns the {@link JButton btnAdd}.
+     * 
+     * @return {@link JButton btnAdd}
+     */
     public JButton getBtnAdd() {
         return btnAdd;
     }
 
+    /**
+     * Returns the {@link JButton btnDelete}.
+     * 
+     * @return {@link JButton btnDelete}
+     */
     public JButton getBtnDelete() {
         return btnDelete;
     }
 
+    /**
+     * Returns the {@link JButton btnNext}.
+     * 
+     * @return {@link JButton btnNext}
+     */
     public JButton getBtnNext() {
         return btnNext;
     }
