@@ -80,7 +80,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return name + "  " + vendor.getVendorCode() + "  " + String.format("%.2f", dosage) + "" + unit.getName() + "  "
-                + productType.getName() + "  " + String.format("%.2f", dosage);
+        return name + "  " + vendor.getVendorCode() + "  " + String.format("%.2f", dosage) + " " + unit.getName()
+                + "  " + productType.getName() + "  " + String.format("%.2f", dosage);
     }
 }

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -135,12 +136,14 @@ public class ProductDialogController {
             vendor = vendorRepo.save(vendor);
             product.setVendor(vendor);
             Unit unit = new Unit();
+            unit.setName("Unit");
             unitRepository.save(unit);
             product.setUnit(unit);
             ProductType productType = new ProductType();
             productType.setName(recipePanel.getProductType());
             productTypeRepo.save(productType);
             product.setProductType(productType);
+            product.setDosage(new Random().nextFloat());
 
             protocolRepo.save(new Protocol(new User(), "MA fügte Rezeptur mit ID: " + recipe.getId() + " hinzu.", ""));
             productGroupRepo.save(productGroup);
