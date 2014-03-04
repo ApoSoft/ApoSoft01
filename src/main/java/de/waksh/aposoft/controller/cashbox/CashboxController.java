@@ -43,10 +43,13 @@ import de.waksh.aposoft.view.backend.ComboBoxModel;
 import de.waksh.aposoft.view.cashbox.CashboxButtonPanel;
 import de.waksh.aposoft.view.cashbox.CashboxPanel;
 import de.waksh.aposoft.view.cashbox.CustomerPanel;
+import de.waksh.aposoft.view.cashbox.InputAreaPanel;
+import de.waksh.aposoft.view.cashbox.OutputAreaPanel;
 
 /**
+ * Controller for the {@link CashboxPanel}
  * 
- * @author ahofmann
+ * @author Artem Hofmann
  * 
  */
 
@@ -79,6 +82,11 @@ public class CashboxController {
 
     private Customer customer;
 
+    /**
+     * Construct the CashboxController and set action listeners for the buttons
+     * in {@link InputAreaPanel}, {@link OutputAreaPanel}, {@link CustomerPanel}
+     * and {@link CashboxButtonPanel}
+     */
     public CashboxController() {
         cashboxPanel = new CashboxPanel();
         cashboxButtonPanel = new CashboxButtonPanel();
