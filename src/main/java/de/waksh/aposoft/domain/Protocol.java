@@ -50,7 +50,7 @@ public class Protocol {
     private String comment;
 
     @PrePersist
-    public void prePersist() {
+    private void prePersist() {
         time = new LocalDateTime();
     }
 }
