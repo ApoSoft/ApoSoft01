@@ -9,6 +9,12 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
+/**
+ * Entity class for items in an order
+ * 
+ * @author Christoph Mende
+ * 
+ */
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")

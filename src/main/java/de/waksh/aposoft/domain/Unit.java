@@ -7,6 +7,12 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+/**
+ * Entity class for measurement units
+ * 
+ * @author Christoph Mende
+ * 
+ */
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")

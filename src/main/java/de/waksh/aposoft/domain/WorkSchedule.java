@@ -15,6 +15,12 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.joda.time.Duration;
 
+/**
+ * Entity class for work schedules
+ * 
+ * @author Christoph Mende
+ * 
+ */
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")

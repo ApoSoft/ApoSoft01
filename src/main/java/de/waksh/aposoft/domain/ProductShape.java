@@ -10,6 +10,12 @@ import javax.persistence.OneToMany;
 
 import lombok.Data;
 
+/**
+ * Entity class for product shapes
+ * 
+ * @author Christoph Mende
+ * 
+ */
 @Entity
 @Data
 @SuppressWarnings("PMD.UnusedPrivateField")
