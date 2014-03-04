@@ -46,28 +46,28 @@ public class ConfirmDialog {
         dialog.getContentPane().setLayout(gridBagLayout);
 
         JLabel lblPassword = new JLabel("Passwort:");
-        GridBagConstraints gbc_lblPassword = new GridBagConstraints();
-        gbc_lblPassword.insets = new Insets(5, 5, 5, 5);
-        gbc_lblPassword.anchor = GridBagConstraints.EAST;
-        gbc_lblPassword.gridx = 0;
-        gbc_lblPassword.gridy = 0;
-        dialog.getContentPane().add(lblPassword, gbc_lblPassword);
+        GridBagConstraints gbcLblPassword = new GridBagConstraints();
+        gbcLblPassword.insets = new Insets(5, 5, 5, 5);
+        gbcLblPassword.anchor = GridBagConstraints.EAST;
+        gbcLblPassword.gridx = 0;
+        gbcLblPassword.gridy = 0;
+        dialog.getContentPane().add(lblPassword, gbcLblPassword);
 
         passwordField = new JPasswordField();
-        GridBagConstraints gbc_passwordField = new GridBagConstraints();
-        gbc_passwordField.insets = new Insets(5, 5, 5, 5);
-        gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-        gbc_passwordField.gridx = 1;
-        gbc_passwordField.gridy = 0;
-        dialog.getContentPane().add(passwordField, gbc_passwordField);
+        GridBagConstraints gbcPasswordField = new GridBagConstraints();
+        gbcPasswordField.insets = new Insets(5, 5, 5, 5);
+        gbcPasswordField.fill = GridBagConstraints.HORIZONTAL;
+        gbcPasswordField.gridx = 1;
+        gbcPasswordField.gridy = 0;
+        dialog.getContentPane().add(passwordField, gbcPasswordField);
 
         btnOk = new JButton("OK");
         dialog.getRootPane().setDefaultButton(btnOk);
-        GridBagConstraints gbc_btnOk = new GridBagConstraints();
-        gbc_btnOk.insets = new Insets(5, 5, 5, 5);
-        gbc_btnOk.gridx = 2;
-        gbc_btnOk.gridy = 0;
-        dialog.getContentPane().add(btnOk, gbc_btnOk);
+        GridBagConstraints gbcBtnOk = new GridBagConstraints();
+        gbcBtnOk.insets = new Insets(5, 5, 5, 5);
+        gbcBtnOk.gridx = 2;
+        gbcBtnOk.gridy = 0;
+        dialog.getContentPane().add(btnOk, gbcBtnOk);
     }
 
     /**
