@@ -31,7 +31,6 @@ public class Product {
     @Basic
     private String name;
 
-    // @ManyToOne(cascade = { CascadeType.ALL })
     @ManyToOne
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
@@ -53,34 +52,28 @@ public class Product {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate bestBeforeDate;
 
-    // @ManyToOne(cascade = { CascadeType.ALL })
     @ManyToOne
     @JoinColumn(name = "product_shape_id")
     private ProductShape productShape;
 
-    // @ManyToOne(cascade = { CascadeType.ALL })
     @ManyToOne
     @JoinColumn(name = "product_type_id")
     private ProductType productType;
 
-    // @ManyToOne(cascade = { CascadeType.ALL })
     @ManyToOne
     @JoinColumn(name = "product_group_id")
     private ProductGroup productGroup;
 
-    // @ManyToOne(cascade = { CascadeType.ALL })
     @ManyToOne
     @JoinColumn(name = "unit_id")
     private Unit unit;
 
-    // @ManyToOne(cascade = { CascadeType.ALL })
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
     @Override
     public String toString() {
-        return name + "  " + vendor.getVendorCode() + "  " + String.format("%.2f", dosage) + " " + unit.getName()
-                + "  " + productType.getName() + "  " + String.format("%.2f", dosage);
+        return name;
     }
 }
