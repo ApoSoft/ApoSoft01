@@ -75,6 +75,9 @@ public class CustomerPanel {
     @Getter
     private ReservationTableModel reservationTableModel;
 
+    /**
+     * Constructor for the {@link CustomerPanel}. Runs the buil() method.
+     */
     public CustomerPanel() {
         build();
     }
@@ -193,8 +196,18 @@ public class CustomerPanel {
         return panel;
     }
 
+    /**
+     * TableModel for the historyPanel.
+     * 
+     * @author lhuebsch
+     * 
+     */
     public class HistoryTableModel extends AbstractTableModel<ProductAppointment> {
 
+        /**
+         * Constructor for {@link HistoryTableModel}. Runs the constructor from
+         * {@link AbstractTableModel}
+         */
         public HistoryTableModel() {
             super(new String[] { "Datum", "Medikament", "Anzahl", "Wirkstoffe" });
         }
@@ -245,8 +258,18 @@ public class CustomerPanel {
         }
     }
 
+    /**
+     * TableModel for the reservationPanel.
+     * 
+     * @author lhuebsch
+     * 
+     */
     public class ReservationTableModel extends AbstractTableModel<ProductReservationItem> {
 
+        /**
+         * Constructor for {@link ReservationTableModel}. Runs the constructor
+         * from {@link AbstractTableModel}
+         */
         public ReservationTableModel() {
             super(new String[] { "Medikament", "Anzahl", "Filiale", "Vorhanden", "Reserviert bis" });
         }
