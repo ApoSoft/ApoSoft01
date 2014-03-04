@@ -13,12 +13,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import lombok.Getter;
 import de.waksh.aposoft.controller.RecipeController;
 import de.waksh.aposoft.domain.Recipe;
 
 /**
+ * RecipePanel for adding a {@link Recipe recipe}.
  * 
- * @author Jannik Kuptz
+ * @author jkuptz
  * 
  */
 public class RecipePanel {
@@ -28,6 +30,7 @@ public class RecipePanel {
 
     private Recipe recipe;
 
+    @Getter
     private JPanel panel;
     private JTextField txtId;
     private JTextField txtMadeBy;
@@ -36,10 +39,19 @@ public class RecipePanel {
     private JComboBox<String> cmbUnity;
     private Vector<String> cmbUnityItems;
     private Vector<String> cmbTypeItems;
+    @Getter
     private JTable table;
-    private DefaultTableModel model;
+    @Getter
+    private DefaultTableModel tableModel;
     private JComboBox<String> cmbType;
 
+    /**
+     * Constructor for {@link RecipePanel}. Sets the {@link RecipeController}
+     * and the {@link Recipe}.
+     * 
+     * @param {@link RecipeController controller}
+     * @param {@link Recipe recipe}
+     */
     public RecipePanel(RecipeController controller, Recipe recipe) {
         this.controller = controller;
         this.recipe = recipe;
@@ -60,9 +72,9 @@ public class RecipePanel {
         cmbTypeItems.add("Tabletten");
 
         // columnTitles = new String[] { "Wirkstoff", "Menge" };
-        model = new DefaultTableModel();
-        model.addColumn("Wirkstoff");
-        model.addColumn("Menge");
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("Wirkstoff");
+        tableModel.addColumn("Menge");
     }
 
     private void build() {
@@ -192,53 +204,70 @@ public class RecipePanel {
         panel.add(scrollPane, gbc_scrollPane);
 
         // table = new JTable(new String[][] {}, columnTitles);
-        table = new JTable(model);
+        table = new JTable(tableModel);
         scrollPane.setViewportView(table);
     }
 
-    public JPanel getPanel() {
-        return panel;
-    }
-
+    /**
+     * Returns the {@link String text} of txtActiveIngredient.
+     * 
+     * @return {@link String}
+     */
     public String getActiveIngredient() {
         return txtActiveIngredient.getText();
     }
 
-    public DefaultTableModel getTableModel() {
-        return model;
-    }
-
-    public JTable getTable() {
-        return table;
-    }
-
+    /**
+     * Returns the {@link String text} of txtAmount.
+     * 
+     * @return {@link String}
+     */
     public String getAmount() {
         return txtAmount.getText();
     }
 
+    /**
+     * Returns the {@link String text} of the selected item in cmbUnity.
+     * 
+     * @return {@link String}
+     */
     public String getUnity() {
         return cmbUnity.getSelectedItem().toString();
     }
 
+    /**
+     * Selects the Amount.
+     */
     public void selectAmount() {
         txtAmount.requestFocus();
         txtAmount.selectAll();
     }
 
+    /**
+     * Resets the {@link JTextField textFields}.
+     */
     public void resetTextFields() {
         txtActiveIngredient.setText("");
         txtAmount.setText("");
         cmbUnity.setSelectedIndex(0);
     }
 
+    /**
+     * Removes all rows.
+     */
     public void removeAllRows() {
-        if (model.getRowCount() > 0) {
-            for (int i = model.getRowCount() - 1; i > -1; i--) {
-                model.removeRow(i);
+        if (tableModel.getRowCount() > 0) {
+            for (int i = tableModel.getRowCount() - 1; i > -1; i--) {
+                tableModel.removeRow(i);
             }
         }
     }
 
+    /**
+     * Returns the {@link String productType}.
+     * 
+     * @return {@link String product Type}
+     */
     public String getProductType() {
         return cmbType.getSelectedItem().toString();
     }
