@@ -362,7 +362,7 @@ public class CashboxController {
 
                 for (ActiveIngredient ac : orderItem.getProduct().getRecipe().getActiveIngredients()) {
                     String substances = productAppointment.getSubstances();
-                    productAppointment.setSubstances(substances + "; " + ac.getName());
+                    productAppointment.setSubstances((substances == null ? "" : substances + ";") + ac.getName());
                 }
 
                 cp.getHistoryTableModel().addItem(productAppointment);
