@@ -22,6 +22,8 @@ import de.waksh.aposoft.repository.InsuranceRepository;
 import de.waksh.aposoft.view.addcustomer.AddCustomerDialog;
 
 /**
+ * Controller for the {@link AddCustomerDialog}.
+ * 
  * @author lhuebsch
  * 
  */
@@ -37,10 +39,17 @@ public class AddCustomerController {
     @Getter
     private JPanel addCustomerPanel;
 
+    /**
+     * Constuctor for AddCustomerController. Runs the showMeTheDialog() methode.
+     */
     public AddCustomerController() {
         showMeTheDialog();
     }
 
+    /**
+     * Builds the AddCustomerDialog and adds the ActionListener for btnCancel,
+     * btnAddCustomer and tfInsuranceNo.
+     */
     public void showMeTheDialog() {
         addCustomerDialog = new AddCustomerDialog();
 
