@@ -38,6 +38,7 @@ public class RecipePanel {
     private Vector<String> cmbTypeItems;
     private JTable table;
     private DefaultTableModel model;
+    private JComboBox<String> cmbType;
 
     public RecipePanel(RecipeController controller, Recipe recipe) {
         this.controller = controller;
@@ -123,7 +124,7 @@ public class RecipePanel {
         gbc_lblType.gridy = 2;
         panel.add(lblType, gbc_lblType);
 
-        JComboBox<String> cmbType = new JComboBox<String>(cmbTypeItems);
+        cmbType = new JComboBox<String>(cmbTypeItems);
         GridBagConstraints gbc_cmbType = new GridBagConstraints();
         gbc_cmbType.insets = new Insets(5, 5, 5, 5);
         gbc_cmbType.fill = GridBagConstraints.HORIZONTAL;
@@ -236,5 +237,9 @@ public class RecipePanel {
                 model.removeRow(i);
             }
         }
+    }
+
+    public String getProductType() {
+        return cmbType.getSelectedItem().toString();
     }
 }

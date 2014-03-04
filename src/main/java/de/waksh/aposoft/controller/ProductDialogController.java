@@ -9,12 +9,18 @@ import org.joda.time.LocalDate;
 
 import de.waksh.aposoft.domain.Product;
 import de.waksh.aposoft.domain.ProductGroup;
+import de.waksh.aposoft.domain.ProductType;
 import de.waksh.aposoft.domain.Protocol;
 import de.waksh.aposoft.domain.Recipe;
+import de.waksh.aposoft.domain.Unit;
 import de.waksh.aposoft.domain.User;
+import de.waksh.aposoft.domain.Vendor;
 import de.waksh.aposoft.repository.ProductGroupRepository;
 import de.waksh.aposoft.repository.ProductRepository;
+import de.waksh.aposoft.repository.ProductTypeRepository;
 import de.waksh.aposoft.repository.ProtocolRepository;
+import de.waksh.aposoft.repository.UnitRepository;
+import de.waksh.aposoft.repository.VendorRepository;
 import de.waksh.aposoft.view.ConfirmDialog;
 import de.waksh.aposoft.view.recipe.ProductDialog;
 import de.waksh.aposoft.view.recipe.RecipePanel;
@@ -37,15 +43,22 @@ public class ProductDialogController {
     private RecipePanel recipePanel;
     private ProductGroupRepository productGroupRepo;
     private ProductGroup productGroup;
+    private VendorRepository vendorRepo;
+    private UnitRepository unitRepository;
+    private ProductTypeRepository productTypeRepo;
 
     public ProductDialogController(Recipe recipe, MainController mainController, ProductRepository productRepo,
-            RecipePanel recipePanel, ProtocolRepository protocolRepo, ProductGroupRepository productGroupRepo) {
+            RecipePanel recipePanel, ProtocolRepository protocolRepo, ProductGroupRepository productGroupRepo,
+            VendorRepository vendorRepo, UnitRepository unitRepo, ProductTypeRepository productTypeRepo) {
         this.recipe = recipe;
         this.mainFrame = mainController;
         this.productRepo = productRepo;
         this.protocolRepo = protocolRepo;
         this.productGroupRepo = productGroupRepo;
         this.recipePanel = recipePanel;
+        this.vendorRepo = vendorRepo;
+        this.unitRepository = unitRepo;
+        this.productTypeRepo = productTypeRepo;
         productDialog = new ProductDialog();
         productDialog.getBtnAbort().addActionListener(listenerAbort);
         productDialog.getBtnSave().addActionListener(listenerSave);
@@ -109,6 +122,18 @@ public class ProductDialogController {
             // toDo: Amount in Produkt speichern --> Feld in Produkt anlegen?
             product.setName(productDialog.getProductName());
             product.setBestBeforeDate(bestBeforeDate);
+            Vendor vendor = new Vendor();
+            vendor.setName("Eigenherstellung");
+            vendor.setVendorCode("1");
+            vendorRepo.save(vendor);
+            product.setVendor(vendor);
+            Unit unit = new Unit();
+            unitRepository.save(unit);
+            product.setUnit(unit);
+            ProductType productType = new ProductType();
+            productType.setName(recipePanel.getProductType());
+            productTypeRepo.save(productType);
+            product.setProductType(productType);
 
             protocolRepo.save(new Protocol(new User(), "MA fügte Rezeptur mit ID: " + recipe.getId() + " hinzu.", ""));
             productGroupRepo.save(productGroup);

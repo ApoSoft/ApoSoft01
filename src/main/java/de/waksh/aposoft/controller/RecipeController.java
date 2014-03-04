@@ -13,7 +13,10 @@ import org.springframework.stereotype.Component;
 import de.waksh.aposoft.domain.Recipe;
 import de.waksh.aposoft.repository.ProductGroupRepository;
 import de.waksh.aposoft.repository.ProductRepository;
+import de.waksh.aposoft.repository.ProductTypeRepository;
 import de.waksh.aposoft.repository.ProtocolRepository;
+import de.waksh.aposoft.repository.UnitRepository;
+import de.waksh.aposoft.repository.VendorRepository;
 import de.waksh.aposoft.view.ConfirmDialog;
 import de.waksh.aposoft.view.recipe.RecipeButtonPanel;
 import de.waksh.aposoft.view.recipe.RecipePanel;
@@ -37,6 +40,15 @@ public class RecipeController {
 
     @Autowired
     ProductGroupRepository productGroupRepo;
+
+    @Autowired
+    VendorRepository vendorRepo;
+
+    @Autowired
+    UnitRepository unitRepo;
+
+    @Autowired
+    ProductTypeRepository productTypeRepo;
 
     private RecipePanel recipePanel;
     private RecipeButtonPanel btnPanel;
@@ -114,7 +126,7 @@ public class RecipeController {
         public void actionPerformed(ActionEvent e) {
             confirmDialog.dispose();
             new ProductDialogController(recipe, mainController, productRepo, recipePanel, protocolRepo,
-                    productGroupRepo);
+                    productGroupRepo, vendorRepo, unitRepo, productTypeRepo);
         }
     };
 
