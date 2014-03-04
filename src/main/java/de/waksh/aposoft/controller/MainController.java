@@ -42,6 +42,12 @@ import de.waksh.aposoft.repository.UnitRepository;
 import de.waksh.aposoft.repository.VendorRepository;
 import de.waksh.aposoft.view.MainFrame;
 
+/**
+ * Controller for the main frame
+ * 
+ * @author Christoph Mende
+ * 
+ */
 @Component
 public class MainController {
 
@@ -86,6 +92,9 @@ public class MainController {
 
     private MainFrame mainFrame;
 
+    /**
+     * Constructs a new controller with a MainFrame
+     */
     public MainController() {
         mainFrame = new MainFrame();
     }
@@ -96,10 +105,21 @@ public class MainController {
         populate();
     }
 
+    /**
+     * Gets the MainFrame's JFrame
+     * 
+     * @return the JFrame used in MainFrame
+     */
     public JFrame getFrame() {
         return mainFrame.getFrame();
     }
 
+    /**
+     * Set the center content of the MainFrame's BorderLayout
+     * 
+     * @param panel
+     *            new content of the north panel
+     */
     public void setCenter(JPanel panel) {
         JFrame frame = mainFrame.getFrame();
 
@@ -112,6 +132,12 @@ public class MainController {
         frame.setLocationRelativeTo(null);
     }
 
+    /**
+     * Set the right content of the MainFrame's BorderLayout
+     * 
+     * @param panel
+     *            new content of the east panel
+     */
     public void setRight(JPanel panel) {
         JFrame frame = mainFrame.getFrame();
 
