@@ -12,6 +12,7 @@ import de.waksh.aposoft.domain.ProductGroup;
 import de.waksh.aposoft.domain.Protocol;
 import de.waksh.aposoft.domain.Recipe;
 import de.waksh.aposoft.domain.User;
+import de.waksh.aposoft.repository.ProductGroupRepository;
 import de.waksh.aposoft.repository.ProductRepository;
 import de.waksh.aposoft.repository.ProtocolRepository;
 import de.waksh.aposoft.view.ConfirmDialog;
@@ -29,19 +30,21 @@ public class ProductDialogController {
     private ProductDialog productDialog;
     private Recipe recipe;
     private Product product;
-    @SuppressWarnings("unused")
     private ProductRepository productRepo;
     private ProtocolRepository protocolRepo;
     private LocalDate bestBeforeDate;
     private ConfirmDialog confirmDialog;
     private RecipePanel recipePanel;
+    private ProductGroupRepository productGroupRepo;
+    private ProductGroup productGroup;
 
     public ProductDialogController(Recipe recipe, MainController mainController, ProductRepository productRepo,
-            RecipePanel recipePanel, ProtocolRepository protocolRepo) {
+            RecipePanel recipePanel, ProtocolRepository protocolRepo, ProductGroupRepository productGroupRepo) {
         this.recipe = recipe;
         this.mainFrame = mainController;
         this.productRepo = productRepo;
         this.protocolRepo = protocolRepo;
+        this.productGroupRepo = productGroupRepo;
         this.recipePanel = recipePanel;
         productDialog = new ProductDialog();
         productDialog.getBtnAbort().addActionListener(listenerAbort);
@@ -108,20 +111,20 @@ public class ProductDialogController {
             product.setBestBeforeDate(bestBeforeDate);
 
             protocolRepo.save(new Protocol(new User(), "MA fügte Rezeptur mit ID: " + recipe.getId() + " hinzu.", ""));
-            // productRepo.save(product);
+            productGroupRepo.save(productGroup);
+            productRepo.save(product);
             // führt zu: detached entity passed to persist
 
             recipePanel.removeAllRows();
             confirmDialog.dispose();
             productDialog.dispose();
-            JOptionPane.showMessageDialog(mainFrame.getFrame(),
-                    "Ihr Produkt wurde angelegt.\n(Wird noch nicht in die Datenbank gespeichert)");
+            JOptionPane.showMessageDialog(mainFrame.getFrame(), "Ihr Produkt wurde angelegt.");
         }
     };
 
     private void createProduct() {
         product = new Product();
-        ProductGroup productGroup = new ProductGroup("Eigenherstellung", "");
+        productGroup = new ProductGroup("Eigenherstellung", "");
         product.setProductGroup(productGroup);
     }
 

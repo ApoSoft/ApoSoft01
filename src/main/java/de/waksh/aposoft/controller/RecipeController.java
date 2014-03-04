@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import de.waksh.aposoft.domain.Recipe;
+import de.waksh.aposoft.repository.ProductGroupRepository;
 import de.waksh.aposoft.repository.ProductRepository;
 import de.waksh.aposoft.repository.ProtocolRepository;
 import de.waksh.aposoft.view.ConfirmDialog;
@@ -33,6 +34,9 @@ public class RecipeController {
 
     @Autowired
     ProductRepository productRepo;
+
+    @Autowired
+    ProductGroupRepository productGroupRepo;
 
     private RecipePanel recipePanel;
     private RecipeButtonPanel btnPanel;
@@ -109,7 +113,8 @@ public class RecipeController {
         @Override
         public void actionPerformed(ActionEvent e) {
             confirmDialog.dispose();
-            new ProductDialogController(recipe, mainController, productRepo, recipePanel, protocolRepo);
+            new ProductDialogController(recipe, mainController, productRepo, recipePanel, protocolRepo,
+                    productGroupRepo);
         }
     };
 
