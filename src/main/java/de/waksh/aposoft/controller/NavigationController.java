@@ -10,11 +10,11 @@ import de.waksh.aposoft.controller.cashbox.CashboxController;
 import de.waksh.aposoft.view.NavigationPanel;
 
 /**
+ * Controller for the navigation panel
  * 
- * @author ahofmann
+ * @author Artem Hofmann
  * 
  */
-
 @Component
 public class NavigationController {
 
@@ -32,6 +32,10 @@ public class NavigationController {
 
     private NavigationPanel panel;
 
+    /**
+     * Construct a new navigation controller and initialize action listeners on
+     * navigation buttons
+     */
     public NavigationController() {
         panel = new NavigationPanel();
         panel.getBtnCashbox().addActionListener(listenerCashbox);
@@ -40,6 +44,11 @@ public class NavigationController {
         panel.getBtnRecipe().addActionListener(listenerRecipe);
     }
 
+    /**
+     * Gets the navigation panel
+     * 
+     * @return a NavigationPanel
+     */
     public NavigationPanel getNavigationPanel() {
         return panel;
     }
