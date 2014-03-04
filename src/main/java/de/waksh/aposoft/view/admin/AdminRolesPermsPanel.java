@@ -22,6 +22,12 @@ import com.jgoodies.forms.layout.FormLayout;
 
 import de.waksh.aposoft.domain.Role;
 
+/**
+ * Administration panel for roles and permissions
+ * 
+ * @author Christoph Mende
+ * 
+ */
 public class AdminRolesPermsPanel {
 
     @Getter
@@ -43,6 +49,9 @@ public class AdminRolesPermsPanel {
     @Getter
     private JComboBox<Object> comboCreatedFor;
 
+    /**
+     * Construct a new AdminRolesPermsPanel and initialize it
+     */
     public AdminRolesPermsPanel() {
         initialize();
     }

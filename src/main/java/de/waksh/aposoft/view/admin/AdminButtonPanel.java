@@ -10,11 +10,11 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 /**
+ * Panel for navigation inside the admin menu
  * 
  * @author Christoph Mende
  * 
  */
-
 public class AdminButtonPanel {
 
     @Getter
@@ -35,6 +35,9 @@ public class AdminButtonPanel {
     @Getter
     private JButton btnCstGrp;
 
+    /**
+     * Construct a new AdminButtonPanel and initialize it
+     */
     public AdminButtonPanel() {
         initialize();
     }
