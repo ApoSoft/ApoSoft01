@@ -25,6 +25,7 @@ import de.waksh.aposoft.view.recipe.RecipeButtonPanel;
 import de.waksh.aposoft.view.recipe.RecipePanel;
 
 /**
+ * Controller für die Oberfläche der Rezeptur
  * 
  * @author Jannik Kuptz
  * 
@@ -137,6 +138,7 @@ public class RecipeController {
             }
             new ProductDialogController(mainController, productRepo, recipePanel, protocolRepo, productGroupRepo,
                     vendorRepo, unitRepo, productTypeRepo, acList);
+            acList.clear();
         }
     };
 

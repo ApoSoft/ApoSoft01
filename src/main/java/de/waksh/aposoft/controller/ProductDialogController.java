@@ -132,7 +132,7 @@ public class ProductDialogController {
             Vendor vendor = new Vendor();
             vendor.setName("Eigenherstellung");
             vendor.setVendorCode("1");
-            vendorRepo.save(vendor);
+            vendor = vendorRepo.save(vendor);
             product.setVendor(vendor);
             Unit unit = new Unit();
             unitRepository.save(unit);
