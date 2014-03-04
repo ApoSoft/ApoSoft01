@@ -9,7 +9,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 
+import lombok.Getter;
+
 /**
+ * Generic dialog to confirm using a password
  * 
  * @author Jannik Kuptz
  * 
@@ -17,9 +20,14 @@ import javax.swing.JPasswordField;
 public class ConfirmDialog {
 
     private JDialog dialog;
+    @Getter
     private JPasswordField passwordField;
+    @Getter
     private JButton btnOk;
 
+    /**
+     * Construct and initialize the ConfirmDialog
+     */
     public ConfirmDialog() {
         initialize();
     }
@@ -62,23 +70,25 @@ public class ConfirmDialog {
         dialog.getContentPane().add(btnOk, gbc_btnOk);
     }
 
-    public JButton getBtnOK() {
-        return btnOk;
-    }
-
+    /**
+     * {@inheritDoc Window#dispose()}
+     */
     public void dispose() {
         dialog.dispose();
     }
 
+    /**
+     * {@inheritDoc Dialog#setModal(boolean)}
+     */
     public void setModal(boolean b) {
         dialog.setModal(b);
     }
 
+    /**
+     * {@inheritDoc Dialog#setVisible(boolean)}
+     */
     public void setVisible(boolean b) {
         dialog.setVisible(true);
     }
 
-    public JPasswordField getPasswordField() {
-        return passwordField;
-    }
 }
