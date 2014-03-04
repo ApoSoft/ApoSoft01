@@ -9,19 +9,27 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import lombok.Getter;
+
 public class ProductDialog {
 
     private JDialog dialog;
+    @Getter
     private JTextField txtRecipeId;
+    @Getter
     private JTextField txtProductGroup;
+    @Getter
     private JTextField txtBranch;
+    @Getter
     private JTextField txtAmount;
     private JLabel lblAmount;
     private JLabel lblName;
     private JTextField txtName;
     private JLabel lblBestBefore;
     private JTextField txtBestBefore;
+    @Getter
     private JButton btnSave;
+    @Getter
     private JButton btnAbort;
 
     public ProductDialog() {
@@ -163,54 +171,54 @@ public class ProductDialog {
         dialog.getContentPane().add(btnSave, gbc_btnSave);
     }
 
-    public JTextField getTxtRecipeId() {
-        return txtRecipeId;
-    }
-
-    public JTextField getTxtBranch() {
-        return txtBranch;
-    }
-
-    public JTextField getTxtAmount() {
-        return txtAmount;
-    }
-
-    public JTextField getTxtName() {
-        return txtName;
-    }
-
-    public JTextField getTxtBestBefore() {
-        return txtBestBefore;
-    }
-
-    public JButton getBtnSave() {
-        return btnSave;
-    }
-
-    public JButton getBtnAbort() {
-        return btnAbort;
-    }
-
+    /**
+     * Returns {@link String text) of {@link JTextField txtName}.
+     * 
+     * @return {@link String txtName}
+     */
     public String getProductName() {
         return txtName.getText();
     }
 
+    /**
+     * Returns {@link String text) of {@link JTextField txtBestBefore}.
+     * 
+     * @return {@link String txtBestBefore}
+     */
     public String getBestBefore() {
         return txtBestBefore.getText();
     }
 
+    /**
+     * Returns {@link String text) of {@link JTextField txtAmount}.
+     * 
+     * @return {@link String txtAmount}
+     */
     public String getAmount() {
         return txtAmount.getText();
     }
 
+    /**
+     * Disposes the {@link JDialog dialog}.
+     */
     public void dispose() {
         dialog.dispose();
     }
 
+    /**
+     * Sets the dialog modal true or false.
+     * 
+     * @param {@link Boolean b}
+     */
     public void setModal(boolean b) {
         dialog.setModal(b);
     }
 
+    /**
+     * Sets the dialog visible true or false
+     * 
+     * @param {@link Boolean b}
+     */
     public void setVisible(boolean b) {
         dialog.setVisible(true);
     }
