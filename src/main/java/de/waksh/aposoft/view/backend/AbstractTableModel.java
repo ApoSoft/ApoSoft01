@@ -1,6 +1,7 @@
 package de.waksh.aposoft.view.backend;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.event.TableModelEvent;
@@ -27,7 +28,11 @@ public abstract class AbstractTableModel<T> implements TableModel, TableModelLis
      *            names of the coloumns
      */
     public AbstractTableModel(String[] columnNames) {
-        this.columnNames = columnNames;
+        if (columnNames == null) {
+            columnNames = new String[0];
+        } else {
+            this.columnNames = Arrays.copyOf(columnNames, columnNames.length);
+        }
         listeners = new ArrayList<TableModelListener>();
         items = new ArrayList<T>();
     }
