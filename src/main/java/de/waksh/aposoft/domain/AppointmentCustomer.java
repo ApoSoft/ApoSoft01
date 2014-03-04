@@ -37,7 +37,7 @@ public class AppointmentCustomer {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate date;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Customer customer;
 
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)

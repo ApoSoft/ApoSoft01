@@ -17,6 +17,7 @@ import de.waksh.aposoft.domain.AppointmentCustomer;
 import de.waksh.aposoft.domain.Customer;
 import de.waksh.aposoft.domain.OrderItem;
 import de.waksh.aposoft.repository.AppointmentCustomerRepository;
+import de.waksh.aposoft.repository.CustomerRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
@@ -25,6 +26,9 @@ public class AppointmentCustomerTest {
 
     @Autowired
     private AppointmentCustomerRepository repository;
+
+    @Autowired
+    private CustomerRepository custRepo;
 
     private AppointmentCustomer createAppointmentCustomer() {
         AppointmentCustomer appointmentCustomer = new AppointmentCustomer();
@@ -57,7 +61,9 @@ public class AppointmentCustomerTest {
     @Test
     public void testFindByCustomer() {
         AppointmentCustomer apocustomer = createAppointmentCustomer();
+
         Customer customer = createCustomer();
+        custRepo.save(customer);
         apocustomer.setCustomer(customer);
         repository.save(apocustomer);
         List<AppointmentCustomer> listcustomer = repository.findByCustomer(customer);
