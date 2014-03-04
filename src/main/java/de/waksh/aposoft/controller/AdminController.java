@@ -52,6 +52,11 @@ public class AdminController {
         }
     };
 
+    /**
+     * Construct a new controller for the admin panels. Initializes the roles
+     * and permissions panel and the button panel. Sets the selected panel to
+     * the roles and permissions panel.
+     */
     public AdminController() {
         rolesPermsPanel = new AdminRolesPermsPanel();
         buttonPanel = new AdminButtonPanel();
@@ -64,6 +69,11 @@ public class AdminController {
         initializeRolesPermsPanel();
     }
 
+    /**
+     * Gets the button panel
+     * 
+     * @return a JPanel containing the admin navigation
+     */
     public JPanel getButtonPanel() {
         return buttonPanel.getPanel();
     }
