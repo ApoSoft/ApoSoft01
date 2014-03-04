@@ -14,8 +14,12 @@ import lombok.Getter;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+import de.waksh.aposoft.domain.Customer;
+
 /**
- * @author lhuebsc
+ * Dialog for adding a {@link Customer}
+ * 
+ * @author lhuebsch
  * 
  */
 public class AddCustomerDialog {
@@ -45,6 +49,11 @@ public class AddCustomerDialog {
     @Getter
     private JButton btnCancel;
 
+    /**
+     * Constructor for {@link AddCustomerDialog}.
+     * 
+     * Runs the build() method.
+     */
     public AddCustomerDialog() {
         build();
 
