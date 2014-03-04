@@ -8,6 +8,12 @@ import lombok.Getter;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+/**
+ * Button panel that controls the cashbox
+ * 
+ * @author Artem Hofmann
+ * 
+ */
 public class CashboxButtonPanel {
 
     @Getter
@@ -21,6 +27,9 @@ public class CashboxButtonPanel {
     @Getter
     private JButton btnConfirmPayment;
 
+    /**
+     * Construct and build a new CashboxButtonPanel
+     */
     public CashboxButtonPanel() {
         build();
     }

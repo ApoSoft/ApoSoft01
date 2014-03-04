@@ -5,14 +5,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import lombok.Data;
+import lombok.Getter;
 
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.waksh.aposoft.domain.Product;
 
-@Data
+/**
+ * Input area to enter search terms in the cashbox
+ * 
+ * @author Artem Hofmann
+ * 
+ */
+@Getter
 public class InputAreaPanel {
     private JPanel panel;
 
@@ -24,6 +30,9 @@ public class InputAreaPanel {
     private JTextField tfSubstance1;
     private JTextField tfSubstance2;
 
+    /**
+     * Construct and build a new InputAreaPanel
+     */
     public InputAreaPanel() {
         build();
     }

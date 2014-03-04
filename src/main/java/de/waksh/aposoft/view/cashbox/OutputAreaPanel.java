@@ -13,6 +13,12 @@ import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.Product;
 import de.waksh.aposoft.view.backend.AbstractTableModel;
 
+/**
+ * Panel to show items currently on the cashbox
+ * 
+ * @author Artem Hofmann
+ * 
+ */
 public class OutputAreaPanel {
 
     @Getter
@@ -24,6 +30,9 @@ public class OutputAreaPanel {
     @Getter
     private TableModel model;
 
+    /**
+     * Construct and build new OutputAreaPanel
+     */
     public OutputAreaPanel() {
         build();
     }
@@ -41,10 +50,20 @@ public class OutputAreaPanel {
         panel.add(scrollPane, BorderLayout.CENTER);
     }
 
+    /**
+     * OutputAreaPanel TableModel used in the main JTable
+     * 
+     * @author Artem Hofmann
+     * 
+     */
     public class TableModel extends AbstractTableModel<Product> {
 
         private Hashtable<Product, Integer> productCounter;
 
+        /**
+         * Construct a new table model with the required column titles and
+         * initialize new hashtable for products
+         */
         public TableModel() {
             super(new String[] { "Anzahl", "Bezeichnung", "Hersteller", "Inhalt", "Wirkstoffe", "Art", "Einzelpreis",
                     "Gesamtpreis" });
@@ -78,6 +97,13 @@ public class OutputAreaPanel {
             productCounter.remove(item);
         }
 
+        /**
+         * Gets the count for the given product on the counter
+         * 
+         * @param item
+         *            product to search for
+         * @return count of products on counter
+         */
         public int getCount(Product item) {
             return productCounter.get(item);
         }

@@ -7,6 +7,12 @@ import lombok.Getter;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+/**
+ * Main panel used in the cashbox
+ * 
+ * @author Artem Hofmann
+ * 
+ */
 public class CashboxPanel {
 
     @Getter
@@ -18,6 +24,9 @@ public class CashboxPanel {
     @Getter
     private CustomerPanel customerPanel;
 
+    /**
+     * Construct and build a new CashboxPanel
+     */
     public CashboxPanel() {
         build();
     }
