@@ -39,7 +39,7 @@ public class PaymentConditionTest {
 
         repository.save(paymentCondition);
 
-        List<PaymentCondition> listpaycon = repository.findBydiscountDate(paymentCondition.getDiscountDate());
+        List<PaymentCondition> listpaycon = repository.findByDiscountDate(paymentCondition.getDiscountDate());
         boolean exists = false;
         for (PaymentCondition paymentCondition2 : listpaycon) {
             if (paymentCondition.getId() == paymentCondition2.getId()) {
