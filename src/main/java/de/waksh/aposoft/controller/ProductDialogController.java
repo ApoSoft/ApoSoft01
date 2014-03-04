@@ -136,7 +136,7 @@ public class ProductDialogController {
             vendor = vendorRepo.save(vendor);
             product.setVendor(vendor);
             Unit unit = new Unit();
-            unit.setName("Unit");
+            unit.setName("g");
             unitRepository.save(unit);
             product.setUnit(unit);
             ProductType productType = new ProductType();
