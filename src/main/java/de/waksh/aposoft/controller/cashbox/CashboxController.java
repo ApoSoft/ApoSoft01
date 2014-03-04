@@ -135,12 +135,6 @@ public class CashboxController {
     private ActionListener actionListenerButtonConfirmPayment = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (customer == null) {
-                JOptionPane.showMessageDialog(cashboxPanel.getPanel(), "Es wurde kein Kunde ausgewählt", "Hinweis",
-                        JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-
             List<OrderItem> items = new ArrayList<>();
             for (Product p : cashboxPanel.getOutputAreaPanel().getModel().getItems()) {
                 OrderItem item = new OrderItem();
