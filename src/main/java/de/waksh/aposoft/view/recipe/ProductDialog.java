@@ -10,7 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import lombok.Getter;
+import de.waksh.aposoft.domain.Product;
 
+/**
+ * ProductDialog for adding a {@link Product product}.
+ * 
+ * @author jkuptz
+ * 
+ */
 public class ProductDialog {
 
     private JDialog dialog;
@@ -32,6 +39,9 @@ public class ProductDialog {
     @Getter
     private JButton btnAbort;
 
+    /**
+     * Constructor for {@link ProductDialog}. Runs initialize().
+     */
     public ProductDialog() {
         initialize();
     }
