@@ -29,7 +29,7 @@ public abstract class AbstractTableModel<T> implements TableModel, TableModelLis
      */
     public AbstractTableModel(String[] columnNames) {
         if (columnNames == null) {
-            columnNames = new String[0];
+            this.columnNames = new String[0];
         } else {
             this.columnNames = Arrays.copyOf(columnNames, columnNames.length);
         }

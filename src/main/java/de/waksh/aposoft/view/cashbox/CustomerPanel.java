@@ -166,7 +166,7 @@ public class CustomerPanel {
         CellConstraints cc = new CellConstraints();
         FormLayout layout = new FormLayout("pref, 3dlu, 50dlu", "pref, 3dlu, pref, 3dlu, pref, 3dlu, pref, 3dlu, pref");
 
-        JPanel panel = new JPanel(layout);
+        JPanel resultPanel = new JPanel(layout);
 
         txtDiscount = new JTextField();
         txtDiscount.setEditable(false);
@@ -182,19 +182,19 @@ public class CustomerPanel {
         txtRetoure.setEditable(false);
         txtRetoure.setHorizontalAlignment(JTextField.RIGHT);
 
-        panel.add(new JLabel("Rabatt"), cc.xy(1, 1));
-        panel.add(new JLabel("Summe"), cc.xy(1, 3));
-        panel.add(new JLabel("Zahlungsart"), cc.xy(1, 5));
-        panel.add(new JLabel("Gegeben"), cc.xy(1, 7));
-        panel.add(new JLabel("Retoure"), cc.xy(1, 9));
+        resultPanel.add(new JLabel("Rabatt"), cc.xy(1, 1));
+        resultPanel.add(new JLabel("Summe"), cc.xy(1, 3));
+        resultPanel.add(new JLabel("Zahlungsart"), cc.xy(1, 5));
+        resultPanel.add(new JLabel("Gegeben"), cc.xy(1, 7));
+        resultPanel.add(new JLabel("Retoure"), cc.xy(1, 9));
 
-        panel.add(txtDiscount, cc.xy(3, 1));
-        panel.add(txtSum, cc.xy(3, 3));
-        panel.add(comboBoxPaymentType, cc.xy(3, 5));
-        panel.add(txtReceive, cc.xy(3, 7));
-        panel.add(txtRetoure, cc.xy(3, 9));
+        resultPanel.add(txtDiscount, cc.xy(3, 1));
+        resultPanel.add(txtSum, cc.xy(3, 3));
+        resultPanel.add(comboBoxPaymentType, cc.xy(3, 5));
+        resultPanel.add(txtReceive, cc.xy(3, 7));
+        resultPanel.add(txtRetoure, cc.xy(3, 9));
 
-        return panel;
+        return resultPanel;
     }
 
     /**

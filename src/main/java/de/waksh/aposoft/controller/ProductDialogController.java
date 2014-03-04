@@ -53,54 +53,6 @@ public class ProductDialogController {
     private ProductTypeRepository productTypeRepo;
     List<ActiveIngredient> acList = new ArrayList<>();
 
-    /**
-     * Constructor for {@link ProductDialogController}. Sets the following
-     * parameters.
-     * 
-     * @param mainController
-     *            {@link MainController}
-     * @param productRepo
-     *            {@link ProductRepository}
-     * @param recipePanel
-     *            {@link RecipePanel}
-     * @param protocolRepo
-     *            {@link ProtocolRepository}
-     * @param productGroupRepo
-     *            {@link ProductGroupRepository}
-     * @param vendorRepo
-     *            {@link VendorRepository}
-     * @param unitRepo
-     *            {@link UnitRepository}
-     * @param productTypeRepo
-     *            {@link ProductTypeRepository}
-     * @param acList
-     *            {@link List<ActiveIngredient> AvtiveIngredients}
-     */
-    public ProductDialogController(MainController mainController, ProductRepository productRepo,
-            RecipePanel recipePanel, ProtocolRepository protocolRepo, ProductGroupRepository productGroupRepo,
-            VendorRepository vendorRepo, UnitRepository unitRepo, ProductTypeRepository productTypeRepo,
-            List<ActiveIngredient> acList) {
-        this.mainFrame = mainController;
-        this.productRepo = productRepo;
-        this.protocolRepo = protocolRepo;
-        this.productGroupRepo = productGroupRepo;
-        this.recipePanel = recipePanel;
-        this.vendorRepo = vendorRepo;
-        this.unitRepository = unitRepo;
-        this.productTypeRepo = productTypeRepo;
-        this.acList = acList;
-        recipe = new Recipe();
-        productDialog = new ProductDialog();
-        productDialog.getBtnAbort().addActionListener(listenerAbort);
-        productDialog.getBtnSave().addActionListener(listenerSave);
-        productDialog.setModal(true);
-
-        createProduct();
-
-        initialize();
-        productDialog.setVisible(true);
-    }
-
     private ActionListener listenerSave = new ActionListener() {
 
         @Override
@@ -180,6 +132,54 @@ public class ProductDialogController {
             JOptionPane.showMessageDialog(mainFrame.getFrame(), "Ihr Produkt wurde angelegt.");
         }
     };
+
+    /**
+     * Constructor for {@link ProductDialogController}. Sets the following
+     * parameters.
+     * 
+     * @param mainController
+     *            {@link MainController}
+     * @param productRepo
+     *            {@link ProductRepository}
+     * @param recipePanel
+     *            {@link RecipePanel}
+     * @param protocolRepo
+     *            {@link ProtocolRepository}
+     * @param productGroupRepo
+     *            {@link ProductGroupRepository}
+     * @param vendorRepo
+     *            {@link VendorRepository}
+     * @param unitRepo
+     *            {@link UnitRepository}
+     * @param productTypeRepo
+     *            {@link ProductTypeRepository}
+     * @param acList
+     *            {@link List<ActiveIngredient> AvtiveIngredients}
+     */
+    public ProductDialogController(MainController mainController, ProductRepository productRepo,
+            RecipePanel recipePanel, ProtocolRepository protocolRepo, ProductGroupRepository productGroupRepo,
+            VendorRepository vendorRepo, UnitRepository unitRepo, ProductTypeRepository productTypeRepo,
+            List<ActiveIngredient> acList) {
+        this.mainFrame = mainController;
+        this.productRepo = productRepo;
+        this.protocolRepo = protocolRepo;
+        this.productGroupRepo = productGroupRepo;
+        this.recipePanel = recipePanel;
+        this.vendorRepo = vendorRepo;
+        this.unitRepository = unitRepo;
+        this.productTypeRepo = productTypeRepo;
+        this.acList = acList;
+        recipe = new Recipe();
+        productDialog = new ProductDialog();
+        productDialog.getBtnAbort().addActionListener(listenerAbort);
+        productDialog.getBtnSave().addActionListener(listenerSave);
+        productDialog.setModal(true);
+    
+        createProduct();
+    
+        initialize();
+        productDialog.setVisible(true);
+    }
 
     private void createProduct() {
         product = new Product();

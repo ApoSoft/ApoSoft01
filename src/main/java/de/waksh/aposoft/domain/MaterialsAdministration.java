@@ -27,7 +27,4 @@ public class MaterialsAdministration {
 
     @Basic
     private int amount;
-
-    // TODO: relation missing
-    // private Unit unit;
 }

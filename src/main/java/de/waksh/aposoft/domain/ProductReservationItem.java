@@ -25,6 +25,7 @@ import org.joda.time.LocalDate;
 
 @Entity
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class ProductReservationItem {
 
     @Id

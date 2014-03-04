@@ -3,7 +3,8 @@ package de.waksh.aposoft.view.recipe;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -37,8 +38,8 @@ public class RecipePanel {
     private JTextField txtActiveIngredient;
     private JTextField txtAmount;
     private JComboBox<String> cmbUnity;
-    private Vector<String> cmbUnityItems;
-    private Vector<String> cmbTypeItems;
+    private List<String> cmbUnityItems;
+    private List<String> cmbTypeItems;
     @Getter
     private JTable table;
     @Getter
@@ -61,17 +62,16 @@ public class RecipePanel {
     }
 
     private void initialize() {
-        cmbUnityItems = new Vector<String>();
+        cmbUnityItems = new ArrayList<String>();
         cmbUnityItems.add("g");
         cmbUnityItems.add("mg");
         cmbUnityItems.add("ml");
         cmbUnityItems.add("l");
 
-        cmbTypeItems = new Vector<String>();
+        cmbTypeItems = new ArrayList<String>();
         cmbTypeItems.add("Salbe");
         cmbTypeItems.add("Tabletten");
 
-        // columnTitles = new String[] { "Wirkstoff", "Menge" };
         tableModel = new DefaultTableModel();
         tableModel.addColumn("Wirkstoff");
         tableModel.addColumn("Menge");
@@ -79,12 +79,12 @@ public class RecipePanel {
 
     private void build() {
         panel = new JPanel();
-        GridBagLayout gbl_panel = new GridBagLayout();
-        gbl_panel.columnWidths = new int[] { 108, 32, 48, 4, 49, 0, 0 };
-        gbl_panel.rowHeights = new int[] { 19, 19, 24, 19, 0, 0 };
-        gbl_panel.columnWeights = new double[] { 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
-        gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-        panel.setLayout(gbl_panel);
+        GridBagLayout gblPanel = new GridBagLayout();
+        gblPanel.columnWidths = new int[] { 108, 32, 48, 4, 49, 0, 0 };
+        gblPanel.rowHeights = new int[] { 19, 19, 24, 19, 0, 0 };
+        gblPanel.columnWeights = new double[] { 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
+        gblPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+        panel.setLayout(gblPanel);
 
         JLabel lblNewLabel = new JLabel("ID");
         GridBagConstraints gbcLblNewLabel = new GridBagConstraints();
@@ -136,7 +136,11 @@ public class RecipePanel {
         gbcLblType.gridy = 2;
         panel.add(lblType, gbcLblType);
 
-        cmbType = new JComboBox<String>(cmbTypeItems);
+        cmbType = new JComboBox<String>();
+        for (String item : cmbTypeItems) {
+            cmbType.addItem(item);
+        }
+
         GridBagConstraints gbcCmbType = new GridBagConstraints();
         gbcCmbType.insets = new Insets(5, 5, 5, 5);
         gbcCmbType.fill = GridBagConstraints.HORIZONTAL;
@@ -186,7 +190,11 @@ public class RecipePanel {
         gbcLblEinheit.gridy = 3;
         panel.add(lblEinheit, gbcLblEinheit);
 
-        cmbUnity = new JComboBox<String>(cmbUnityItems);
+        cmbUnity = new JComboBox<String>();
+        for (String item : cmbUnityItems) {
+            cmbUnity.addItem(item);
+        }
+
         GridBagConstraints gbcCmbUnity = new GridBagConstraints();
         gbcCmbUnity.insets = new Insets(5, 5, 5, 5);
         gbcCmbUnity.fill = GridBagConstraints.HORIZONTAL;
@@ -203,7 +211,6 @@ public class RecipePanel {
         gbcScrollPane.gridy = 4;
         panel.add(scrollPane, gbcScrollPane);
 
-        // table = new JTable(new String[][] {}, columnTitles);
         table = new JTable(tableModel);
         scrollPane.setViewportView(table);
     }

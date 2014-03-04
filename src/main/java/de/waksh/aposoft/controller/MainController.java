@@ -28,12 +28,9 @@ import de.waksh.aposoft.domain.ProductType;
 import de.waksh.aposoft.domain.Recipe;
 import de.waksh.aposoft.domain.Unit;
 import de.waksh.aposoft.domain.Vendor;
-import de.waksh.aposoft.repository.ActiveIngredientRepository;
-import de.waksh.aposoft.repository.AddressRepository;
 import de.waksh.aposoft.repository.CountryRepository;
 import de.waksh.aposoft.repository.CustomerRepository;
 import de.waksh.aposoft.repository.InsuranceRepository;
-import de.waksh.aposoft.repository.PaymentConditionRepository;
 import de.waksh.aposoft.repository.ProductGroupRepository;
 import de.waksh.aposoft.repository.ProductRepository;
 import de.waksh.aposoft.repository.ProductShapeRepository;
@@ -55,13 +52,7 @@ public class MainController {
     private CountryRepository countryRepository;
 
     @Autowired
-    private AddressRepository addressRepository;
-
-    @Autowired
     private InsuranceRepository insuranceRepository;
-
-    @Autowired
-    private PaymentConditionRepository paymentConditionRepository;
 
     @Autowired
     private UnitRepository unitRepository;
@@ -80,9 +71,6 @@ public class MainController {
 
     @Autowired
     private ProductRepository productRepository;
-
-    @Autowired
-    private ActiveIngredientRepository activeIngredientRepository;
 
     @Autowired
     private NavigationController navigationController;
@@ -226,7 +214,6 @@ public class MainController {
         recipe.setDescription("recipe_" + random);
         recipe.setType("type_" + random);
         recipe.setActiveIngredients(ingredients);
-        // activeIngredientRepository.save(ingredients);
         return recipe;
     }
 
@@ -293,7 +280,6 @@ public class MainController {
             product.setProductShape(productShape);
             product.setProductType(productType);
             product.setRecipe(recipe);
-            // product.setStore(store);
             product.setUnit(unit);
             product.setVendor(vendor);
 

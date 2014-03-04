@@ -12,6 +12,7 @@ import org.joda.time.LocalDate;
  * 
  */
 @Data
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class ProductAppointment {
 
     private LocalDate date;

@@ -38,7 +38,6 @@ import de.waksh.aposoft.repository.AppointmentCustomerRepository;
 import de.waksh.aposoft.repository.CustomerRepository;
 import de.waksh.aposoft.repository.ProductRepository;
 import de.waksh.aposoft.repository.ProductReservationRepository;
-import de.waksh.aposoft.repository.StoreRepository;
 import de.waksh.aposoft.view.backend.ComboBoxModel;
 import de.waksh.aposoft.view.cashbox.CashboxButtonPanel;
 import de.waksh.aposoft.view.cashbox.CashboxPanel;
@@ -71,9 +70,6 @@ public class CashboxController {
     @Autowired
     private ProductReservationRepository productReservationRepository;
 
-    @Autowired
-    private StoreRepository storeRepository;
-
     @Getter
     private CashboxPanel cashboxPanel;
 
@@ -81,32 +77,6 @@ public class CashboxController {
     private CashboxButtonPanel cashboxButtonPanel;
 
     private Customer customer;
-
-    /**
-     * Construct the CashboxController and set action listeners for the buttons
-     * in {@link InputAreaPanel}, {@link OutputAreaPanel}, {@link CustomerPanel}
-     * and {@link CashboxButtonPanel}
-     */
-    public CashboxController() {
-        cashboxPanel = new CashboxPanel();
-        cashboxButtonPanel = new CashboxButtonPanel();
-
-        cashboxPanel.getInputAreaPanel().getTfCustomerNumber().addActionListener(actionListenerTextFieldCustomerNumber);
-        cashboxPanel.getInputAreaPanel().getComboBox().addActionListener(actionListenerComboBox);
-        cashboxPanel.getInputAreaPanel().getComboBox().addItemListener(itemListenerComboBox);
-
-        cashboxPanel.getOutputAreaPanel().getTable().getSelectionModel()
-                .addListSelectionListener(tableListSelectionListener);
-        cashboxPanel.getOutputAreaPanel().getModel().addTableModelListener(tableModelListener);
-        cashboxPanel.getCustomerPanel().getTxtReceive().addActionListener(actionListenerTextFieldReceive);
-        cashboxPanel.getCustomerPanel().getHistoryTable().addMouseListener(historyTableMouseListener);
-        cashboxPanel.getCustomerPanel().getComboBoxPaymentType().addItemListener(comboBoxPaymentTypeItemListener);
-
-        cashboxButtonPanel.getBtnAddProduct().addActionListener(actionListenerButtonAddProduct);
-        cashboxButtonPanel.getBtnRemoveProduct().addActionListener(actionListenerButtonRemoveProduct);
-        cashboxButtonPanel.getBtnAddCustomer().addActionListener(actionListenerButtonAddCustomer);
-        cashboxButtonPanel.getBtnConfirmPayment().addActionListener(actionListenerButtonConfirmPayment);
-    }
 
     private ItemListener comboBoxPaymentTypeItemListener = new ItemListener() {
         @Override
@@ -377,6 +347,32 @@ public class CashboxController {
             cashboxPanel.getCustomerPanel().getTxtReceive().setText("");
         }
     };
+
+    /**
+     * Construct the CashboxController and set action listeners for the buttons
+     * in {@link InputAreaPanel}, {@link OutputAreaPanel}, {@link CustomerPanel}
+     * and {@link CashboxButtonPanel}
+     */
+    public CashboxController() {
+        cashboxPanel = new CashboxPanel();
+        cashboxButtonPanel = new CashboxButtonPanel();
+    
+        cashboxPanel.getInputAreaPanel().getTfCustomerNumber().addActionListener(actionListenerTextFieldCustomerNumber);
+        cashboxPanel.getInputAreaPanel().getComboBox().addActionListener(actionListenerComboBox);
+        cashboxPanel.getInputAreaPanel().getComboBox().addItemListener(itemListenerComboBox);
+    
+        cashboxPanel.getOutputAreaPanel().getTable().getSelectionModel()
+                .addListSelectionListener(tableListSelectionListener);
+        cashboxPanel.getOutputAreaPanel().getModel().addTableModelListener(tableModelListener);
+        cashboxPanel.getCustomerPanel().getTxtReceive().addActionListener(actionListenerTextFieldReceive);
+        cashboxPanel.getCustomerPanel().getHistoryTable().addMouseListener(historyTableMouseListener);
+        cashboxPanel.getCustomerPanel().getComboBoxPaymentType().addItemListener(comboBoxPaymentTypeItemListener);
+    
+        cashboxButtonPanel.getBtnAddProduct().addActionListener(actionListenerButtonAddProduct);
+        cashboxButtonPanel.getBtnRemoveProduct().addActionListener(actionListenerButtonRemoveProduct);
+        cashboxButtonPanel.getBtnAddCustomer().addActionListener(actionListenerButtonAddCustomer);
+        cashboxButtonPanel.getBtnConfirmPayment().addActionListener(actionListenerButtonConfirmPayment);
+    }
 
     private void updateCustomerPanel(Customer customer) {
         if (customer.getInsurance() != null) {

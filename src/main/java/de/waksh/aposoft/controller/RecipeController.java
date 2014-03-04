@@ -64,6 +64,46 @@ public class RecipeController {
     private ConfirmDialog confirmDialog;
     List<ActiveIngredient> acList = new ArrayList<>();
 
+    private ActionListener listenerConfirm = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            confirmDialog.dispose();
+            DefaultTableModel tm = recipePanel.getTableModel();
+            for (int i = 0; i < tm.getRowCount(); i++) {
+                ActiveIngredient ac = new ActiveIngredient();
+                ac.setName(tm.getValueAt(i, 0).toString());
+                acList.add(ac);
+            }
+            new ProductDialogController(mainController, productRepo, recipePanel, protocolRepo, productGroupRepo,
+                    vendorRepo, unitRepo, productTypeRepo, acList);
+            acList.clear();
+        }
+    };
+
+    private ActionListener listenerAdd = new ActionListener() {
+    
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            addRow();
+        }
+    };
+
+    private ActionListener listenerDelete = new ActionListener() {
+    
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            removeRow();
+        }
+    };
+
+    private ActionListener listenerNext = new ActionListener() {
+    
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            next();
+        }
+    };
+
     /**
      * Constructor for {@link RecipeController}. Initializes the components.
      */
@@ -133,44 +173,4 @@ public class RecipeController {
         confirmDialog.getPasswordField().setText("topSecret");
         confirmDialog.setVisible(true);
     }
-
-    private ActionListener listenerConfirm = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            confirmDialog.dispose();
-            DefaultTableModel tm = recipePanel.getTableModel();
-            for (int i = 0; i < tm.getRowCount(); i++) {
-                ActiveIngredient ac = new ActiveIngredient();
-                ac.setName(tm.getValueAt(i, 0).toString());
-                acList.add(ac);
-            }
-            new ProductDialogController(mainController, productRepo, recipePanel, protocolRepo, productGroupRepo,
-                    vendorRepo, unitRepo, productTypeRepo, acList);
-            acList.clear();
-        }
-    };
-
-    private ActionListener listenerAdd = new ActionListener() {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            addRow();
-        }
-    };
-
-    private ActionListener listenerDelete = new ActionListener() {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            removeRow();
-        }
-    };
-
-    private ActionListener listenerNext = new ActionListener() {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            next();
-        }
-    };
 }

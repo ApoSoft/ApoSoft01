@@ -32,6 +32,37 @@ public class NavigationController {
 
     private NavigationPanel panel;
 
+    private ActionListener listenerCashbox = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            mainController.setCenter(cashboxController.getCashboxPanel().getPanel());
+            mainController.setRight(cashboxController.getCashboxButtonPanel().getPanel());
+        }
+    };
+
+    private ActionListener listenerMaterialAdmin = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+    
+        }
+    };
+
+    private ActionListener listenerAdmin = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            mainController.setCenter(adminController.getSelected());
+            mainController.setRight(adminController.getButtonPanel());
+        }
+    };
+
+    private ActionListener listenerRecipe = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            mainController.setCenter(recipeController.getRecipePanel().getPanel());
+            mainController.setRight(recipeController.getRecipeButtonPanel().getPanel());
+        }
+    };
+
     /**
      * Construct a new navigation controller and initialize action listeners on
      * navigation buttons
@@ -52,35 +83,4 @@ public class NavigationController {
     public NavigationPanel getNavigationPanel() {
         return panel;
     }
-
-    private ActionListener listenerCashbox = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            mainController.setCenter(cashboxController.getCashboxPanel().getPanel());
-            mainController.setRight(cashboxController.getCashboxButtonPanel().getPanel());
-        }
-    };
-
-    private ActionListener listenerMaterialAdmin = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
-    };
-
-    private ActionListener listenerAdmin = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            mainController.setCenter(adminController.getSelected());
-            mainController.setRight(adminController.getButtonPanel());
-        }
-    };
-
-    private ActionListener listenerRecipe = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            mainController.setCenter(recipeController.getRecipePanel().getPanel());
-            mainController.setRight(recipeController.getRecipeButtonPanel().getPanel());
-        }
-    };
 }

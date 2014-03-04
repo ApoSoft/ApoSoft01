@@ -1,8 +1,9 @@
 package de.waksh.aposoft.view.cashbox;
 
 import java.awt.BorderLayout;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -58,7 +59,7 @@ public class OutputAreaPanel {
      */
     public class TableModel extends AbstractTableModel<Product> {
 
-        private Hashtable<Product, Integer> productCounter;
+        private Map<Product, Integer> productCounter;
 
         /**
          * Construct a new table model with the required column titles and
@@ -67,7 +68,7 @@ public class OutputAreaPanel {
         public TableModel() {
             super(new String[] { "Anzahl", "Bezeichnung", "Hersteller", "Inhalt", "Wirkstoffe", "Art", "Einzelpreis",
                     "Gesamtpreis" });
-            productCounter = new Hashtable<>();
+            productCounter = new HashMap<>();
         }
 
         @Override
@@ -171,6 +172,8 @@ public class OutputAreaPanel {
                 productCounter.remove(product);
                 productCounter.put(product, (int) obj);
                 update();
+                break;
+            default:
                 break;
             }
 

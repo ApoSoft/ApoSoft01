@@ -18,6 +18,7 @@ import com.jgoodies.forms.layout.FormLayout;
 public class AdminButtonPanel {
 
     @Getter
+    @SuppressWarnings("PMD.UnusedPrivateField")
     private JPanel panel;
 
     @Getter

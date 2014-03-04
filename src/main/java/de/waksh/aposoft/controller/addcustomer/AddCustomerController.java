@@ -37,7 +37,52 @@ public class AddCustomerController {
     @Getter
     private AddCustomerDialog addCustomerDialog;
     @Getter
+    @SuppressWarnings("PMD.UnusedPrivateField")
     private JPanel addCustomerPanel;
+
+    private ActionListener actionListenerButtonCancel = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            addCustomerDialog.getAddCustomerDialog().dispose();
+        }
+    };
+
+    private ActionListener actionListenerButtonAddCustomer = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String firstName = addCustomerDialog.getTfFirstName().getText();
+            String lastName = addCustomerDialog.getTfLastName().getText();
+            String insuranceNo = addCustomerDialog.getTfInsuranceNo().getText();
+    
+            Customer customer = new Customer();
+            customer.setFirstName(firstName);
+            customer.setName(lastName);
+            customer.setInsurance(insuranceRepository.findByInsuranceIdNumber(insuranceNo));
+    
+            customerRepository.save(customer);
+    
+            addCustomerDialog.getAddCustomerDialog().dispose();
+        }
+    };
+
+    private KeyListener keyListenerInsuranceNoTextField = new KeyListener() {
+        @Override
+        public void keyReleased(KeyEvent e) {
+            Insurance insurance = insuranceRepository.findByInsuranceIdNumber(addCustomerDialog.getTfInsuranceNo()
+                    .getText());
+            addCustomerDialog.getTfInsuranceName().setText((insurance == null) ? "" : insurance.getName());
+        }
+    
+        @Override
+        public void keyTyped(KeyEvent e) {
+            // unused
+        }
+    
+        @Override
+        public void keyPressed(KeyEvent e) {
+            // unused
+        }
+    };
 
     /**
      * Constuctor for AddCustomerController. Runs the showMeTheDialog() methode.
@@ -60,60 +105,5 @@ public class AddCustomerController {
         addCustomerDialog.getTfInsuranceNo().addKeyListener(keyListenerInsuranceNoTextField);
 
     }
-
-    private ActionListener actionListenerButtonCancel = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            addCustomerDialog.getAddCustomerDialog().dispose();
-        }
-    };
-
-    private ActionListener actionListenerButtonAddCustomer = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String firstName;
-            String lastName;
-            String insuranceNo;
-
-            firstName = addCustomerDialog.getTfFirstName().getText();
-            lastName = addCustomerDialog.getTfLastName().getText();
-            insuranceNo = addCustomerDialog.getTfInsuranceNo().getText();
-
-            Customer customer = new Customer();
-            customer.setFirstName(firstName);
-            customer.setName(lastName);
-
-            customer.setInsurance(insuranceRepository.findByInsuranceIdNumber(insuranceNo));
-
-            customerRepository.save(customer);
-
-            addCustomerDialog.getAddCustomerDialog().dispose();
-        }
-    };
-
-    private KeyListener keyListenerInsuranceNoTextField = new KeyListener() {
-
-        @Override
-        public void keyTyped(KeyEvent e) {
-
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-            Insurance insurance = insuranceRepository.findByInsuranceIdNumber(addCustomerDialog.getTfInsuranceNo()
-                    .getText());
-            if (!(insurance == null)) {
-                addCustomerDialog.getTfInsuranceName().setText(insurance.getName());
-            } else {
-                addCustomerDialog.getTfInsuranceName().setText("");
-            }
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            // TODO Auto-generated method stub
-
-        }
-    };
 
 }
