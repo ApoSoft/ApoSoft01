@@ -166,13 +166,17 @@ public class CustomerPanel {
 
         txtDiscount = new JTextField();
         txtDiscount.setEditable(false);
+        txtDiscount.setHorizontalAlignment(JTextField.RIGHT);
         txtSum = new JTextField();
         txtSum.setEditable(false);
+        txtSum.setHorizontalAlignment(JTextField.RIGHT);
         comboBoxPaymentType = new JComboBox<>();
         comboBoxPaymentType.setModel(new DefaultComboBoxModel<>(new String[] { "Bargeld", "Karte", "Rechnung" }));
         txtReceive = new JTextField();
+        txtReceive.setHorizontalAlignment(JTextField.RIGHT);
         txtRetoure = new JTextField();
         txtRetoure.setEditable(false);
+        txtRetoure.setHorizontalAlignment(JTextField.RIGHT);
 
         panel.add(new JLabel("Rabatt"), cc.xy(1, 1));
         panel.add(new JLabel("Summe"), cc.xy(1, 3));
