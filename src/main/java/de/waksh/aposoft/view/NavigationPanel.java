@@ -9,8 +9,9 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 /**
+ * Navigation panel used to hold navigation buttons
  * 
- * @author ahofmann
+ * @author Artem Hofmann
  * 
  */
 public class NavigationPanel {
@@ -25,6 +26,9 @@ public class NavigationPanel {
     @Getter
     private JButton btnRecipe;
 
+    /**
+     * Construct a new NavigationPanel and build the contents
+     */
     public NavigationPanel() {
         build();
     }
