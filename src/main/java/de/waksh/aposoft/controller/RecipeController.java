@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import lombok.Getter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +29,7 @@ import de.waksh.aposoft.view.recipe.RecipePanel;
 /**
  * Controller für die Oberfläche der Rezeptur
  * 
- * @author Jannik Kuptz
+ * @author jkuptz
  * 
  */
 @Component
@@ -54,30 +56,30 @@ public class RecipeController {
     @Autowired
     ProductTypeRepository productTypeRepo;
 
+    @Getter
     private RecipePanel recipePanel;
-    private RecipeButtonPanel btnPanel;
+    @Getter
+    private RecipeButtonPanel recipeButtonPanel;
     private Recipe recipe;
     private ConfirmDialog confirmDialog;
     List<ActiveIngredient> acList = new ArrayList<>();
 
+    /**
+     * Constructor for {@link RecipeController}. Initializes the components.
+     */
     public RecipeController() {
         recipe = new Recipe();
         recipePanel = new RecipePanel(this, recipe);
-        btnPanel = new RecipeButtonPanel();
+        recipeButtonPanel = new RecipeButtonPanel();
 
-        btnPanel.getBtnAdd().addActionListener(listenerAdd);
-        btnPanel.getBtnDelete().addActionListener(listenerDelete);
-        btnPanel.getBtnNext().addActionListener(listenerNext);
+        recipeButtonPanel.getBtnAdd().addActionListener(listenerAdd);
+        recipeButtonPanel.getBtnDelete().addActionListener(listenerDelete);
+        recipeButtonPanel.getBtnNext().addActionListener(listenerNext);
     }
 
-    public RecipePanel getRecipePanel() {
-        return recipePanel;
-    }
-
-    public RecipeButtonPanel getRecipeButtonPanel() {
-        return btnPanel;
-    }
-
+    /**
+     * Adds a row and resets textFields in the {@link RecipePanel recipePanel}.
+     */
     public void addRow() {
         DefaultTableModel model = recipePanel.getTableModel();
         String activeIngredient = recipePanel.getActiveIngredient();
@@ -103,6 +105,9 @@ public class RecipeController {
         recipePanel.resetTextFields();
     }
 
+    /**
+     * Removes a Row.
+     */
     public void removeRow() {
         DefaultTableModel model = recipePanel.getTableModel();
         JTable table = recipePanel.getTable();
@@ -112,6 +117,9 @@ public class RecipeController {
         model.removeRow(table.getSelectedRow());
     }
 
+    /**
+     * Shows next {@link Recipe recipe}.
+     */
     public void next() {
         if (recipePanel.getTableModel().getRowCount() == 0) {
             JOptionPane.showMessageDialog(mainController.getFrame(), "Bitte erst Wirkstoffe hinzufügen.", "Error",
