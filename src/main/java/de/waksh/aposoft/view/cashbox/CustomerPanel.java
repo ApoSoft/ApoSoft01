@@ -66,6 +66,7 @@ public class CustomerPanel {
     @Getter
     private JTextField txtRetoure;
 
+    @Getter
     private JTable historyTable;
     private JTable reservationTable;
 

@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -88,12 +91,46 @@ public class CashboxController {
                 .addListSelectionListener(tableListSelectionListener);
         cashboxPanel.getOutputAreaPanel().getModel().addTableModelListener(tableModelListener);
         cashboxPanel.getCustomerPanel().getTxtReceive().addActionListener(actionListenerTextFieldReceive);
+        cashboxPanel.getCustomerPanel().getHistoryTable().addMouseListener(historyTableMouseListener);
+        cashboxPanel.getCustomerPanel().getComboBoxPaymentType().addItemListener(comboBoxPaymentTypeItemListener);
 
         cashboxButtonPanel.getBtnAddProduct().addActionListener(actionListenerButtonAddProduct);
         cashboxButtonPanel.getBtnRemoveProduct().addActionListener(actionListenerButtonRemoveProduct);
         cashboxButtonPanel.getBtnAddCustomer().addActionListener(actionListenerButtonAddCustomer);
         cashboxButtonPanel.getBtnConfirmPayment().addActionListener(actionListenerButtonConfirmPayment);
     }
+
+    private ItemListener comboBoxPaymentTypeItemListener = new ItemListener() {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == 1) {
+                if (e.getItem().equals("Rechnung")) {
+                    cashboxButtonPanel.getBtnConfirmPayment().setEnabled(true);
+                } else if (e.getItem().equals("Karte")) {
+                    cashboxButtonPanel.getBtnConfirmPayment().setEnabled(false);
+                } else {
+                    cashboxButtonPanel.getBtnConfirmPayment().setEnabled(false);
+                }
+            }
+        }
+    };
+
+    private MouseListener historyTableMouseListener = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (e.getClickCount() == 2) {
+                int row = cashboxPanel.getCustomerPanel().getHistoryTable().getSelectedRow();
+                if (row != -1) {
+                    ProductAppointment productAppointment = cashboxPanel.getCustomerPanel().getHistoryTableModel()
+                            .getItems().get(row);
+                    Product product = new Product();
+                    product.setName(productAppointment.getProduct());
+                    cashboxPanel.getInputAreaPanel().getComboBox().getEditor().setItem(productAppointment.getProduct());
+                    cashboxPanel.getInputAreaPanel().getComboBox().requestFocus();
+                }
+            }
+        };
+    };
 
     private ActionListener actionListenerButtonConfirmPayment = new ActionListener() {
         @Override
@@ -140,6 +177,7 @@ public class CashboxController {
             cashboxButtonPanel.getBtnAddProduct().setEnabled(false);
             cashboxButtonPanel.getBtnConfirmPayment().setEnabled(false);
             cashboxButtonPanel.getBtnRemoveProduct().setEnabled(false);
+            cashboxPanel.getCustomerPanel().getComboBoxPaymentType().setSelectedIndex(0);
         }
     };
 
@@ -220,8 +258,7 @@ public class CashboxController {
                 List<Product> remove = new ArrayList<>();
 
                 for (Product p : list) {
-                    boolean b = false; // TODO: Implement => Button "Entfernen"
-                                       // akt
+                    boolean b = false;
 
                     List<String> ingredients = new ArrayList<>();
 
@@ -343,6 +380,7 @@ public class CashboxController {
         if (customer.getInsurance() != null) {
             cashboxPanel.getInputAreaPanel().getTfInsuranceNumber()
                     .setText(customer.getInsurance().getInsuranceIdNumber());
+            cashboxPanel.getInputAreaPanel().getTfInsuranceName().setText(customer.getInsurance().getName());
         }
 
         CustomerPanel cp = cashboxPanel.getCustomerPanel();
