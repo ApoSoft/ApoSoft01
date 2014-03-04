@@ -30,8 +30,9 @@ import de.waksh.aposoft.view.recipe.ProductDialog;
 import de.waksh.aposoft.view.recipe.RecipePanel;
 
 /**
+ * Controller for the {@link ProductDialog}.
  * 
- * @author Jannik Kuptz
+ * @author jkuptz
  * 
  */
 public class ProductDialogController {
@@ -52,6 +53,29 @@ public class ProductDialogController {
     private ProductTypeRepository productTypeRepo;
     List<ActiveIngredient> acList = new ArrayList<>();
 
+    /**
+     * Constructor for {@link ProductDialogController}. Sets the following
+     * parameters.
+     * 
+     * @param mainController
+     *            {@link MainController}
+     * @param productRepo
+     *            {@link ProductRepository}
+     * @param recipePanel
+     *            {@link RecipePanel}
+     * @param protocolRepo
+     *            {@link ProtocolRepository}
+     * @param productGroupRepo
+     *            {@link ProductGroupRepository}
+     * @param vendorRepo
+     *            {@link VendorRepository}
+     * @param unitRepo
+     *            {@link UnitRepository}
+     * @param productTypeRepo
+     *            {@link ProductTypeRepository}
+     * @param acList
+     *            {@link List<ActiveIngredient> AvtiveIngredients}
+     */
     public ProductDialogController(MainController mainController, ProductRepository productRepo,
             RecipePanel recipePanel, ProtocolRepository protocolRepo, ProductGroupRepository productGroupRepo,
             VendorRepository vendorRepo, UnitRepository unitRepo, ProductTypeRepository productTypeRepo,
