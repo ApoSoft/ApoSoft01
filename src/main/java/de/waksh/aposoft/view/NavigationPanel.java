@@ -3,7 +3,7 @@ package de.waksh.aposoft.view;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import lombok.Data;
+import lombok.Getter;
 
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -13,13 +13,16 @@ import com.jgoodies.forms.layout.FormLayout;
  * @author ahofmann
  * 
  */
-
-@Data
 public class NavigationPanel {
+    @Getter
     private JPanel panel;
+    @Getter
     private JButton btnCashbox;
+    @Getter
     private JButton btnMaterialAdmin;
+    @Getter
     private JButton btnAdmin;
+    @Getter
     private JButton btnRecipe;
 
     public NavigationPanel() {
