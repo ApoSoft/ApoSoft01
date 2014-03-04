@@ -2,6 +2,8 @@ package de.waksh.aposoft.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -10,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.Recipe;
 import de.waksh.aposoft.repository.ProductGroupRepository;
 import de.waksh.aposoft.repository.ProductRepository;
@@ -54,6 +57,7 @@ public class RecipeController {
     private RecipeButtonPanel btnPanel;
     private Recipe recipe;
     private ConfirmDialog confirmDialog;
+    List<ActiveIngredient> acList = new ArrayList<>();
 
     public RecipeController() {
         recipe = new Recipe();
@@ -125,8 +129,14 @@ public class RecipeController {
         @Override
         public void actionPerformed(ActionEvent e) {
             confirmDialog.dispose();
-            new ProductDialogController(recipe, mainController, productRepo, recipePanel, protocolRepo,
-                    productGroupRepo, vendorRepo, unitRepo, productTypeRepo);
+            DefaultTableModel tm = recipePanel.getTableModel();
+            for (int i = 0; i < tm.getRowCount(); i++) {
+                ActiveIngredient ac = new ActiveIngredient();
+                ac.setName(tm.getValueAt(i, 0).toString());
+                acList.add(ac);
+            }
+            new ProductDialogController(mainController, productRepo, recipePanel, protocolRepo, productGroupRepo,
+                    vendorRepo, unitRepo, productTypeRepo, acList);
         }
     };
 

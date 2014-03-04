@@ -2,11 +2,14 @@ package de.waksh.aposoft.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import org.joda.time.LocalDate;
 
+import de.waksh.aposoft.domain.ActiveIngredient;
 import de.waksh.aposoft.domain.Product;
 import de.waksh.aposoft.domain.ProductGroup;
 import de.waksh.aposoft.domain.ProductType;
@@ -46,11 +49,12 @@ public class ProductDialogController {
     private VendorRepository vendorRepo;
     private UnitRepository unitRepository;
     private ProductTypeRepository productTypeRepo;
+    List<ActiveIngredient> acList = new ArrayList<>();
 
-    public ProductDialogController(Recipe recipe, MainController mainController, ProductRepository productRepo,
+    public ProductDialogController(MainController mainController, ProductRepository productRepo,
             RecipePanel recipePanel, ProtocolRepository protocolRepo, ProductGroupRepository productGroupRepo,
-            VendorRepository vendorRepo, UnitRepository unitRepo, ProductTypeRepository productTypeRepo) {
-        this.recipe = recipe;
+            VendorRepository vendorRepo, UnitRepository unitRepo, ProductTypeRepository productTypeRepo,
+            List<ActiveIngredient> acList) {
         this.mainFrame = mainController;
         this.productRepo = productRepo;
         this.protocolRepo = protocolRepo;
@@ -59,6 +63,8 @@ public class ProductDialogController {
         this.vendorRepo = vendorRepo;
         this.unitRepository = unitRepo;
         this.productTypeRepo = productTypeRepo;
+        this.acList = acList;
+        recipe = new Recipe();
         productDialog = new ProductDialog();
         productDialog.getBtnAbort().addActionListener(listenerAbort);
         productDialog.getBtnSave().addActionListener(listenerSave);
@@ -118,6 +124,7 @@ public class ProductDialogController {
         @Override
         public void actionPerformed(ActionEvent e) {
             // toDo: Produkt zum Lager hinzufügen --> zu Store?
+            recipe.setActiveIngredients(acList);
             product.setRecipe(recipe);
             // toDo: Amount in Produkt speichern --> Feld in Produkt anlegen?
             product.setName(productDialog.getProductName());
